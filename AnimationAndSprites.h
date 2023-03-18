@@ -1,8 +1,8 @@
-//
-// Created by Roguelied on 18.03.2023.
-//
-
 #ifndef CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
 #define CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
+#include "Utility.h"
+
+
+void PlayCharacterAttackAnimation();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
