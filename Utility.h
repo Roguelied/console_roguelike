@@ -1,0 +1,6 @@
+#ifndef CONSOLE_ROGUELIKE_CPP_UTILITY_H
+#define CONSOLE_ROGUELIKE_CPP_UTILITY_H
+
+void PlayCharacterAttackAnimation();
+
+#endif //CONSOLE_ROGUELIKE_CPP_UTILITY_H
