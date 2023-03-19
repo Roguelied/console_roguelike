@@ -48,16 +48,16 @@ void PlayerController::Movement(GameLevel HomeLevel) {
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-            if (Key == 'w') {
+            if (Key == 'w' and HomeLevel.GameLevelArray[x-1][y] != "█") {
                 HomeLevel.GameLevelArray[x][y] = " "; x--;
             }
-            if (Key == 'a') {
+            if (Key == 'a' and HomeLevel.GameLevelArray[x][y-1] != "█") {
                 HomeLevel.GameLevelArray[x][y] = " "; y--;
             }
-            if (Key == 's') {
+            if (Key == 's' and HomeLevel.GameLevelArray[x+1][y] != "█") {
                 HomeLevel.GameLevelArray[x][y] = " "; x++;
             }
-            if (Key == 'd') {
+            if (Key == 'd' and HomeLevel.GameLevelArray[x][y+1] != "█") {
                 HomeLevel.GameLevelArray[x][y] = " "; y++;
             }
             if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd') {

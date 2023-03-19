@@ -15,13 +15,10 @@ int main() {
 
 
     GameLevel HomeLevel(0);
-    //for (;;) {PlayArcherAttackAnimation();}
-
     HomeLevel.DrawGameLevel();
-    //PlayCharacterAttackAnimation();
-    //SetConsoleCursorPosition(hConsole, {10, 10});
 
-
+    PlayerController PlayerController;
+    PlayerController.Movement(HomeLevel);
 
 
     int a;

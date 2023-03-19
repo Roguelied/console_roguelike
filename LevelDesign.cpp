@@ -22,6 +22,7 @@ GameLevel::GameLevel(int RoomType) {
 
         DrawLine(0, 0, 2, 15);
         DrawLine(0, 0, 50, 1);
+        DrawLine(014, 0, 15, 20);
     }
 
 
