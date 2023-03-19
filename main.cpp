@@ -8,7 +8,8 @@
 
 int main() {
     InitializeSettings();
-    //sanya hui
+
+
     GameLevel HomeLevel(0);
     for (;;) {PlayArcherAttackAnimation();}
 
