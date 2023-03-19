@@ -11,7 +11,7 @@ int main() {
 
 
     GameLevel HomeLevel(0);
-    //for (;;) {PlayCharacterAttackAnimation();}
+    for (;;) {PlayArcherAttackAnimation();}
 
     //PlayCharacterAttackAnimation();
     //SetConsoleCursorPosition(hConsole, {10, 10});

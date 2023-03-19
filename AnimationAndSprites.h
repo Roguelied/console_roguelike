@@ -3,6 +3,7 @@
 #include "Utility.h"
 
 
-void PlayCharacterAttackAnimation();
+void PlayKnightAttackAnimation();
+void PlayArcherAttackAnimation();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
