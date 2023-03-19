@@ -319,7 +319,7 @@ string ArcherAttackSprite4 =    "                                               
                                 "            ╫▓▓░▒▓▓▓▓▒▒░░░░░▒╬▓▓▒▒▓▒╙░░░░▒░    ╠▓▓▓▓▓╜\"                        \n"
                                 "              '╠▒░▓▒░▒▒▒░▒▒░░░░░▒░░░░░░▒░`     ╠▓▓▓▓╖                           \n"
                                 "             ░▒▒░░░░▒▒▒░░└`░░░░░░░░░░```       `╙▓▓▓▓▓@                         \n"
-                                "             ░░░░░▒░░░░░░░░░░░░░░░░░                ╠▓▓▀╜                         \n"
+                                "             ░░░░░▒░░░░░░░░░░░░░░░░░                ╠▓▓▀╜                        \n"
                                 "                '░░░` ¡░░▒░░░░░░░░           j@░╓@▓▓▓░                          \n"
                                 "                     ░░¡└░░▒▒▒▒▒░            '╜▓▓▓▓▌                            \n"
                                 "                      ░░░ `░░▒▒▒░              ╠▓▓▓▌                            \n"
@@ -351,7 +351,7 @@ string ArcherAttackSprite5 =    "                                     ╓╓g▓
                                 "            ╠▓▓▀░░▒▒░`░▒░░░░╖g@░ ¡░░]╢░        ╙╫▓▓▀▀╜`       ¡▄▄▄▄▄∩           \n"
                                 "             └░░░░░░░`░▒▒░░░░░░░░▒░░░░▒▒, ,╓╓╓╓╓╠▓▓░]Ñ▓▓▓▓▓▓▓▓▒└└└└└`           \n"
                                 "              ░░░░░░░░╖░░▒@@░░░░▒φ▄φ@▄▄▓▓▄╣▀▀▀▀▀▀╢▓▓▒                           \n"
-                                "              └░░░░░░░░`░░░░╫▓▓▓▒░░░░░░\"└└`     ,╓▓▓▒╓▓▓▓▓░                     \n"
+                                "              └░░░░░░░░`░░░░╫▓▓▓▒░░░░░░\"└└`     ,╓▓▓▒╓▓▓▓▓░                    \n"
                                 "                ''░'`¡¡ ¡░░░░░░░░░'           ;g▓▓█▓▓▓╜└                        \n"
                                 "                      ¡░¡`░░▒▒▒▒▒░             `╠▓▓▓▓░╓,                        \n"
                                 "                      '░░░¡ ░░░▒▒▒░¡            ░╙╙▓▓▓▓▓@                       \n"
@@ -459,6 +459,14 @@ void PlayKnightAttackAnimation() {
 
 void PlayArcherAttackAnimation() {
 
+    for (auto & AttackSprite : ArcherAttackSprites) {
+        system("cls");
+        cout << AttackSprite;
+        sleep_for(nanoseconds(7000000));
+    }
+}
+
+void Play(Player Player, Enemy Enemy) {
     for (auto & AttackSprite : ArcherAttackSprites) {
         system("cls");
         cout << AttackSprite;

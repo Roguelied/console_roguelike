@@ -31,6 +31,4 @@ using namespace std;
 
 void InitializeSettings();
 
-
-
 #endif //CONSOLE_ROGUELIKE_CPP_UTILITY_H

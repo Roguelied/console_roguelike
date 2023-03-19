@@ -25,57 +25,24 @@ public:
 class Player : public Character {
 protected:
     int MaxStamina{100}; int Stamina{100};
-    int Gold{0};
+    int Gold{0}; string Name{"NonClassified"};
 public:
     int GetStamina();
     void SetStamina(int Stamina);
 
     int GetGold();
     void SetGold(int Gold);
+
+    void SetName(string Name);
+    string GetName();
 };
 
 class PlayerController : public Player {
 private:
-    int y{20};
-    int x{10};
+    int y{20}; int x{10}; //current position
+    int p_y{}; int p_x{}; //Previous position
 public:
-    void Movement(GameLevel HomeLevel) {
-        for (;;) {
-            if (_kbhit()) {
-                switch (_getch()) {
-                    case 'e':
-                        //something
-
-                    case 'w':
-                        HomeLevel.GameLevelArray[x][y] = "█"; x--;
-                        HomeLevel.GameLevelArray[x][y] = "@";
-                        system("cls");
-                        HomeLevel.DrawGameLevel();
-                        continue;
-                    case 'd':
-                        HomeLevel.GameLevelArray[x][y] = "█"; y++;
-                        HomeLevel.GameLevelArray[x][y] = "@";
-                        system("cls");
-                        HomeLevel.DrawGameLevel();
-                        continue;
-                    case 's':
-                        HomeLevel.GameLevelArray[x][y] = "█"; x++;
-                        HomeLevel.GameLevelArray[x][y] = "@";
-                        system("cls");
-                        HomeLevel.DrawGameLevel();
-                        continue;
-                    case 'a':
-                        HomeLevel.GameLevelArray[x][y] = "█"; y--;
-                        HomeLevel.GameLevelArray[x][y] = "@";
-                        system("cls");
-                        HomeLevel.DrawGameLevel();
-                        continue;
-
-                }
-            }
-        }
-    }
-
+    void Movement(GameLevel HomeLevel);
 };
 
 
