@@ -14,7 +14,6 @@ public:
     void DrawGameLevel();
     void DrawLine(int x1, int y1, int x2, int y2);
     void DrawFrame();
-    void DrawFill(int x1, int y1, int x2, int y2);
 
 };
 #endif //CONSOLE_ROGUELIKE_CPP_LEVELDESIGN_H
