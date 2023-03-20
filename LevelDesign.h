@@ -13,7 +13,7 @@ public:
 
     void DrawGameLevel();
     void DrawLine(int x1, int y1, int x2, int y2);
-    void DrawFrame(int x1, int y1, int x2, int y2);
+    void DrawFrame();
     void DrawFill(int x1, int y1, int x2, int y2);
 
 };

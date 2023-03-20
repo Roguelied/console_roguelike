@@ -20,9 +20,7 @@ GameLevel::GameLevel(int RoomType) {
             }
         }
 
-        DrawLine(0, 0, 2, 15);
-        DrawLine(0, 0, 50, 1);
-        DrawLine(014, 0, 15, 20);
+        DrawFrame();
     }
 
 
@@ -49,7 +47,10 @@ void GameLevel::DrawFill(int x1, int y1, int x2, int y2) {
 
 }
 
-void GameLevel::DrawFrame(int x1, int y1, int x2, int y2) {
-
+void GameLevel::DrawFrame() {
+    DrawLine(0, 0, 2, 29);
+    DrawLine(0, 0, 119, 1);
+    DrawLine(117, 0, 119, 29);
+    DrawLine(0, 28, 129, 29);
 }
 

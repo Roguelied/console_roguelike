@@ -44,26 +44,35 @@ void Player::SetName(string Name) {
 }
 
 
-void PlayerController::Movement(GameLevel HomeLevel) {
+void PlayerController::MovementInit(GameLevel HomeLevel) {
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
             if (Key == 'w' and HomeLevel.GameLevelArray[x-1][y] != "█") {
-                HomeLevel.GameLevelArray[x][y] = " "; x--;
+
+                gotoxy(y, x-1); cout << "@"; gotoxy(y, x); cout << " ";
+                HomeLevel.GameLevelArray[x][y] = " ";
+                x--; gotoxy(y, x);
             }
             if (Key == 'a' and HomeLevel.GameLevelArray[x][y-1] != "█") {
-                HomeLevel.GameLevelArray[x][y] = " "; y--;
+                gotoxy(y-1, x); cout << "@"; gotoxy(y, x); cout << " ";
+                HomeLevel.GameLevelArray[x][y] = " ";
+                y--; gotoxy(y, x);
             }
             if (Key == 's' and HomeLevel.GameLevelArray[x+1][y] != "█") {
-                HomeLevel.GameLevelArray[x][y] = " "; x++;
+                gotoxy(y, x+1); cout << "@"; gotoxy(y, x); cout << " ";
+                HomeLevel.GameLevelArray[x][y] = " ";
+                x++; gotoxy(y, x);
             }
             if (Key == 'd' and HomeLevel.GameLevelArray[x][y+1] != "█") {
-                HomeLevel.GameLevelArray[x][y] = " "; y++;
+                gotoxy(y+1, x); cout << "@"; gotoxy(y, x); cout << " ";
+                HomeLevel.GameLevelArray[x][y] = " ";
+                y++; gotoxy(y, x);
             }
             if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd') {
-                HomeLevel.GameLevelArray[x][y] = "@";
-                system("cls");
-                HomeLevel.DrawGameLevel();
+                //HomeLevel.GameLevelArray[x][y] = "@";
+                //system("cls");
+                //HomeLevel.DrawGameLevel();
                 continue;
             }
         }

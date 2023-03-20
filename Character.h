@@ -42,9 +42,8 @@ private:
     int y{20}; int x{10}; //current position
     int p_y{}; int p_x{}; //Previous position
 public:
-    void Movement(GameLevel HomeLevel);
+    void MovementInit(GameLevel HomeLevel);
 };
-
 
 class Rogue : public Player {
 public:
@@ -55,7 +54,7 @@ public:
     }
 };
 
-//Default player controllable,
+
 class Swordsman : public Player {
 public:
     Swordsman() {

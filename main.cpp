@@ -16,9 +16,8 @@ int main() {
 
     GameLevel HomeLevel(0);
     HomeLevel.DrawGameLevel();
-
     PlayerController PlayerController;
-    PlayerController.Movement(HomeLevel);
+    PlayerController.MovementInit(HomeLevel);
 
 
     int a;

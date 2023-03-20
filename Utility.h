@@ -30,5 +30,6 @@ using namespace std;
 // >15 changes font background add if u want
 
 void InitializeSettings();
+void gotoxy(int x, int y);
 
 #endif //CONSOLE_ROGUELIKE_CPP_UTILITY_H
