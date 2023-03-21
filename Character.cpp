@@ -52,19 +52,19 @@ void PlayerController::MovementInit(GameLevel HomeLevel) {
         if (_kbhit()) {
             auto Key = _getch();
 
-            if (Key == 'w' and HomeLevel.GameLevelArray[x-1][y] != "█" and HomeLevel.GameLevelArray[x-1][y] != "#") {
+            if (Key == 'w' and HomeLevel.GameLevelArray[x-1][y] != "█" and HomeLevel.GameLevelArray[x-1][y] != "░") {
                 gotoxy(y, x-1); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
                 HomeLevel.GameLevelArray[x][y] = " "; x--;
             }
-            if (Key == 'a' and HomeLevel.GameLevelArray[x][y-1] != "█" and HomeLevel.GameLevelArray[x][y-1] != "#") {
+            if (Key == 'a' and HomeLevel.GameLevelArray[x][y-1] != "█" and HomeLevel.GameLevelArray[x][y-1] != "░") {
                 gotoxy(y-1, x); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
                 HomeLevel.GameLevelArray[x][y] = " "; y--;
             }
-            if (Key == 's' and HomeLevel.GameLevelArray[x+1][y] != "█" and HomeLevel.GameLevelArray[x+1][y] != "#") {
+            if (Key == 's' and HomeLevel.GameLevelArray[x+1][y] != "█" and HomeLevel.GameLevelArray[x+1][y] != "░") {
                 gotoxy(y, x+1); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
                 HomeLevel.GameLevelArray[x][y] = " "; x++;
             }
-            if (Key == 'd' and HomeLevel.GameLevelArray[x][y+1] != "█" and HomeLevel.GameLevelArray[x][y+1] != "#") {
+            if (Key == 'd' and HomeLevel.GameLevelArray[x][y+1] != "█" and HomeLevel.GameLevelArray[x][y+1] != "░") {
                 gotoxy(y+1, x); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
                 HomeLevel.GameLevelArray[x][y] = " "; y++;
             }
