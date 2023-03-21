@@ -39,7 +39,7 @@ public:
 
 class PlayerController : public Player {
 private:
-    int y{28}; int x{14}; //current position
+    int x{14}; int y{28}; //current position
     int p_y{}; int p_x{}; //Previous position
 public:
     void MovementInit(GameLevel HomeLevel);
