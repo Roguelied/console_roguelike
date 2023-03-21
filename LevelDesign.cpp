@@ -19,8 +19,7 @@ GameLevel::GameLevel(int RoomType) {
                 j = " ";
             }
             DrawFrame();
-            DrawWall();
-            DrawAir();
+            DrawLevel();
         }
     }
 }
@@ -56,10 +55,9 @@ void GameLevel::DrawFrame() {
     Draw(117, 0, 119, 29,"█");
     Draw(0, 28, 129, 29,"█");
 }
-void GameLevel::DrawWall() {
+
+void GameLevel::DrawLevel() {
     Draw(2,1,117,28,"░");
-}
-void GameLevel::DrawAir() {
     Draw(10,8,50,20," ");
     Draw(50,13,60,15," ");
     Draw(59,14,62,17," ");

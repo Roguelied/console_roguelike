@@ -14,8 +14,7 @@ public:
     void DrawGameLevel();
     void Draw(int x1, int y1, int x2, int y2,string symbol);
     void DrawFrame();
-    void DrawWall();
-    void DrawAir();
+    void DrawLevel();
 
     void DrawFill(int x1, int y1, int x2, int y2);
 
