@@ -12,13 +12,13 @@ public:
     GameLevel(int RoomType);
 
     void DrawGameLevel();
-    void DrawLine(int x1, int y1, int x2, int y2);
+    void Draw(int x1, int y1, int x2, int y2,string symbol);
     void DrawFrame();
-    void _DrawWall();
-    void _DrawAir();
-    void DrawAir(int x1,int y1,int x2,int y2);
+    void DrawWall();
+    void DrawAir();
+
     void DrawFill(int x1, int y1, int x2, int y2);
-    void DrawWall(int x1,int y1,int x2,int y2);
+
 
 };
 #endif //CONSOLE_ROGUELIKE_CPP_LEVELDESIGN_H

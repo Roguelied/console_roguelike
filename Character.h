@@ -40,7 +40,7 @@ public:
 class PlayerController : public Player {
 private:
     string PlayerSymbol{"@"};
-    int y{14}; int x{28}; //current position
+    int y{28}; int x{14}; //current position
 public:
     string GetPlayerSymbol();
     void MovementInit(GameLevel HomeLevel);
