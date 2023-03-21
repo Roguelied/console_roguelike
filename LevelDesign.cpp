@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 //Room resolution 29/119
 GameLevel::GameLevel(int RoomType) {
     /*Пусть тут будет несколько комнат, которые вы будете сами строить в конструкторе класса.
@@ -15,13 +16,13 @@ GameLevel::GameLevel(int RoomType) {
     if (RoomType == 0) {
         for (auto & i: GameLevelArray) {
             for (auto &j: i) {
-                j = "█";
+                j = " ";
             }
         }
+
         DrawFrame();
-        _DrawWall();
-        _DrawAir();
-        //TurnGrey; DrawLine(18, 8, 29, 13);
+        DrawWall();
+        DrawAir();
     }
 
 
@@ -34,7 +35,7 @@ GameLevel::GameLevel(int RoomType) {
 
 
 
-    }
+}
 
 
 
@@ -48,39 +49,32 @@ void GameLevel::DrawGameLevel() {
     }
 }
 
-void GameLevel::DrawLine(int x1, int y1, int x2, int y2) {
+void GameLevel::Draw(int x1, int y1, int x2, int y2, std::string symbol) {
     for (int i = y1; i < y2; i++) {
         for (int j = x1; j < x2; j++) {
-            GameLevelArray[i][j] = " ";
-        }
-    }
-}
-void GameLevel::DrawWall(int x1,int y1,int x2,int y2){
-    for(int i=y1;i<y2;i++){
-        for(int j=x1;j<x2;j++){
-            GameLevelArray[i][j]="#";
-        }
-    }
-}
-void GameLevel::DrawAir(int x1,int y1,int x2,int y2){
-    for(int i=y1;i<y2;i++){
-        for(int j=x1;j<x2;j++){
-            GameLevelArray[i][j]=" ";
+            GameLevelArray[i][j] = symbol;
         }
     }
 }
 
+
+
+void GameLevel::DrawFill(int x1, int y1, int x2, int y2) {
+
+}
 
 void GameLevel::DrawFrame() {
-    DrawLine(0, 0, 2, 29);
-    DrawLine(0, 0, 119, 1);
-    DrawLine(117, 0, 119, 29);
-    DrawLine(0, 28, 129, 29);
+    Draw(0, 0, 2, 29,"█");
+    Draw(0, 0, 119, 1,"█");
+    Draw(117, 0, 119, 29,"█");
+    Draw(0, 28, 129, 29,"█");
 }
-void GameLevel::_DrawWall() {
-    DrawWall(2,1,117,28);
+void GameLevel::DrawWall() {
+    Draw(2,1,117,28,"#");
 }
-void GameLevel::_DrawAir() {
-    DrawAir(10,8,50,20);
+void GameLevel::DrawAir() {
+    Draw(10,8,50,20," ");
+    Draw(50,13,60,15," ");
 }
+
 
