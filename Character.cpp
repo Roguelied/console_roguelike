@@ -80,3 +80,4 @@ void PlayerController::MovementInit(GameLevel HomeLevel) {
 string PlayerController::GetPlayerSymbol() {
     return PlayerSymbol;
 }
+int a;

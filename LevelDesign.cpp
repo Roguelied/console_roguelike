@@ -89,5 +89,5 @@ void GameLevel::DrawAir() {
     Draw(113,25,116,27," ");
     Draw(115,25,116,27,"#");
 }
-
+int a;
 
