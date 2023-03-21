@@ -39,9 +39,10 @@ public:
 
 class PlayerController : public Player {
 private:
-    int x{14}; int y{28}; //current position
-    int p_y{}; int p_x{}; //Previous position
+    string PlayerSymbol{"@"};
+    int y{14}; int x{28}; //current position
 public:
+    string GetPlayerSymbol();
     void MovementInit(GameLevel HomeLevel);
 };
 
