@@ -12,9 +12,9 @@ GameLevel::GameLevel(int RoomType) {
       в которой игрок спавнится.
     */
 
-    //Строю белый квадрат по разрешению, указанному в LevelDesign.h
+    //Строю белая рамка по разрешению, указанному в LevelDesign.h
     if (RoomType == 0) {
-        for (auto &i: GameLevelArray) {
+        for (auto & i: GameLevelArray) {
             for (auto &j: i) {
                 j = " ";
             }
@@ -24,7 +24,19 @@ GameLevel::GameLevel(int RoomType) {
     }
 
 
-}
+//    if(RoomType == 1){
+//        for (auto & i :GameLevelArray){
+//            for (auto & j : i){
+//
+//            }
+//        }
+
+
+
+    }
+
+
+
 
 void GameLevel::DrawGameLevel() {
     for (auto & i : GameLevelArray) {
