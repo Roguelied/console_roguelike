@@ -11,18 +11,33 @@ GameLevel::GameLevel(int RoomType) {
       в которой игрок спавнится.
     */
 
-    //Строю белый квадрат по разрешению, указанному в LevelDesign.h
+    //Строю белая рамка по разрешению, указанному в LevelDesign.h
     if (RoomType == 0) {
-        for (auto &i: GameLevelArray) {
+        for (auto & i: GameLevelArray) {
             for (auto &j: i) {
                 j = "█";
             }
         }
-        TurnGrey; DrawLine(18, 8, 29, 13);
+        DrawFrame();
+        _DrawWall();
+        _DrawAir();
+        //TurnGrey; DrawLine(18, 8, 29, 13);
     }
 
 
-}
+//    if(RoomType == 1){
+//        for (auto & i :GameLevelArray){
+//            for (auto & j : i){
+//
+//            }
+//        }
+
+
+
+    }
+
+
+
 
 void GameLevel::DrawGameLevel() {
     for (auto & i : GameLevelArray) {
@@ -40,11 +55,32 @@ void GameLevel::DrawLine(int x1, int y1, int x2, int y2) {
         }
     }
 }
+void GameLevel::DrawWall(int x1,int y1,int x2,int y2){
+    for(int i=y1;i<y2;i++){
+        for(int j=x1;j<x2;j++){
+            GameLevelArray[i][j]="#";
+        }
+    }
+}
+void GameLevel::DrawAir(int x1,int y1,int x2,int y2){
+    for(int i=y1;i<y2;i++){
+        for(int j=x1;j<x2;j++){
+            GameLevelArray[i][j]=" ";
+        }
+    }
+}
+
 
 void GameLevel::DrawFrame() {
     DrawLine(0, 0, 2, 29);
     DrawLine(0, 0, 119, 1);
     DrawLine(117, 0, 119, 29);
     DrawLine(0, 28, 129, 29);
+}
+void GameLevel::_DrawWall() {
+    DrawWall(2,1,117,28);
+}
+void GameLevel::_DrawAir() {
+    DrawAir(10,8,50,20);
 }
 
