@@ -55,7 +55,7 @@ GameLevel::GameLevel(int RoomType) {
     }
     if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
-            for (auto &j: i) {
+            for (auto & j: i) {
                 j = " ";
             }
         }

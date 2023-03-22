@@ -12,7 +12,8 @@ int main() {
 
 
     InitializeSettings();
-
+UserInterface UserInterface;
+UserInterface.ShowStartScreen();
     GameLevel HomeLevel(1);
     HomeLevel.DrawGameLevel();
     PlayerController PlayerController;
