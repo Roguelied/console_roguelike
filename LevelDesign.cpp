@@ -50,56 +50,62 @@ GameLevel::GameLevel(int RoomType) {
 //            Draw(115, 25, 116, 27, "#");
 //            DrawLevel();
 //        }
-//    } else if (RoomType == 1) {
+//    }
+    if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
             for (auto &j: i) {
                 j = " ";
             }
-            DrawFrame();
-            Draw(2, 1, 117, 28, "░");
-            Draw(3,2,7,4," ");
-            Draw(3,2,4,4,"#");
-            Draw(6,3,8,5," ");
-            Draw(7,4,9,7," ");
-            Draw(6,6,8,9," ");
-            Draw(6,9,20,15," ");
         }
-    }
-
-
-
-
-void GameLevel::DrawGameLevel() {
-    for (auto & i : GameLevelArray) {
-        for (auto & j : i) {
-            cout << j;
-        }
-        cout << endl;
-    }
-}
-
-void GameLevel::Draw(int x1, int y1, int x2, int y2, std::string symbol) {
-    for (int i = y1; i < y2; i++) {
-        for (int j = x1; j < x2; j++) {
-            GameLevelArray[i][j] = symbol;
-        }
+        DrawFrame();
+        Draw(2, 1, 117, 28, "░");
+        Draw(3, 2, 7, 4, " ");
+        Draw(3, 2, 4, 4, "#");
+        Draw(6, 3, 8, 5, " ");
+        Draw(7, 4, 9, 7, " ");
+        Draw(6, 6, 8, 9, " ");
+        Draw(6, 9, 22, 15, " ");
+        Draw(13,8,17,9," ");
+        Draw(11,6,19,8," ");
+        Draw(20,14,22,18," ");
+        Draw(16,17,21,18," ");
+        Draw(13,16,18,19," ");
+        Draw(15,19,16,22," ");
+        Draw(15,21,30,22," ");
     }
 }
 
 
+    void GameLevel::DrawGameLevel() {
+        for (auto &i: GameLevelArray) {
+            for (auto &j: i) {
+                cout << j;
+            }
+            cout << endl;
+        }
+    }
 
-void GameLevel::DrawFill(int x1, int y1, int x2, int y2) {
-}
+    void GameLevel::Draw(int x1, int y1, int x2, int y2, std::string symbol) {
+        for (int i = y1; i < y2; i++) {
+            for (int j = x1; j < x2; j++) {
+                GameLevelArray[i][j] = symbol;
+            }
+        }
+    }
 
-void GameLevel::DrawFrame() {
-    Draw(0, 0, 2, 29,"█");
-    Draw(0, 0, 119, 1,"█");
-    Draw(117, 0, 119, 29,"█");
-    Draw(0, 28, 129, 29,"█");
-}
 
-void GameLevel::DrawLevel() {
+    void GameLevel::DrawFill(int x1, int y1, int x2, int y2) {
+    }
 
-}
+    void GameLevel::DrawFrame() {
+        Draw(0, 0, 2, 29, "█");
+        Draw(0, 0, 119, 1, "█");
+        Draw(117, 0, 119, 29, "█");
+        Draw(0, 28, 129, 29, "█");
+    }
+
+    void GameLevel::DrawLevel() {
+
+    }
 
 
