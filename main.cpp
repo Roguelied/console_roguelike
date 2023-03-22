@@ -12,8 +12,12 @@ int main() {
 
 
     InitializeSettings();
-UserInterface UserInterface;
-UserInterface.ShowStartScreen();
+    Armor Chestplace("Boba", 12);
+    Chestplace.SetArmorPoints(25);
+    cout << Chestplace.GetName() << endl;
+    cout << Chestplace.GetArmorPoints();
+    UserInterface UserInterface;
+    UserInterface.ShowStartScreen();
     GameLevel HomeLevel(1);
     HomeLevel.DrawGameLevel();
     PlayerController PlayerController;

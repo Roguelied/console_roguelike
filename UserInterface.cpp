@@ -1,8 +1,6 @@
 #include "UserInterface.h"
 #include "Utility.h"
-#include <iostream>
-#include <string>
-using namespace std;
+//using namespace std;
 
 
 int UserInterface::ShowStartScreen() {

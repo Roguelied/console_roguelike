@@ -7,4 +7,49 @@
 #include "Utility.h"
 
 
+class PlayerItem
+{
+private:
+    string Name;
+public:
+    PlayerItem(string Name);
+    string GetName();
+
+};
+class Armor: public PlayerItem
+{
+private:
+    int ArmorPoints;
+public:
+    Armor(string Name, int ArmorPoints);
+    int GetArmorPoints();
+    void SetArmorPoints(int ArmorPoints);
+};
+
+class Weapon: public PlayerItem
+{
+private:
+    int WeaponDamage;
+public:
+    Weapon(string Name, int WeaponDamage);
+    int GetWeaponDamage();
+    void SetWeaponDamage(int WeaponDamage);
+};
+
+class Potion: public PlayerItem
+{
+
+};
+
+
+
+
+
+
+
+
+
+
+
 #endif //CONSOLE_ROGUELIKE_CPP_PLAYERITEMS_H
+
