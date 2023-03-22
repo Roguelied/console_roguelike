@@ -50,7 +50,7 @@ GameLevel::GameLevel(int RoomType) {
             Draw(104, 18, 113, 27, " ");
             Draw(113, 25, 116, 27, " ");
             Draw(115, 25, 116, 27, "#");
-            DrawLevel();
+
         }
     }
     if (RoomType == 1) {
@@ -73,10 +73,25 @@ GameLevel::GameLevel(int RoomType) {
         Draw(16, 17, 21, 18, " ");
         Draw(13, 16, 18, 19, " ");
         Draw(15, 19, 16, 24, " ");
-        Draw(16, 23, 98, 24, " ");
-        Draw(22,11,40,13," ");
+        Draw(16, 23, 88, 24, " ");
+        Draw(22,12,40,13," ");
         Draw(23,10,27,14," ");
-
+        Draw(35,6,55,15," ");
+        Draw(33,7,35,8," ");
+        Draw(29,5,33,9," ");
+        Draw(35,13,38,17," ");
+        Draw(33,16,36,18," ");
+        Draw(31,17,34,21," ");
+        Draw(33,20,36,22," ");
+        Draw(35,21,38,23," ");
+        Draw(46,21,54,26," ");
+        Draw(55,14,57,18," ");
+        Draw(54,18,62,20," ");
+        Draw(62,19,85,20," ");
+        Draw(85,19,88,23," ");
+        Draw(55,8,57,9," ");
+        Draw(57,8,63,11," ");
+        Draw(63,9,80,10," ");
 
         Draw(110,25,116,27," ");
         Draw(115,25,116,27,"#");
@@ -112,9 +127,7 @@ void GameLevel::DrawFrame() {
     Draw(0, 28, 129, 29, "█");
 }
 
-void GameLevel::DrawLevel() {
 
-}
 
 string GameLevel::GetFromCoordinates(int x, int y) {
     return GameLevelArray[y][x];
