@@ -53,7 +53,7 @@ void PlayerController::MovementInit(GameLevel Level) {
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-
+//add russian later(with and without caps)
             if ((Key == 'w' or Key == 'W') and WallCheck(Level, x, y-1) == 0) {
                 gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); y--;
