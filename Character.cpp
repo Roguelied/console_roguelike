@@ -1,7 +1,7 @@
 #include "Character.h"
 #include "LevelDesign.h"
 #include "Utility.h"
-
+#include <cstdlib>
 
 //Character
 int Character::GetHealth() {
@@ -75,6 +75,9 @@ void PlayerController::MovementInit(GameLevel Level) {
                 gotoxy(x, y);
                 continue;
             }
+            GameLevel HomeLevel(1);
+            EnemyAI EnemyAI;
+            EnemyAI.AutoMovement(HomeLevel);
         }
     }
 }
@@ -91,6 +94,46 @@ int PlayerController::WallCheck(GameLevel Level, int x, int y) {
     } else if (MapElement == "░") {
        return 2;
     } else return 0;
+}
 
-    return 0;
+void EnemyAI::AutoMovement(GameLevel Level) {
+    TurnGreen;
+    string EnemySymbol = GetEnemySymbol();
+    gotoxy(x, y); cout << EnemySymbol; gotoxy(x, y);
+
+        int move = 1 + rand() % 4;
+        if (move == 1 and WallCheck(Level, x, y-1) == 0) {
+            gotoxy(x, y-1); cout << EnemySymbol; gotoxy(x, y); cout << " ";
+            Level.SetToCoordinates(" ", x, y); y--;
+        }
+        if (move == 2 and WallCheck(Level, x-1, y) == 0) {
+            gotoxy(x-1, y); cout << EnemySymbol; gotoxy(x, y); cout << " ";
+            Level.SetToCoordinates(" ", x, y); x--;
+        }
+        if (move == 3 and WallCheck(Level, x, y+1) == 0) {
+            gotoxy(x, y+1); cout << EnemySymbol; gotoxy(x, y); cout << " ";
+            Level.SetToCoordinates(" ", x, y); y++;
+        }
+        if (move == 4 and WallCheck(Level, x+1, y) == 0) {
+            gotoxy(x+1, y); cout << EnemySymbol; gotoxy(x, y); cout << " ";
+            Level.SetToCoordinates(" ", x, y); x++;
+        }
+        if (move == 1 or move == 2 or move == 3 or move == 4) {
+            Level.SetToCoordinates(" ", x, y); EnemySymbol;
+            gotoxy(x, y);
+        }
+    }
+
+
+string EnemyAI::GetEnemySymbol() {
+    return EnemySymbol;
+}
+
+int EnemyAI::WallCheck(GameLevel Level, int x, int y) {
+    string MapElement = Level.GetFromCoordinates(x, y);
+    if (MapElement == "█") {
+        return 1;
+    } else if (MapElement == "░") {
+        return 2;
+    } else return 0;
 }

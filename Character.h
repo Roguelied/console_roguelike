@@ -85,8 +85,43 @@ public:
     }
 };
 
-class Enemy : Character {
+class Enemy : public Character { };
 
+class EnemyAI : public Enemy {
+private:
+    string EnemySymbol{"&"};
+    int x{5}; int y{2}; //current position
+public:
+    string GetEnemySymbol();
+    void AutoMovement(GameLevel HomeLevel);
+    int WallCheck(GameLevel Level, int x, int y);
+};
+
+class Kvadrupter : public Player {
+public:
+    Kvadrupter() {
+        SetHealth(10);
+        SetDamage(100);
+        SetArmor(50);
+    }
+};
+
+class Gnil : public Player {
+public:
+    Gnil() {
+        SetHealth(150);
+        SetDamage(10);
+        SetArmor(50);
+    }
+};
+
+class Mraz : public Player {
+public:
+    Mraz() {
+        SetHealth(200);
+        SetDamage(1);
+        SetArmor(100);
+    }
 };
 
 #endif //CONSOLE_ROGUELIKE_CPP_CHARACTER_H
