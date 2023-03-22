@@ -53,24 +53,24 @@ void PlayerController::MovementInit(GameLevel Level) {
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-
-            if (Key == 'w' and WallCheck(Level, x, y-1) == 0) {
+//add russian later(with and without caps)
+            if ((Key == 'w' or Key == 'W') and WallCheck(Level, x, y-1) == 0) {
                 gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); y--;
             }
-            if (Key == 'a' and WallCheck(Level, x-1, y) == 0) {
+            if ((Key == 'a' or Key == 'A') and WallCheck(Level, x-1, y) == 0) {
                 gotoxy(x-1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); x--;
             }
-            if (Key == 's' and WallCheck(Level, x, y+1) == 0) {
+            if ((Key == 's' or Key == 'S') and WallCheck(Level, x, y+1) == 0) {
                 gotoxy(x, y+1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); y++;
             }
-            if (Key == 'd' and WallCheck(Level, x+1, y) == 0) {
+            if ((Key == 'd' or Key == 'D') and WallCheck(Level, x+1, y) == 0) {
                 gotoxy(x+1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); x++;
             }
-            if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd') {
+            if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd' or Key == 'W' or Key == 'A' or Key == 'S' or Key == 'D') {
                 Level.SetToCoordinates(" ", x, y); PlayerSymbol;
                 gotoxy(x, y);
                 continue;
