@@ -92,6 +92,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(55,8,57,9," ");
         Draw(57,8,63,11," ");
         Draw(63,9,80,10," ");
+        Draw(80,9,83,12," ");
 
         Draw(110,25,116,27," ");
         Draw(115,25,116,27,"#");
