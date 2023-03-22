@@ -45,39 +45,52 @@ void Player::SetName(string Name) {
 }
 
 
+int KeyCheck(int Key) {
+    if (Key == 'w' or Key == 'W' or Key == 230 or Key == 150) {
+        return 1;
+    } else if (Key == 'a' or Key == 'A' or Key == 228 or Key == 148)  {
+        return 2;
+    } else if (Key == 's' or Key == 'S' or Key == 235 or Key == 155) {
+        return 3;
+    } else if (Key == 'd' or Key == 'D' or Key == 162 or Key == 130) {
+        return 4;
+    }
+}
+
+
+
 void PlayerController::MovementInit(GameLevel Level) {
-    TurnLightRed;
+    TurnGreen;
     string PlayerSymbol = GetPlayerSymbol();
     gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
 
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-//add russian later(with and without caps)
-            if ((Key == 'w' or Key == 'W') and WallCheck(Level, x, y-1) == 0) {
+            if (KeyCheck(Key) == 1 and WallCheck(Level, x, y-1) == 0) {
                 gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); y--;
             }
-            if ((Key == 'a' or Key == 'A') and WallCheck(Level, x-1, y) == 0) {
+            if (KeyCheck(Key) == 2 and WallCheck(Level, x-1, y) == 0) {
                 gotoxy(x-1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); x--;
             }
-            if ((Key == 's' or Key == 'S') and WallCheck(Level, x, y+1) == 0) {
+            if (KeyCheck(Key) == 3 and WallCheck(Level, x, y+1) == 0) {
                 gotoxy(x, y+1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); y++;
             }
-            if ((Key == 'd' or Key == 'D') and WallCheck(Level, x+1, y) == 0) {
+            if (KeyCheck(Key) == 4 and WallCheck(Level, x+1, y) == 0) {
                 gotoxy(x+1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y); x++;
             }
-            if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd' or Key == 'W' or Key == 'A' or Key == 'S' or Key == 'D') {
-                Level.SetToCoordinates(" ", x, y); PlayerSymbol;
+            if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
+                Level.SetToCoordinates(" ", x, y);
                 gotoxy(x, y);
                 continue;
             }
             GameLevel HomeLevel(1);
             EnemyAI EnemyAI;
-            EnemyAI.AutoMovement(HomeLevel);
+            //EnemyAI.AutoMovement(HomeLevel);
         }
     }
 }

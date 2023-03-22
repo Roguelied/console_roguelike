@@ -97,7 +97,7 @@ public:
     int WallCheck(GameLevel Level, int x, int y);
 };
 
-class Kvadrupter : public Player {
+class Kvadrupter : public Character {
 public:
     Kvadrupter() {
         SetHealth(10);
@@ -106,7 +106,7 @@ public:
     }
 };
 
-class Gnil : public Player {
+class Gnil : public Character {
 public:
     Gnil() {
         SetHealth(150);
@@ -115,7 +115,7 @@ public:
     }
 };
 
-class Mraz : public Player {
+class Mraz : public Character {
 public:
     Mraz() {
         SetHealth(200);
