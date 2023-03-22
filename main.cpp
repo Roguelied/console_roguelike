@@ -13,7 +13,6 @@ int main() {
 
     InitializeSettings();
 
-
     GameLevel HomeLevel(1);
     HomeLevel.DrawGameLevel();
     PlayerController PlayerController;

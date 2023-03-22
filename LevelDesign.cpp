@@ -1,4 +1,6 @@
 #include "LevelDesign.h"
+
+#include <utility>
 #include "Utility.h"
 
 using namespace std;
@@ -107,5 +109,13 @@ GameLevel::GameLevel(int RoomType) {
     void GameLevel::DrawLevel() {
 
     }
+
+string GameLevel::GetFromCoordinates(int x, int y) {
+    return GameLevelArray[y][x];
+}
+
+void GameLevel::SetToCoordinates(string NewMapElement, int x, int y) {
+    GameLevelArray[y][x] = std::move(NewMapElement);
+}
 
 

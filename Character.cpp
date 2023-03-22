@@ -1,5 +1,7 @@
 #include "Character.h"
+#include "LevelDesign.h"
 #include "Utility.h"
+
 
 //Character
 int Character::GetHealth() {
@@ -43,34 +45,34 @@ void Player::SetName(string Name) {
 }
 
 
-void PlayerController::MovementInit(GameLevel HomeLevel) {
+void PlayerController::MovementInit(GameLevel Level) {
     TurnLightRed;
     string PlayerSymbol = GetPlayerSymbol();
-    gotoxy(y, x); cout << PlayerSymbol; gotoxy(y, x);
+    gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
 
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
 
-            if (Key == 'w' and HomeLevel.GameLevelArray[x-1][y] != "█" and HomeLevel.GameLevelArray[x-1][y] != "░") {
-                gotoxy(y, x-1); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
-                HomeLevel.GameLevelArray[x][y] = " "; x--;
+            if (Key == 'w' and WallCheck(Level, x, y-1) == 0) {
+                gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y); y--;
             }
-            if (Key == 'a' and HomeLevel.GameLevelArray[x][y-1] != "█" and HomeLevel.GameLevelArray[x][y-1] != "░") {
-                gotoxy(y-1, x); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
-                HomeLevel.GameLevelArray[x][y] = " "; y--;
+            if (Key == 'a' and WallCheck(Level, x-1, y) == 0) {
+                gotoxy(x-1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y); x--;
             }
-            if (Key == 's' and HomeLevel.GameLevelArray[x+1][y] != "█" and HomeLevel.GameLevelArray[x+1][y] != "░") {
-                gotoxy(y, x+1); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
-                HomeLevel.GameLevelArray[x][y] = " "; x++;
+            if (Key == 's' and WallCheck(Level, x, y+1) == 0) {
+                gotoxy(x, y+1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y); y++;
             }
-            if (Key == 'd' and HomeLevel.GameLevelArray[x][y+1] != "█" and HomeLevel.GameLevelArray[x][y+1] != "░") {
-                gotoxy(y+1, x); cout << PlayerSymbol; gotoxy(y, x); cout << " ";
-                HomeLevel.GameLevelArray[x][y] = " "; y++;
+            if (Key == 'd' and WallCheck(Level, x+1, y) == 0) {
+                gotoxy(x+1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y); x++;
             }
             if (Key == 'w' or Key == 'a' or Key == 's' or Key == 'd') {
-                HomeLevel.GameLevelArray[x][y] = PlayerSymbol;
-                gotoxy(y, x);
+                Level.SetToCoordinates(" ", x, y); PlayerSymbol;
+                gotoxy(x, y);
                 continue;
             }
         }
@@ -79,4 +81,16 @@ void PlayerController::MovementInit(GameLevel HomeLevel) {
 
 string PlayerController::GetPlayerSymbol() {
     return PlayerSymbol;
+}
+
+
+int PlayerController::WallCheck(GameLevel Level, int x, int y) {
+    string MapElement = Level.GetFromCoordinates(x, y);
+    if (MapElement == "█") {
+       return 1;
+    } else if (MapElement == "░") {
+       return 2;
+    } else return 0;
+
+    return 0;
 }
