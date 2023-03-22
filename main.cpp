@@ -14,11 +14,10 @@ int main() {
     InitializeSettings();
 
 
-    GameLevel HomeLevel(0);
-    HomeLevel.DrawGameLevel();
-    PlayerController PlayerController;
-    PlayerController.MovementInit(HomeLevel);
-
+    Armor Chestplace("Boba", 12);
+    Chestplace.SetArmorPoints(25);
+    cout << Chestplace.GetName() << endl;
+    cout << Chestplace.GetArmorPoints();
 
     int a;
     cin >> a;
