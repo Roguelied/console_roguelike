@@ -60,6 +60,7 @@ int KeyCheck(int Key) {
 
 
 void PlayerController::MovementInit(GameLevel Level) {
+    Level.DrawVisibleField(x, y);
     TurnGreen;
     string PlayerSymbol = GetPlayerSymbol();
     gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
@@ -84,6 +85,7 @@ void PlayerController::MovementInit(GameLevel Level) {
                 Level.SetToCoordinates(" ", x, y); x++;
             }
             if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
+                Level.DrawVisibleField(x, y);
                 Level.SetToCoordinates(" ", x, y);
                 gotoxy(x, y);
                 continue;
@@ -132,7 +134,7 @@ void EnemyAI::AutoMovement(GameLevel Level) {
             Level.SetToCoordinates(" ", x, y); x++;
         }
         if (move == 1 or move == 2 or move == 3 or move == 4) {
-            Level.SetToCoordinates(" ", x, y); EnemySymbol;
+             Level.SetToCoordinates(" ", x, y); EnemySymbol;
             gotoxy(x, y);
         }
     }

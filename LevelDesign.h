@@ -5,7 +5,7 @@
 class GameLevel
 {
 private:
-    string GameLevelArray[29][119];
+    string GameLevelArray[35][122];
 public:
     GameLevel(int RoomType);
     string GetFromCoordinates(int x, int y);
@@ -13,10 +13,8 @@ public:
     void DrawGameLevel();
     void Draw(int x1, int y1, int x2, int y2,string symbol);
     void DrawFrame();
-    void DrawLevel();
-
-    void DrawFill(int x1, int y1, int x2, int y2);
-
+    void DrawVisibleField(int x, int y);
+    void ColorCheck(int x, int y);
 };
 
 

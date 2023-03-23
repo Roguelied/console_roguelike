@@ -11,9 +11,11 @@
 int main() {
 
     InitializeSettings();
-
+    //for (;;) {PlayArcherAttackAnimation();}
     GameLevel HomeLevel(1);
-    HomeLevel.DrawGameLevel();
+    //HomeLevel.DrawGameLevel();
+
+    //cout << HomeLevel.GetFromCoordinates(10, 10);
     PlayerController PlayerController;
     PlayerController.MovementInit(HomeLevel);
 
