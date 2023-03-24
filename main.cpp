@@ -16,9 +16,11 @@ int main() {
     //HomeLevel.DrawGameLevel();
 
     //cout << HomeLevel.GetFromCoordinates(10, 10);
+
     PlayerController PlayerController;
     PlayerController.MovementInit(HomeLevel);
-
+    EnemyAI EnemyAI;
+    EnemyAI.AutoMovement(HomeLevel);
 
     wait();
 

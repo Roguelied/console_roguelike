@@ -11,7 +11,10 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void wait() {
-    int a;
-    cin >> a;
+void gotovd(int v, int d)
+{
+    COORD coord;
+    coord.X = v;
+    coord.Y = d;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }

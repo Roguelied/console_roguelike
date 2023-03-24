@@ -61,38 +61,55 @@ int KeyCheck(int Key) {
 
 void PlayerController::MovementInit(GameLevel Level) {
     Level.DrawVisibleField(x, y);
-    TurnGreen;
+    TurnLightRed;
     string PlayerSymbol = GetPlayerSymbol();
     gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
 
-    for (;;) {
+
+//    for(;;){
+        GameLevel HomeLevel(1);
         if (_kbhit()) {
             auto Key = _getch();
-            if (KeyCheck(Key) == 1 and WallCheck(Level, x, y-1) == 0) {
-                gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); y--;
+            if (KeyCheck(Key) == 1 and WallCheck(Level, x, y - 1) == 0) {
+                gotoxy(x, y - 1);
+                cout << PlayerSymbol;
+                gotoxy(x, y);
+                cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                y--;
             }
-            if (KeyCheck(Key) == 2 and WallCheck(Level, x-1, y) == 0) {
-                gotoxy(x-1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); x--;
+            if (KeyCheck(Key) == 2 and WallCheck(Level, x - 1, y) == 0) {
+                gotoxy(x - 1, y);
+                cout << PlayerSymbol;
+                gotoxy(x, y);
+                cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                x--;
             }
-            if (KeyCheck(Key) == 3 and WallCheck(Level, x, y+1) == 0) {
-                gotoxy(x, y+1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); y++;
+            if (KeyCheck(Key) == 3 and WallCheck(Level, x, y + 1) == 0) {
+                gotoxy(x, y + 1);
+                cout << PlayerSymbol;
+                gotoxy(x, y);
+                cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                y++;
             }
-            if (KeyCheck(Key) == 4 and WallCheck(Level, x+1, y) == 0) {
-                gotoxy(x+1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); x++;
+            if (KeyCheck(Key) == 4 and WallCheck(Level, x + 1, y) == 0) {
+                gotoxy(x + 1, y);
+                cout << PlayerSymbol;
+                gotoxy(x, y);
+                cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                x++;
             }
             if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
                 Level.DrawVisibleField(x, y);
                 Level.SetToCoordinates(" ", x, y);
                 gotoxy(x, y);
-                continue;
+                //continue;
+
             }
-            //EnemyAI EnemyAI;
-            //EnemyAI.AutoMovement(HomeLevel);
-        }
+//        }
     }
 }
 
@@ -113,38 +130,54 @@ int PlayerController::WallCheck(GameLevel Level, int x, int y) {
 void EnemyAI::AutoMovement(GameLevel Level) {
     TurnGreen;
     string EnemySymbol = GetEnemySymbol();
-    gotoxy(x, y); cout << EnemySymbol; gotoxy(x, y);
-
+    gotovd(v, d);
+    cout << EnemySymbol;
+    gotovd(v, d);
+    for (;;) {
+        GameLevel HomeLevel(1);
+        sleep_for(1s);
         int move = 1 + rand() % 4;
-        if (move == 1 and WallCheck(Level, x, y-1) == 0) {
-            gotoxy(x, y-1); cout << EnemySymbol; gotoxy(x, y); cout << " ";
-            Level.SetToCoordinates(" ", x, y); y--;
+        if (move == 1 and WallCheck(Level, v, d - 1) == 0) {
+            gotovd(v, d - 1);
+            cout << EnemySymbol;
+            gotovd(v, d);
+            cout << " ";
+            Level.SetToCoordinates(" ", v, d);
+            d--;
         }
-        if (move == 2 and WallCheck(Level, x-1, y) == 0) {
-            gotoxy(x-1, y); cout << EnemySymbol; gotoxy(x, y); cout << " ";
-            Level.SetToCoordinates(" ", x, y); x--;
+        if (move == 2 and WallCheck(Level, v - 1, d) == 0) {
+            gotovd(v - 1, d);
+            cout << EnemySymbol;
+            gotovd(v, d);
+            cout << " ";
+            Level.SetToCoordinates(" ", v, d);
+            v--;
         }
-        if (move == 3 and WallCheck(Level, x, y+1) == 0) {
-            gotoxy(x, y+1); cout << EnemySymbol; gotoxy(x, y); cout << " ";
-            Level.SetToCoordinates(" ", x, y); y++;
+        if (move == 3 and WallCheck(Level, v, d + 1) == 0) {
+            gotovd(v, d + 1);
+            cout << EnemySymbol;
+            gotovd(v, d);
+            cout << " ";
+            Level.SetToCoordinates(" ", v, d);
+            d++;
         }
-        if (move == 4 and WallCheck(Level, x+1, y) == 0) {
-            gotoxy(x+1, y); cout << EnemySymbol; gotoxy(x, y); cout << " ";
-            Level.SetToCoordinates(" ", x, y); x++;
-        }
-        if (move == 1 or move == 2 or move == 3 or move == 4) {
-             Level.SetToCoordinates(" ", x, y); EnemySymbol;
-            gotoxy(x, y);
+        if (move == 4 and WallCheck(Level, v + 1, d) == 0) {
+            gotovd(v + 1, d);
+            cout << EnemySymbol;
+            gotovd(v, d);
+            cout << " ";
+            Level.SetToCoordinates(" ", v, d);
+            v++;
         }
     }
-
+}
 
 string EnemyAI::GetEnemySymbol() {
     return EnemySymbol;
 }
 
-int EnemyAI::WallCheck(GameLevel Level, int x, int y) {
-    string MapElement = Level.GetFromCoordinates(x, y);
+int EnemyAI::WallCheck(GameLevel Level, int v, int d) {
+    string MapElement = Level.GetFromCoordinates(v, d);
     if (MapElement == "█") {
         return 1;
     } else if (MapElement == "░") {

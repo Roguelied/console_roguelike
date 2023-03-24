@@ -90,11 +90,12 @@ class Enemy : public Character { };
 class EnemyAI : public Enemy {
 private:
     string EnemySymbol{"&"};
-    int x{5}; int y{2}; //current position
+    int v{10}; int d{10}; //current position
+
 public:
     string GetEnemySymbol();
     void AutoMovement(GameLevel HomeLevel);
-    int WallCheck(GameLevel Level, int x, int y);
+    int WallCheck(GameLevel Level, int v, int d);
 };
 
 class Kvadrupter : public Character {
