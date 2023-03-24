@@ -90,8 +90,7 @@ void PlayerController::MovementInit(GameLevel Level) {
                 gotoxy(x, y);
                 continue;
             }
-            GameLevel HomeLevel(1);
-            EnemyAI EnemyAI;
+            //EnemyAI EnemyAI;
             //EnemyAI.AutoMovement(HomeLevel);
         }
     }

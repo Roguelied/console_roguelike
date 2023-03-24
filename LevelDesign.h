@@ -1,6 +1,8 @@
 #ifndef CONSOLE_ROGUELIKE_CPP_LEVELDESIGN_H
 #define CONSOLE_ROGUELIKE_CPP_LEVELDESIGN_H
 #include "Utility.h"
+#include "PlayerItems.h"
+#include "Character.h"
 
 class GameLevel
 {
@@ -15,6 +17,9 @@ public:
     void DrawFrame();
     void DrawVisibleField(int x, int y);
     void ColorCheck(int x, int y);
+    void SetItemToCoordinates(const PlayerItem& Item, int x, int y);
+    void SetEnemyToCoordinates(Enemy Enemy, int x, int y);
+
 };
 
 

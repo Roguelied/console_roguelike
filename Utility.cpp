@@ -10,3 +10,8 @@ void gotoxy(int x, int y)
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+
+void wait() {
+    int a;
+    cin >> a;
+}

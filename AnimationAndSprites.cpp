@@ -492,10 +492,13 @@ void PlayArcherAttackAnimation() {
     }
 }
 
-void Play(Player Player, Enemy Enemy) {
-    for (auto & AttackSprite : ArcherAttackSprites) {
-        system("cls");
-        cout << AttackSprite;
-        sleep_for(nanoseconds(7000000));
-    }
+void FightInitialize(Player Player, Enemy Enemy) {
+    system("cls");
+    cout << "FightInitialize";
+    wait();
+//    for (auto & AttackSprite : ArcherAttackSprites) {
+//        system("cls");
+//        cout << AttackSprite;
+//        sleep_for(nanoseconds(7000000));
+//    }
 }

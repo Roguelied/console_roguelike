@@ -20,7 +20,6 @@ int main() {
     PlayerController.MovementInit(HomeLevel);
 
 
-    int a;
-    cin >> a;
+    wait();
 
 }
