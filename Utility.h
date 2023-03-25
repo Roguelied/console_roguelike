@@ -34,8 +34,8 @@ using namespace std;
 
 void InitializeSettings();
 void gotoxy(int x, int y);
-void gotovd(int v, int d);
-
+void wait();
+int KeyCheck(int Key);
 
 
 

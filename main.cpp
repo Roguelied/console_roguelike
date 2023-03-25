@@ -19,9 +19,11 @@ int main() {
 
     PlayerController PlayerController;
     PlayerController.MovementInit(HomeLevel);
-    EnemyAI EnemyAI;
-    EnemyAI.AutoMovement(HomeLevel);
+    //EnemyAI EnemyAI;
 
+
+    //EnemyAI EnemyAI;
+    //EnemyAI.AutoMovement(HomeLevel);
     wait();
 
 }

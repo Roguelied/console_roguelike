@@ -22,7 +22,18 @@ int Character::GetArmor() {
 void Character::SetArmor(int Armor) {
     this -> Armor = Armor;
 }
-
+void EnemyAI::SetV(int v) {
+    this -> v = v;
+}
+void EnemyAI::SetD(int d) {
+    this -> d = d;
+}
+int EnemyAI::GetV() {
+    return v;
+}
+int EnemyAI::GetD() {
+    return d;
+}
 
 //Player
 int Player::GetStamina() {
@@ -44,29 +55,14 @@ void Player::SetName(string Name) {
     this -> Name = Name;
 }
 
-
-int KeyCheck(int Key) {
-    if (Key == 'w' or Key == 'W' or Key == 230 or Key == 150) {
-        return 1;
-    } else if (Key == 'a' or Key == 'A' or Key == 228 or Key == 148)  {
-        return 2;
-    } else if (Key == 's' or Key == 'S' or Key == 235 or Key == 155) {
-        return 3;
-    } else if (Key == 'd' or Key == 'D' or Key == 162 or Key == 130) {
-        return 4;
-    }
-}
-
-
-
 void PlayerController::MovementInit(GameLevel Level) {
     Level.DrawVisibleField(x, y);
     TurnLightRed;
     string PlayerSymbol = GetPlayerSymbol();
     gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
+    EnemyAI EnemyAI;
 
-
-//    for(;;){
+    for(;;){
         GameLevel HomeLevel(1);
         if (_kbhit()) {
             auto Key = _getch();
@@ -106,10 +102,12 @@ void PlayerController::MovementInit(GameLevel Level) {
                 Level.DrawVisibleField(x, y);
                 Level.SetToCoordinates(" ", x, y);
                 gotoxy(x, y);
-                //continue;
+
+                EnemyAI.AutoMovement(HomeLevel);
+                continue;
 
             }
-//        }
+        }
     }
 }
 
@@ -130,46 +128,46 @@ int PlayerController::WallCheck(GameLevel Level, int x, int y) {
 void EnemyAI::AutoMovement(GameLevel Level) {
     TurnGreen;
     string EnemySymbol = GetEnemySymbol();
-    gotovd(v, d);
+    gotoxy(v, d);
     cout << EnemySymbol;
-    gotovd(v, d);
-    for (;;) {
-        GameLevel HomeLevel(1);
-        sleep_for(1s);
+    gotoxy(v, d);
         int move = 1 + rand() % 4;
         if (move == 1 and WallCheck(Level, v, d - 1) == 0) {
-            gotovd(v, d - 1);
+            gotoxy(v, d - 1);
             cout << EnemySymbol;
-            gotovd(v, d);
+            gotoxy(v, d);
             cout << " ";
             Level.SetToCoordinates(" ", v, d);
-            d--;
+            this -> d = d-1;
+            SetD(d--);
         }
         if (move == 2 and WallCheck(Level, v - 1, d) == 0) {
-            gotovd(v - 1, d);
+            gotoxy(v - 1, d);
             cout << EnemySymbol;
-            gotovd(v, d);
+            gotoxy(v, d);
             cout << " ";
             Level.SetToCoordinates(" ", v, d);
-            v--;
+            this -> v = v-1;
+            SetV(v--);
         }
         if (move == 3 and WallCheck(Level, v, d + 1) == 0) {
-            gotovd(v, d + 1);
+            gotoxy(v, d + 1);
             cout << EnemySymbol;
-            gotovd(v, d);
+            gotoxy(v, d);
             cout << " ";
             Level.SetToCoordinates(" ", v, d);
-            d++;
+            this -> d = d+1;
+            SetD(d++);
         }
         if (move == 4 and WallCheck(Level, v + 1, d) == 0) {
-            gotovd(v + 1, d);
+            gotoxy(v + 1, d);
             cout << EnemySymbol;
-            gotovd(v, d);
+            gotoxy(v, d);
             cout << " ";
             Level.SetToCoordinates(" ", v, d);
-            v++;
+            this -> v = v+1;
+            SetV(v++);
         }
-    }
 }
 
 string EnemyAI::GetEnemySymbol() {
