@@ -1,8 +1,8 @@
 #include "LevelDesign.h"
 
-#include "PlayerItems.h"
+//#include "PlayerItems.h"
 #include "Utility.h"
-
+//#include <utility>
 using namespace std;
 
 
@@ -211,12 +211,4 @@ void GameLevel::DrawVisibleField(int x, int y) {
             TurnGreen;
         }
     }
-}
-
-void GameLevel::SetItemToCoordinates(const PlayerItem& Item, int x, int y) {
-
-}
-
-void GameLevel::SetEnemyToCoordinates(Enemy Enemy, int x, int y) {
-
 }
