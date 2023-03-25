@@ -6,18 +6,27 @@
 #include "LevelDesign.h"
 
 
+// интерфейс боевки плавает
+// главное меню
+// окно выбора класса
+// предметы
+// расстановка предметов по карте
+
 
 
 int main() {
 
     InitializeSettings();
-    //for (;;) {PlayArcherAttackAnimation();}
-    GameLevel HomeLevel(1);
+
+    Player Player("Knight");
+    Enemy DefaultEnemy(0);
+    FightInitialize(Player.GetName(), DefaultEnemy.GetName());
+    //GameLevel HomeLevel(1);
     //HomeLevel.DrawGameLevel();
 
     //cout << HomeLevel.GetFromCoordinates(10, 10);
-    PlayerController PlayerController;
-    PlayerController.MovementInit(HomeLevel);
+    //PlayerController PlayerController;
+    //PlayerController.MovementInit(HomeLevel);
 
 
     wait();
