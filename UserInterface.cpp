@@ -5,7 +5,7 @@
 
 int UserInterface::ShowStartScreen() {
 
-    cout << "Введите 1 чтобы начать игру или введите 0 чтобы выйти";
+    cout << "Введите 1 чтобы начать игру или введите 0 чтобы выйти"<<endl;
     int Result;
     cin >> Result;
 
