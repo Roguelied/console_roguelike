@@ -16,11 +16,13 @@
 
 int main() {
 
+
     InitializeSettings();
     UserInterface UserInterface;
-    UserInterface.ShowStartScreen();
+    UserInterface.MenuFrame();
     Player Player("Knight");
     Enemy DefaultEnemy(0);
+
     //FightInitialize(Player.GetName(), DefaultEnemy.GetName());
     //GameLevel HomeLevel(0);
     //HomeLevel.DrawGameLevel();
