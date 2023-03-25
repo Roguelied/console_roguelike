@@ -8,6 +8,7 @@ private:
     int MaxHealth{100}; int Health{100};
     int Damage{1};
     int Armor{1};
+    string Name{"NonClassified"};
 
 public:
     int GetHealth();
@@ -19,22 +20,23 @@ public:
     int GetArmor();
     void SetArmor(int Armor);
 
+    void SetName(string Name);
+    string GetName();
 };
 
 
 class Player : public Character {
 protected:
     int MaxStamina{100}; int Stamina{100};
-    int Gold{0}; string Name{"NonClassified"};
+    int Gold{0};
 public:
+    Player(string ClassName);
+
     int GetStamina();
     void SetStamina(int Stamina);
 
     int GetGold();
     void SetGold(int Gold);
-
-    void SetName(string Name);
-    string GetName();
 };
 
 class PlayerController : public Player {
@@ -47,45 +49,16 @@ public:
     int WallCheck(GameLevel Level, int x, int y);
 };
 
-class Rogue : public Player {
+
+
+
+
+
+class Enemy : public Character {
+
 public:
-    Rogue() {
-        SetHealth(80);
-        SetDamage(35);
-        SetArmor(10);
-    }
+    Enemy(int EnemyType); //0 - DefaultEnemy, 1 - Boss
 };
-
-
-class Swordsman : public Player {
-public:
-    Swordsman() {
-        SetHealth(120);
-        SetDamage(20);
-        SetArmor(20);
-    }
-};
-
-// Ability : Can skip first enemy attack instance
-class Archer : public Player {
-public:
-    Archer() {
-        SetHealth(100);
-        SetDamage(25);
-        SetArmor(0);
-    }
-};
-
-class Monk : public Player {
-public:
-    Monk() {
-        SetHealth(110);
-        SetDamage(10);
-        SetArmor(60);
-    }
-};
-
-class Enemy : public Character { };
 
 class EnemyAI : public Enemy {
 private:

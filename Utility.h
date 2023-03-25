@@ -5,14 +5,17 @@
 #include <iostream>
 #include <windows.h>
 #include <chrono>
-#include <thread>
 #include <vector>
 #include <conio.h>
+#include <thread>
+#include <future>
 
 
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // nanoseconds, system_clock, seconds
+using namespace std::literals; //future  -   Enable standard literals as 2s and ""s.
 using namespace std;
+
 
 #define TurnBlack SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0)
 #define TurnBlue SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1)
@@ -26,7 +29,7 @@ using namespace std;
 #define TurnBrightBlue SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9)
 #define TurnBrightGreen SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10)
 #define TurnBrightAqua SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11)
-#define TurnBrightWhite etConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15)
+#define TurnBrightWhite SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15)
 // >15 changes font background add if u want
 
 

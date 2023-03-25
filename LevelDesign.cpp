@@ -1,8 +1,8 @@
 #include "LevelDesign.h"
 
-#include "PlayerItems.h"
+//#include "PlayerItems.h"
 #include "Utility.h"
-
+//#include <utility>
 using namespace std;
 
 
@@ -51,6 +51,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(104, 18, 113, 27, " ");
         Draw(113, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
+        BossRoom(104, 18, 113, 27);
     }
     if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
@@ -99,6 +100,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110,20,112,27," ");
         Draw(110,25,116,27," ");
         Draw(115,25,116,27,"#");
+        BossRoom(99,14,114,21);
     }
 
 
@@ -151,6 +153,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(109,23,111,25," ");
         Draw(110,25,116,27," ");
         Draw(115,25,116,27,"#");
+        BossRoom(103,17,114,23);
     }
 }
 
@@ -211,4 +214,14 @@ void GameLevel::DrawVisibleField(int x, int y) {
             TurnGreen;
         }
     }
+}
+int GameLevel::BossRoom(int x1,int y1,int x2,int y2) {
+    //TurnLightRed;
+    for (int i = y1; i < y2; i++) {
+        for (int j = x1; j < x2; j++) {
+            GameLevelArray[i][j] = "☭";
+        }
+    }
+    //TurnWhite;
+    return 1;
 }

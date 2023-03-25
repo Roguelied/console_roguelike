@@ -34,8 +34,32 @@ int EnemyAI::GetV() {
 int EnemyAI::GetD() {
     return d;
 }
+string Character::GetName() {
+    return Name;
+}
+void Character::SetName(string Name) {
+    this -> Name = Name;
+}
 
 //Player
+Player::Player(string ClassName) {
+    if (ClassName == "Knight") {
+        SetName(ClassName);
+        SetHealth(1);
+        SetStamina(100);
+        SetArmor(20);
+        SetDamage(20);
+    }
+    if (ClassName == "Archer") {
+        SetName(ClassName);
+        SetHealth(1);
+        SetStamina(100);
+        SetArmor(20);
+        SetDamage(20);
+    }
+}
+
+
 int Player::GetStamina() {
     return Stamina;
 }
@@ -47,12 +71,6 @@ int Player::GetGold() {
 }
 void Player::SetGold(int Gold) {
     this -> Gold = Gold;
-}
-string Player::GetName() {
-    return Name;
-}
-void Player::SetName(string Name) {
-    this -> Name = Name;
 }
 
 void PlayerController::MovementInit(GameLevel Level) {
@@ -181,4 +199,13 @@ int EnemyAI::WallCheck(GameLevel Level, int v, int d) {
     } else if (MapElement == "░") {
         return 2;
     } else return 0;
+}
+
+Enemy::Enemy(int EnemyType) {
+    if (EnemyType == 0) {
+        SetName("DefaultEnemy");
+    }
+    if (EnemyType == 1) {
+        SetName("Boss");
+    }
 }
