@@ -25,7 +25,8 @@ int KeyCheck(int Key) {
         return 3;
     } else if (Key == 'd' or Key == 'D' or Key == 162 or Key == 130) {
         return 4;
-    } else if(Key == 13){
+      } else if(Key == 13){
         return 5;
     }
-}
+};
+

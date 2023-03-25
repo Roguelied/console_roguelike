@@ -63,11 +63,19 @@ public:
 class EnemyAI : public Enemy {
 private:
     string EnemySymbol{"&"};
-    int x{5}; int y{2}; //current position
+
 public:
     string GetEnemySymbol();
     void AutoMovement(GameLevel HomeLevel);
-    int WallCheck(GameLevel Level, int x, int y);
+    int WallCheck(GameLevel Level, int v, int d);
+
+    int v{15}; int d{6}; //current position
+    void SetV(int v);
+    void SetD(int d);
+
+    int GetV();
+
+    int GetD();
 };
 
 class Kvadrupter : public Character {
