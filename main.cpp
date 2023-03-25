@@ -19,7 +19,7 @@ int main() {
 
     InitializeSettings();
     UserInterface UserInterface;
-    UserInterface.MenuFrame();
+    UserInterface.StartMenu();
     Player Player("Knight");
     Enemy DefaultEnemy(0);
 

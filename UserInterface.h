@@ -9,6 +9,6 @@ private:
 public:
     //int ShowStartScreen();
     int MainMenu(int a);
-    int MenuFrame();
+    int StartMenu();
 };
 #endif //CONSOLE_ROGUELIKE_CPP_USERINTERFACE_H

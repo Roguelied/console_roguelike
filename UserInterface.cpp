@@ -3,7 +3,8 @@
 //using namespace std;
 
 
-int UserInterface::MenuFrame(){
+int UserInterface::StartMenu(){
+    int flag=0;
     gotoxy(60,8);
     cout<<"START";
     gotoxy(60,18);
@@ -38,9 +39,7 @@ int UserInterface::MenuFrame(){
             cout<<"██";
             gotoxy(65,18);
             cout<<"██";
-            if(KeyCheck(Key)==5){
-                return 1;
-            }
+            flag++;
         } else if(KeyCheck(Key)==1){
             //" "
             gotoxy(58,17);
@@ -60,7 +59,11 @@ int UserInterface::MenuFrame(){
             cout<<"██";
             gotoxy(65,8);
             cout<<"██";
-        } if(KeyCheck(Key)==5){
+            flag++;
+        }
+        if(flag%2==0 and KeyCheck(Key)==5){
+            return 1;
+        } else if (flag%2==1 and KeyCheck(Key)==5){
             exit(0);
         }
     }
