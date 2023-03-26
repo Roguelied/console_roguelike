@@ -3,7 +3,8 @@
 #include "Utility.h"
 #include <cstdlib>
 
-//Character
+/*============================================================ Character ============================================================
+===================================================================================================================================== */
 int Character::GetHealth() {
     return Health;
 }
@@ -22,18 +23,6 @@ int Character::GetArmor() {
 void Character::SetArmor(int Armor) {
     this -> Armor = Armor;
 }
-void EnemyAI::SetV(int v) {
-    this -> v = v;
-}
-void EnemyAI::SetD(int d) {
-    this -> d = d;
-}
-int EnemyAI::GetV() {
-    return v;
-}
-int EnemyAI::GetD() {
-    return d;
-}
 string Character::GetName() {
     return Name;
 }
@@ -41,7 +30,14 @@ void Character::SetName(string Name) {
     this -> Name = Name;
 }
 
-//Player
+
+
+/*============================================================ Player ============================================================
+===================================================================================================================================== */
+
+Player::Player() = default;
+
+
 Player::Player(string ClassName) {
     if (ClassName == "Knight") {
         SetName(ClassName);
@@ -73,7 +69,11 @@ void Player::SetGold(int Gold) {
     this -> Gold = Gold;
 }
 
-Player::Player() = default;
+
+
+
+/*============================================================ PlayerController ============================================================
+===================================================================================================================================== */
 
 void PlayerController::TakeItem(class Armor Item) {
     InvSlot Slot;
@@ -81,23 +81,24 @@ void PlayerController::TakeItem(class Armor Item) {
     Slot.Point = Item.GetArmorPoints();
     Inventory.push_back(Slot);
 }
+
 void PlayerController::TakeItem(Weapon Item){
     InvSlot Slot;
     Slot.Name = Item.GetName();
     Slot.Point = Item.GetWeaponDamage();
     Inventory.push_back(Slot);
 }
+
 void PlayerController::TakeItem(Potion Item) {
     InvSlot Slot;
     Slot.Name = Item.GetName();
     //Slot.Point = Item.Get
     //Inventory.push_back(Slot);
 }
+
 void PlayerController::DropItem(InvSlot Item) {
     //inventory pop item
 }
-
-
 
 
 void PlayerController::OpenInventory() {
@@ -152,28 +153,37 @@ void PlayerController::MovementInit(GameLevel Level) {
     TurnGreen;
     EnemyAI EnemyAI;
     string PlayerSymbol = GetPlayerSymbol();
-    gotoxy(x, y); cout << PlayerSymbol; gotoxy(x, y);
+
+    gotoxy(x, y);
+    cout << PlayerSymbol;
+    gotoxy(x, y);
 
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-
-
-            if (KeyCheck(Key) == 1 and WallCheck(Level, x, y-1) == 0) {
-                gotoxy(x, y-1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); y--;
+            if (KeyCheck(Key) == 1 and WallCheck(Level, x, y - 1) == 0) {
+                gotoxy(x, y - 1); cout << PlayerSymbol;
+                gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                y--;
             }
-            if (KeyCheck(Key) == 2 and WallCheck(Level, x-1, y) == 0) {
-                gotoxy(x-1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); x--;
+            if (KeyCheck(Key) == 2 and WallCheck(Level, x - 1, y) == 0) {
+                gotoxy(x - 1, y); cout << PlayerSymbol;
+                gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                x--;
             }
-            if (KeyCheck(Key) == 3 and WallCheck(Level, x, y+1) == 0) {
-                gotoxy(x, y+1); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); y++;
+            if (KeyCheck(Key) == 3 and WallCheck(Level, x, y + 1) == 0) {
+                gotoxy(x, y + 1); cout << PlayerSymbol;
+                gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                y++;
             }
-            if (KeyCheck(Key) == 4 and WallCheck(Level, x+1, y) == 0) {
-                gotoxy(x+1, y); cout << PlayerSymbol; gotoxy(x, y); cout << " ";
-                Level.SetToCoordinates(" ", x, y); x++;
+            if (KeyCheck(Key) == 4 and WallCheck(Level, x + 1, y) == 0) {
+                gotoxy(x + 1, y); cout << PlayerSymbol;
+                gotoxy(x, y); cout << " ";
+                Level.SetToCoordinates(" ", x, y);
+                x++;
             }
 
 
@@ -204,6 +214,7 @@ void PlayerController::MovementInit(GameLevel Level) {
                 gotoxy(x, y);
 
                 continue;
+
             }
         }
     }
@@ -213,7 +224,6 @@ string PlayerController::GetPlayerSymbol() {
     return PlayerSymbol;
 }
 
-
 int PlayerController::WallCheck(GameLevel Level, int x, int y) {
     string MapElement = Level.GetFromCoordinates(x, y);
     if (MapElement == "█") {
@@ -222,6 +232,39 @@ int PlayerController::WallCheck(GameLevel Level, int x, int y) {
        return 2;
     } else return 0;
 }
+
+/*=============================================================== Enemy ===============================================================
+===================================================================================================================================== */
+
+Enemy::Enemy(int EnemyType) {
+    if (EnemyType == 0) {
+        SetName("DefaultEnemy");
+    }
+    if (EnemyType == 1) {
+        SetName("Boss");
+    }
+}
+
+Enemy::Enemy() = default;
+
+/*============================================================== EnemyAI ==============================================================
+===================================================================================================================================== */
+
+EnemyAI::EnemyAI() = default;
+
+void EnemyAI::SetV(int v) {
+    this -> v = v;
+}
+void EnemyAI::SetD(int d) {
+    this -> d = d;
+}
+int EnemyAI::GetV() {
+    return v;
+}
+int EnemyAI::GetD() {
+    return d;
+}
+
 
 void EnemyAI::AutoMovement(GameLevel Level) {
     TurnGreen;
@@ -281,11 +324,4 @@ int EnemyAI::WallCheck(GameLevel Level, int v, int d) {
     } else return 0;
 }
 
-Enemy::Enemy(int EnemyType) {
-    if (EnemyType == 0) {
-        SetName("DefaultEnemy");
-    }
-    if (EnemyType == 1) {
-        SetName("Boss");
-    }
-}
+

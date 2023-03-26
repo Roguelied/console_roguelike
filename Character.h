@@ -76,16 +76,16 @@ class Enemy : public Character {
 
 public:
     Enemy(int EnemyType);
-
     Enemy();
+    //Enemy();
     //0 - DefaultEnemy, 1 - Boss
 };
 
 class EnemyAI : public Enemy {
 private:
     string EnemySymbol{"&"};
-
 public:
+    EnemyAI();
     string GetEnemySymbol();
     void AutoMovement(GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int v, int d);
@@ -95,7 +95,6 @@ public:
     void SetD(int d);
 
     int GetV();
-
     int GetD();
 };
 
