@@ -232,7 +232,7 @@ string CharacterAttackSprite6 = "                .▓╖                        
                                 "                                  ╓█▓░▒░░░░░░░░░▒@,                          \n"
                                 "                                 ▄█▌░░░▒▒▒▒▒▒▒░░▒╣▒`                         \n"
                                 "                            ┌╓▄███▓░░░░░░░░░░`╙╜╜░`                          \n"
-                                "                           ╙▓█▓▓▓▓╜░░░░░╖░                                   \n"
+                                "                           ╙▓█▓▓▓▓╜░░░░░╖░                                                \n"
                                 "                             ╙╜╜╢▓╬▒░░╓╬╢╫@╖╓                                \n"
                                 "                              ╓@▓╣╢▒▒░▒▒░╙╢▒╢▓▓µ╖                            \n"
                                 "                            ╓╫╣╣╢╢▒▒▒░░░░░░╙╙╢╢╢╢▓╖                          \n"
@@ -528,25 +528,30 @@ void PlayArcherAttackAnimation() {
     }
 }
 
-void PlayIdleKnightAnimation() {
-    for (auto &AttackSprite: KnightIdleSprites) {
-        cout << AttackSprite;
-        //sleep_for(nanoseconds(600000000));
-    }
-
+void PlayIdleAnimation(Player Player) {
     for (;;)
     {
         if(kbhit())
         {
             int keypress = getch();
-            if (keypress == 'w')
+            if (keypress == '1')
             {
                 break;
             }
         }
         for (auto &AttackSprite: KnightIdleSprites) {
             cout << AttackSprite;
+            TurnGreen;
+            gotoxy(2, 13); cout << "Health:" << Player.GetHealth();
+            TurnBrightAqua;
+            gotoxy(2, 14); cout << "Stamina:" << Player.GetStamina();
+            //gotoxy(2, 15); cout << "---";
+            //gotoxy(2, 16); cout << "---";
+            TurnAqua;
+            gotoxy(2,29); cout << "Hit:Press 1";
             sleep_for(nanoseconds(600000000));
+            TurnWhite;
+            system("cls");
         }
     }
 }
@@ -555,8 +560,7 @@ void FightInitialize(Player Player, string EnemyType) {
     system("cls");
     if (Player.GetName() == "Knight") {
         if (EnemyType == "DefaultEnemy") {
-            PlayIdleKnightAnimation();
-            TurnGreen;
+            PlayIdleAnimation(Player);
             PlayKnightAttackAnimation();
         }
         if (EnemyType == "Boss") {

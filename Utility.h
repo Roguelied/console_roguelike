@@ -1,6 +1,7 @@
 #ifndef CONSOLE_ROGUELIKE_CPP_UTILITY_H
 #define CONSOLE_ROGUELIKE_CPP_UTILITY_H
 
+#include <typeinfo>
 #include <string>
 #include <iostream>
 #include <windows.h>

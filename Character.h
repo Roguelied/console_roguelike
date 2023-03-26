@@ -2,6 +2,7 @@
 #define CONSOLE_ROGUELIKE_CPP_CHARACTER_H
 #include "Utility.h"
 #include "LevelDesign.h"
+#include "PlayerItems.h"
 
 class Character {
 private:
@@ -32,6 +33,8 @@ protected:
 public:
     Player(string ClassName);
 
+    Player();
+
     int GetStamina();
     void SetStamina(int Stamina);
 
@@ -43,7 +46,22 @@ class PlayerController : public Player {
 private:
     string PlayerSymbol{"@"};
     int x{5}; int y{2}; //current position
+
 public:
+    typedef struct InvSlot {
+        string Name;
+        int Point;
+    } InvSlot;
+
+    vector<InvSlot> Inventory;
+
+    void TakeItem(class Armor Item);
+    void TakeItem(Weapon Item);
+    void TakeItem(Potion Item);
+
+    void DropItem(InvSlot Item);
+    void OpenInventory();
+    void InteractWith();
     string GetPlayerSymbol();
     void MovementInit(GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int x, int y);
@@ -57,7 +75,10 @@ public:
 class Enemy : public Character {
 
 public:
-    Enemy(int EnemyType); //0 - DefaultEnemy, 1 - Boss
+    Enemy(int EnemyType);
+
+    Enemy();
+    //0 - DefaultEnemy, 1 - Boss
 };
 
 class EnemyAI : public Enemy {
