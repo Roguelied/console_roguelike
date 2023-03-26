@@ -20,15 +20,11 @@ int main() {
 
     UserInterface UserInterface;
     GameLevel HomeLevel(0);
-    ABOBUS();
-    //PlayKnightAttackAnimation();
-//    UserInterface.StartMenu();
-//    Player Player(UserInterface.ClassMenu());
-//
-//    PlayerController PlayerController;
-//    PlayerController.MovementInit(HomeLevel);
+    PlayKnightAttackAnimation();
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
 
-
+    for (;;) {PlayKnightAttackAnimation();}
 
 
     wait();
