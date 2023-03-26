@@ -19,14 +19,14 @@ int main() {
     InitializeSettings();
 
     UserInterface UserInterface;
-    GameLevel HomeLevel(1);
-
-
-    UserInterface.StartMenu();
-    Player Player(UserInterface.ClassMenu());
-
-    PlayerController PlayerController;
-    PlayerController.MovementInit(Player, HomeLevel);
+    GameLevel HomeLevel(0);
+    ABOBUS();
+    //PlayKnightAttackAnimation();
+//    UserInterface.StartMenu();
+//    Player Player(UserInterface.ClassMenu());
+//
+//    PlayerController PlayerController;
+//    PlayerController.MovementInit(HomeLevel);
 
 
 

@@ -6,6 +6,6 @@
 void PlayKnightAttackAnimation();
 void PlayArcherAttackAnimation();
 void FightInitialize(Player PlayerClass, string EnemyType);
-
+void ABOBUS();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
