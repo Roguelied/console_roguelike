@@ -2,19 +2,12 @@
 
 //#include "PlayerItems.h"
 #include "Utility.h"
-//#include <utility>
 using namespace std;
 
 
 //Room resolution 29/119
 GameLevel::GameLevel(int RoomType) {
-    /*Пусть тут будет несколько комнат, которые вы будете сами строить в конструкторе класса.
-      Тип комнаты будет зависеть от того, какой номер передается в конструктор.
-      Например, если вы вызвали конструктор GameLevel(0), то построится начальная комната,
-      в которой игрок спавнится.
-    */
 
-    //Строю белая рамка по разрешению, указанному в LevelDesign.h
     if (RoomType == 0) {
         for (auto &i: GameLevelArray) {
             for (auto &j: i) {
@@ -156,9 +149,32 @@ GameLevel::GameLevel(int RoomType) {
         BossRoom(103,17,114,23);
     }
 }
+//===============================================Draw Functions===========================================================
+//========================================================================================================================
 
+int GameLevel::BossRoom(int x1,int y1,int x2,int y2) {
+    //TurnLightRed;
+    for (int i = y1; i < y2; i++) {
+        for (int j = x1; j < x2; j++) {
+            GameLevelArray[i][j] = "☭";
+        }
+    }
+    //TurnWhite;
+    return 1;
+}
 
-
+void GameLevel::DrawVisibleField(int x, int y) {
+    int r = 6;
+    for (int i = 0; i < r+2; i++) {
+        for (int j = 0; j < r; j++) {
+            if (x-3+i == x and y-2+j == y) { continue;}
+            ColorCheck(x-3+i, y-2+j);
+            gotoxy(x-3+i, y-2+j);
+            cout << GetFromCoordinates(x-3+i, y-2+j);
+            TurnGreen;
+        }
+    }
+}
 
 void GameLevel::DrawGameLevel() {
     for (int i = 0; i < 29; i++) {
@@ -184,7 +200,8 @@ void GameLevel::DrawFrame() {
     Draw(0, 28, 119, 29, "█");
 }
 
-
+//========================================================================================================================
+//========================================================================================================================
 
 string GameLevel::GetFromCoordinates(int x, int y) {
     return GameLevelArray[y][x];
@@ -201,27 +218,4 @@ void GameLevel::ColorCheck(int x, int y) {
         TurnWhite;
         return;
     }
-}
-
-void GameLevel::DrawVisibleField(int x, int y) {
-    int r = 6;
-    for (int i = 0; i < r+2; i++) {
-        for (int j = 0; j < r; j++) {
-            if (x-3+i == x and y-2+j == y) { continue;}
-            ColorCheck(x-3+i, y-2+j);
-            gotoxy(x-3+i, y-2+j);
-            cout << GetFromCoordinates(x-3+i, y-2+j);
-            TurnGreen;
-        }
-    }
-}
-int GameLevel::BossRoom(int x1,int y1,int x2,int y2) {
-    //TurnLightRed;
-    for (int i = y1; i < y2; i++) {
-        for (int j = x1; j < x2; j++) {
-            GameLevelArray[i][j] = "☭";
-        }
-    }
-    //TurnWhite;
-    return 1;
 }
