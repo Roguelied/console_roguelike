@@ -38,7 +38,13 @@ public:
 
 class Potion: public PlayerItem
 {
-
+private:
+    int Health{30};
+    int Stamina{43};
+public:
+    Potion(string Name, int Health, int Stamina);
+    int GetHealth();
+    int GetStamina();
 };
 
 
