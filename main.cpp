@@ -20,13 +20,14 @@ int main() {
 
     UserInterface UserInterface;
     GameLevel HomeLevel(0);
-    PlayKnightAttackAnimation();
+    //PlayKnightAttackAnimation();
+    PlayArcherAttackAnimation();
     UserInterface.StartMenu();
     Player Player(UserInterface.ClassMenu());
 
-    for (;;) {PlayKnightAttackAnimation();}
-
+   for (;;) {PlayKnightAttackAnimation();
+   //for (;;){PlayArcherAttackAnimation();
+  }
 
     wait();
-
 }
