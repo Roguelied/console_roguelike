@@ -17,14 +17,16 @@
 int main() {
 
     InitializeSettings();
+
     UserInterface UserInterface;
-   // UserInterface.StartMenu();
-    UserInterface.ClassCoiceMenu();
-    Player Player("Knight");
+    GameLevel HomeLevel(0);
+
+
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
     Enemy DefaultEnemy(0);
     //FightInitialize(Player.GetName(), DefaultEnemy.GetName());
 
-    GameLevel HomeLevel(0);
     PlayerController PlayerController;
     PlayerController.TakeItem(Armor("Chestplace", 20));
     PlayerController.TakeItem(Weapon("Sword", 20));

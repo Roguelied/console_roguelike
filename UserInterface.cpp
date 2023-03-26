@@ -6,11 +6,14 @@
 int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
+
     gotoxy(60, 8);
+    TurnWhite;
     cout << "START";
     gotoxy(60, 18);
     cout << "EXIT";
     //frame for START
+    TurnGreen;
     gotoxy(58, 7);
     cout << "█████████";
     gotoxy(58, 9);
@@ -40,6 +43,7 @@ int UserInterface::StartMenu() {
             cout << "██";
             gotoxy(65, 18);
             cout << "██";
+            gotoxy(66, 19);
             flag++;
         } else if (KeyCheck(Key) == 1) {
             //" "
@@ -71,7 +75,7 @@ int UserInterface::StartMenu() {
 }
 
 
-string UserInterface::ClassCoiceMenu() {
+string UserInterface::ClassMenu() {
     int flag = 0;
     string choice;
     gotoxy(60, 8);
@@ -87,6 +91,7 @@ string UserInterface::ClassCoiceMenu() {
     cout << "██";
     gotoxy(66, 8);
     cout << "██";
+    gotoxy(65, 8);
     while (true) {
         int Key = _getch();
         if (KeyCheck(Key) == 3) {
@@ -108,6 +113,7 @@ string UserInterface::ClassCoiceMenu() {
             cout << "██";
             gotoxy(66, 18);
             cout << "██";
+            gotoxy(65, 18);
             flag++;
         } else if (KeyCheck(Key) == 1) {
             //" "
@@ -128,14 +134,13 @@ string UserInterface::ClassCoiceMenu() {
             cout << "██";
             gotoxy(66, 8);
             cout << "██";
+            gotoxy(65, 8);
             flag++;
         }
         if (flag % 2 == 0 and KeyCheck(Key) == 5) {
-            choice = "KNIGHT";
-            return choice;
+            return "Knight";
         } else if (flag % 2 == 1 and KeyCheck(Key) == 5) {
-            choice = "ARCHER";
-            return choice;
+            return "Archer";
         }
     }
 }

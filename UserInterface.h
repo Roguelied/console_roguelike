@@ -8,6 +8,6 @@ private:
 
 public:
     int StartMenu();
-    string ClassCoiceMenu();
+    string ClassMenu();
 };
 #endif //CONSOLE_ROGUELIKE_CPP_USERINTERFACE_H
