@@ -33,9 +33,9 @@ int KeyCheck(int Key) {
         return 5;
     }
     if (Key == 'e' or Key == 'E') {
-        return 5;
+        return 6;
     }
     if (Key == 'i' or Key == 'I') {
-        return 6;
+        return 7;
     }
 }

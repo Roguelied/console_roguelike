@@ -19,14 +19,14 @@ int main() {
     InitializeSettings();
 
     UserInterface UserInterface;
-    GameLevel HomeLevel(0);
+    GameLevel HomeLevel(1);
 
 
-//    UserInterface.StartMenu();
-//    Player Player(UserInterface.ClassMenu());
-//
-//    PlayerController PlayerController;
-//    PlayerController.MovementInit(HomeLevel);
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
+
+    PlayerController PlayerController;
+    PlayerController.MovementInit(Player, HomeLevel);
 
 
 

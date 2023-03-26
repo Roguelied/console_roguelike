@@ -21,7 +21,7 @@ public:
 class TreasureBox {
 private:
     int x; int y;
-    string BoxSymbol{"*"};
+    string BoxSymbol{"$"};
 public:
 };
 
