@@ -45,26 +45,25 @@ public:
 class PlayerController : public Player {
 private:
     string PlayerSymbol{"@"};
-    int x{5}; int y{2}; //current position
 
+    //lvl 1 - 28 14
 public:
-    typedef struct InvSlot {
-        string Name;
-        int Point;
-    } InvSlot;
 
-    vector<InvSlot> Inventory;
+    vector<InvSlot> Inventory; //UTILITY.H
 
     void TakeItem(class Armor Item);
     void TakeItem(Weapon Item);
     void TakeItem(Potion Item);
 
     void DropItem(InvSlot Item);
-    void OpenInventory();
     void InteractWith();
     string GetPlayerSymbol();
-    void MovementInit(GameLevel HomeLevel);
+    void MovementInit(Player Player, GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int x, int y);
+
+    int x{5}; int y{2}; //current position
+    int GetX();
+    int GetY();
 };
 
 
@@ -81,16 +80,15 @@ public:
     //0 - DefaultEnemy, 1 - Boss
 };
 
-class EnemyAI : public Enemy {
+class EnemyAI : public PlayerController {
 private:
     string EnemySymbol{"&"};
 public:
     EnemyAI();
     string GetEnemySymbol();
-    void AutoMovement(GameLevel HomeLevel);
-    int WallCheck(GameLevel Level, int v, int d);
+    void AutoMovement(GameLevel HomeLevel, int x, int y);
 
-    int v{15}; int d{6}; //current position
+    int v{15}; int d{10}; //current position
     void SetV(int v);
     void SetD(int d);
 

@@ -54,7 +54,6 @@ GameLevel::GameLevel(int RoomType) {
                 j = " ";
             }
         }
-        DrawFrame();
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 7, 4, " ");
         Draw(3, 2, 4, 4, "#");
@@ -106,7 +105,6 @@ GameLevel::GameLevel(int RoomType) {
                 j = " ";
             }
         }
-        DrawFrame();
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
         Draw(3, 2, 4, 4, "#");
@@ -153,6 +151,7 @@ GameLevel::GameLevel(int RoomType) {
         RandItemOrder();
     }
 }
+
 //===============================================Draw Functions===========================================================
 //========================================================================================================================
 
@@ -198,10 +197,10 @@ void GameLevel::Draw(int x1, int y1, int x2, int y2, std::string symbol) {
 }
 
 void GameLevel::DrawFrame() {
-    Draw(0, 0, 2, 29, "█");
-    Draw(0, 0, 119, 1, "█");
-    Draw(117, 0, 119, 29, "█");
-    Draw(0, 28, 119, 29, "█");
+    Draw(0, 0, 2, 29, " ");
+    Draw(0, 0, 119, 1, " ");
+    Draw(117, 0, 119, 29, " ");
+    Draw(0, 28, 119, 29, " ");
 }
 
 int GameLevel::random(int first, int second) {

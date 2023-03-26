@@ -34,7 +34,10 @@ using namespace std;
 // >15 changes font background add if u want
 
 
-
+typedef struct InvSlot {
+    string Name;
+    int Point;
+} InvSlot;
 
 void InitializeSettings();
 void gotoxy(int x, int y);
