@@ -16,6 +16,8 @@ public:
     void DrawVisibleField(int x, int y);
     void ColorCheck(int x, int y);
     int BossRoom(int x1,int y1,int x2,int y2);
+    void RandItemOrder();
+    int random(int first, int second);
 };
 
 class TreasureBox {
