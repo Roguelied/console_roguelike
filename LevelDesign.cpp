@@ -2,6 +2,7 @@
 
 //#include "PlayerItems.h"
 #include "Utility.h"
+
 using namespace std;
 
 
@@ -45,10 +46,11 @@ GameLevel::GameLevel(int RoomType) {
         Draw(113, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(104, 18, 113, 27);
+        RandItemOrder();
     }
     if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
-            for (auto & j: i) {
+            for (auto &j: i) {
                 j = " ";
             }
         }
@@ -67,39 +69,40 @@ GameLevel::GameLevel(int RoomType) {
         Draw(13, 16, 18, 19, " ");
         Draw(15, 19, 16, 24, " ");
         Draw(16, 23, 88, 24, " ");
-        Draw(22,12,40,13," ");
-        Draw(23,10,27,14," ");
-        Draw(35,6,55,15," ");
-        Draw(33,7,35,8," ");
-        Draw(29,5,33,9," ");
-        Draw(35,13,38,17," ");
-        Draw(33,16,36,18," ");
-        Draw(31,17,34,21," ");
-        Draw(33,20,36,22," ");
-        Draw(35,21,38,23," ");
-        Draw(46,21,54,26," ");
-        Draw(55,14,57,18," ");
-        Draw(54,18,62,20," ");
-        Draw(62,19,85,20," ");
-        Draw(85,19,88,23," ");
-        Draw(55,8,57,9," ");
-        Draw(57,8,63,11," ");
-        Draw(63,9,80,10," ");
-        Draw(80,9,83,12," ");
-        Draw(82,11,86,13," ");
-        Draw(85,12,90,14," ");
-        Draw(89,13,100,15," ");
-        Draw(99,14,114,21," ");
-        Draw(110,20,112,27," ");
-        Draw(110,25,116,27," ");
-        Draw(115,25,116,27,"#");
-        BossRoom(99,14,114,21);
+        Draw(22, 12, 40, 13, " ");
+        Draw(23, 10, 27, 14, " ");
+        Draw(35, 6, 55, 15, " ");
+        Draw(33, 7, 35, 8, " ");
+        Draw(29, 5, 33, 9, " ");
+        Draw(35, 13, 38, 17, " ");
+        Draw(33, 16, 36, 18, " ");
+        Draw(31, 17, 34, 21, " ");
+        Draw(33, 20, 36, 22, " ");
+        Draw(35, 21, 38, 23, " ");
+        Draw(46, 21, 54, 26, " ");
+        Draw(55, 14, 57, 18, " ");
+        Draw(54, 18, 62, 20, " ");
+        Draw(62, 19, 85, 20, " ");
+        Draw(85, 19, 88, 23, " ");
+        Draw(55, 8, 57, 9, " ");
+        Draw(57, 8, 63, 11, " ");
+        Draw(63, 9, 80, 10, " ");
+        Draw(80, 9, 83, 12, " ");
+        Draw(82, 11, 86, 13, " ");
+        Draw(85, 12, 90, 14, " ");
+        Draw(89, 13, 100, 15, " ");
+        Draw(99, 14, 114, 21, " ");
+        Draw(110, 20, 112, 27, " ");
+        Draw(110, 25, 116, 27, " ");
+        Draw(115, 25, 116, 27, "#");
+        BossRoom(99, 14, 114, 21);
+        RandItemOrder();
     }
 
 
     if (RoomType == 2) {
         for (auto &i: GameLevelArray) {
-            for (auto & j: i) {
+            for (auto &j: i) {
                 j = " ";
             }
         }
@@ -107,56 +110,57 @@ GameLevel::GameLevel(int RoomType) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
         Draw(3, 2, 4, 4, "#");
-        Draw(9,4,13,8," ");
-        Draw(6,8,26,14," ");
-        Draw(14,14,18,15," ");
-        Draw(12,15,20,17," ");
-        Draw(20,16,30,17," ");
-        Draw(30,13,55,18," ");
-        Draw(55,15,58,16," ");
-        Draw(58,14,65,17," ");
-        Draw(30,18,32,20," ");
-        Draw(25,19,32,20," ");
-        Draw(25,19,27,23," ");
-        Draw(26,22,45,23," ");
-        Draw(44,20,45,23," ");
-        Draw(44,19,55,20," ");
-        Draw(54,19,56,22," ");
-        Draw(55,21,66,22," ");
-        Draw(65,18,67,22," ");
-        Draw(66,17,78,18," ");
-        Draw(77,17,80,25," ");
-        Draw(79,24,90,25," ");
-        Draw(89,22,95,27," ");
-        Draw(38,12,41,13," ");
-        Draw(33,10,44,12," ");
-        Draw(42,7,43,12," ");
-        Draw(42,6,85,7," ");
-        Draw(85,6,106,15," ");
-        Draw(83,10,85,13," ");
-        Draw(75,9,83,14," ");
-        Draw(106,7,110,8," ");
-        Draw(110,7,115,12," ");
-        Draw(87,15,91,19," ");
-        Draw(91,18,93,19," ");
-        Draw(93,16,96,21," ");
-        Draw(106,13,110,15," ");
-        Draw(108,15,109,17," ");
-        Draw(103,17,114,23," ");
-        Draw(109,23,111,25," ");
-        Draw(110,25,116,27," ");
-        Draw(115,25,116,27,"#");
-        BossRoom(103,17,114,23);
+        Draw(9, 4, 13, 8, " ");
+        Draw(6, 8, 26, 14, " ");
+        Draw(14, 14, 18, 15, " ");
+        Draw(12, 15, 20, 17, " ");
+        Draw(20, 16, 30, 17, " ");
+        Draw(30, 13, 55, 18, " ");
+        Draw(55, 15, 58, 16, " ");
+        Draw(58, 14, 65, 17, " ");
+        Draw(30, 18, 32, 20, " ");
+        Draw(25, 19, 32, 20, " ");
+        Draw(25, 19, 27, 23, " ");
+        Draw(26, 22, 45, 23, " ");
+        Draw(44, 20, 45, 23, " ");
+        Draw(44, 19, 55, 20, " ");
+        Draw(54, 19, 56, 22, " ");
+        Draw(55, 21, 66, 22, " ");
+        Draw(65, 18, 67, 22, " ");
+        Draw(66, 17, 78, 18, " ");
+        Draw(77, 17, 80, 25, " ");
+        Draw(79, 24, 90, 25, " ");
+        Draw(89, 22, 95, 27, " ");
+        Draw(38, 12, 41, 13, " ");
+        Draw(33, 10, 44, 12, " ");
+        Draw(42, 7, 43, 12, " ");
+        Draw(42, 6, 85, 7, " ");
+        Draw(85, 6, 106, 15, " ");
+        Draw(83, 10, 85, 13, " ");
+        Draw(75, 9, 83, 14, " ");
+        Draw(106, 7, 110, 8, " ");
+        Draw(110, 7, 115, 12, " ");
+        Draw(87, 15, 91, 19, " ");
+        Draw(91, 18, 93, 19, " ");
+        Draw(93, 16, 96, 21, " ");
+        Draw(106, 13, 110, 15, " ");
+        Draw(108, 15, 109, 17, " ");
+        Draw(103, 17, 114, 23, " ");
+        Draw(109, 23, 111, 25, " ");
+        Draw(110, 25, 116, 27, " ");
+        Draw(115, 25, 116, 27, "#");
+        BossRoom(103, 17, 114, 23);
+        RandItemOrder();
     }
 }
 //===============================================Draw Functions===========================================================
 //========================================================================================================================
 
-int GameLevel::BossRoom(int x1,int y1,int x2,int y2) {
+int GameLevel::BossRoom(int x1, int y1, int x2, int y2) {
     //TurnLightRed;
     for (int i = y1; i < y2; i++) {
         for (int j = x1; j < x2; j++) {
-            GameLevelArray[i][j] = "☭";
+            GameLevelArray[i][j] = "!";
         }
     }
     //TurnWhite;
@@ -165,12 +169,12 @@ int GameLevel::BossRoom(int x1,int y1,int x2,int y2) {
 
 void GameLevel::DrawVisibleField(int x, int y) {
     int r = 6;
-    for (int i = 0; i < r+2; i++) {
+    for (int i = 0; i < r + 2; i++) {
         for (int j = 0; j < r; j++) {
-            if (x-3+i == x and y-2+j == y) { continue;}
-            ColorCheck(x-3+i, y-2+j);
-            gotoxy(x-3+i, y-2+j);
-            cout << GetFromCoordinates(x-3+i, y-2+j);
+            if (x - 3 + i == x and y - 2 + j == y) { continue; }
+            ColorCheck(x - 3 + i, y - 2 + j);
+            gotoxy(x - 3 + i, y - 2 + j);
+            cout << GetFromCoordinates(x - 3 + i, y - 2 + j);
             TurnGreen;
         }
     }
@@ -200,6 +204,23 @@ void GameLevel::DrawFrame() {
     Draw(0, 28, 119, 29, "█");
 }
 
+int GameLevel::random(int first, int second) {
+    //srand((unsigned) time(NULL));
+    return (first + (rand() % (first + second + 1)));
+}
+
+void GameLevel::RandItemOrder() {
+    int amount = 12;
+    for (int i = 0; i < amount; i++) {
+            int x = random(4, 115);
+            int y = random(1, 26);
+            gotoxy(x,y);
+            if (GameLevelArray[y][x] == " ") {
+                GameLevelArray[y][x] = "$";
+            } else {i--;}
+    }
+}
+
 //========================================================================================================================
 //========================================================================================================================
 
@@ -218,4 +239,8 @@ void GameLevel::ColorCheck(int x, int y) {
         TurnWhite;
         return;
     }
+}
+
+int ExitCurrentStartFollowing(){
+
 }
