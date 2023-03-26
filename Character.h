@@ -2,12 +2,14 @@
 #define CONSOLE_ROGUELIKE_CPP_CHARACTER_H
 #include "Utility.h"
 #include "LevelDesign.h"
+#include "PlayerItems.h"
 
 class Character {
 private:
     int MaxHealth{100}; int Health{100};
     int Damage{1};
     int Armor{1};
+    string Name{"NonClassified"};
 
 public:
     int GetHealth();
@@ -19,74 +21,108 @@ public:
     int GetArmor();
     void SetArmor(int Armor);
 
+    void SetName(string Name);
+    string GetName();
 };
 
 
 class Player : public Character {
 protected:
     int MaxStamina{100}; int Stamina{100};
-    int Gold{0}; string Name{"NonClassified"};
+    int Gold{0};
 public:
+    Player(string ClassName);
+
+    Player();
+
     int GetStamina();
     void SetStamina(int Stamina);
 
     int GetGold();
     void SetGold(int Gold);
-
-    void SetName(string Name);
-    string GetName();
 };
 
 class PlayerController : public Player {
 private:
     string PlayerSymbol{"@"};
     int x{5}; int y{2}; //current position
+
 public:
+    typedef struct InvSlot {
+        string Name;
+        int Point;
+    } InvSlot;
+
+    vector<InvSlot> Inventory;
+
+    void TakeItem(class Armor Item);
+    void TakeItem(Weapon Item);
+    void TakeItem(Potion Item);
+
+    void DropItem(InvSlot Item);
+    void OpenInventory();
+    void InteractWith();
     string GetPlayerSymbol();
     void MovementInit(GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int x, int y);
 };
 
-class Rogue : public Player {
+
+
+
+
+
+class Enemy : public Character {
+
 public:
-    Rogue() {
-        SetHealth(80);
-        SetDamage(35);
-        SetArmor(10);
+    Enemy(int EnemyType);
+    Enemy();
+    //Enemy();
+    //0 - DefaultEnemy, 1 - Boss
+};
+
+class EnemyAI : public Enemy {
+private:
+    string EnemySymbol{"&"};
+public:
+    EnemyAI();
+    string GetEnemySymbol();
+    void AutoMovement(GameLevel HomeLevel);
+    int WallCheck(GameLevel Level, int v, int d);
+
+    int v{15}; int d{6}; //current position
+    void SetV(int v);
+    void SetD(int d);
+
+    int GetV();
+    int GetD();
+};
+
+class Kvadrupter : public Character {
+public:
+    Kvadrupter() {
+        SetHealth(10);
+        SetDamage(100);
+        SetArmor(50);
     }
 };
 
-
-class Swordsman : public Player {
+class Gnil : public Character {
 public:
-    Swordsman() {
-        SetHealth(120);
-        SetDamage(20);
-        SetArmor(20);
-    }
-};
-
-// Ability : Can skip first enemy attack instance
-class Archer : public Player {
-public:
-    Archer() {
-        SetHealth(100);
-        SetDamage(25);
-        SetArmor(0);
-    }
-};
-
-class Monk : public Player {
-public:
-    Monk() {
-        SetHealth(110);
+    Gnil() {
+        SetHealth(150);
         SetDamage(10);
-        SetArmor(60);
+        SetArmor(50);
     }
 };
 
-class Enemy : Character {
-
+class Mraz : public Character {
+public:
+    Mraz() {
+        SetHealth(200);
+        SetDamage(1);
+        SetArmor(100);
+    }
 };
 
 #endif //CONSOLE_ROGUELIKE_CPP_CHARACTER_H

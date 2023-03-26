@@ -6,25 +6,33 @@
 #include "LevelDesign.h"
 
 
+// интерфейс боевки плавает
+// главное меню
+// окно выбора класса
+// предметы
+// расстановка предметов по карте
+
 
 
 int main() {
 
-
     InitializeSettings();
-    Armor Chestplace("Boba", 12);
-    Chestplace.SetArmorPoints(25);
-    cout << Chestplace.GetName() << endl;
-    cout << Chestplace.GetArmorPoints();
+
     UserInterface UserInterface;
-    UserInterface.ShowStartScreen();
-    GameLevel HomeLevel(1);
-    HomeLevel.DrawGameLevel();
+    GameLevel HomeLevel(0);
+
+
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
+    Enemy DefaultEnemy(0);
+    //FightInitialize(Player.GetName(), DefaultEnemy.GetName());
+
     PlayerController PlayerController;
+    PlayerController.TakeItem(Armor("Chestplace", 20));
+    PlayerController.TakeItem(Weapon("Sword", 20));
+    PlayerController.TakeItem(Armor("Shield", 30));
     PlayerController.MovementInit(HomeLevel);
 
-
-    int a;
-    cin >> a;
+    wait();
 
 }

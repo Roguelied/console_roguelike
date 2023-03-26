@@ -5,13 +5,7 @@
 
 void PlayKnightAttackAnimation();
 void PlayArcherAttackAnimation();
-
-class Animation {
-public:
-    void Play(Player Player, Enemy Enemy) {
-
-    }
-};
+void FightInitialize(Player PlayerClass, string EnemyType);
 
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H

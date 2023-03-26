@@ -7,6 +7,7 @@ class UserInterface {
 private:
 
 public:
-    int ShowStartScreen();
+    int StartMenu();
+    string ClassMenu();
 };
 #endif //CONSOLE_ROGUELIKE_CPP_USERINTERFACE_H
