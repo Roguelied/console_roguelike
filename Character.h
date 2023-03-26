@@ -48,22 +48,17 @@ private:
 
     //lvl 1 - 28 14
 public:
-    typedef struct InvSlot {
-        string Name;
-        int Point;
-    } InvSlot;
 
-    vector<InvSlot> Inventory;
+    vector<InvSlot> Inventory; //UTILITY.H
 
     void TakeItem(class Armor Item);
     void TakeItem(Weapon Item);
     void TakeItem(Potion Item);
 
     void DropItem(InvSlot Item);
-    void OpenInventory();
     void InteractWith();
     string GetPlayerSymbol();
-    void MovementInit(GameLevel HomeLevel);
+    void MovementInit(Player Player, GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int x, int y);
 
     int x{5}; int y{2}; //current position
