@@ -6,7 +6,10 @@ class GameLevel
 {
 private:
     string GameLevelArray[35][122];
+
 public:
+    vector<Coords> EnemyCoordinates;
+
     GameLevel(int RoomType);
     string GetFromCoordinates(int x, int y);
     void SetToCoordinates(string NewMapElement, int x, int y);
@@ -18,6 +21,8 @@ public:
     int BossRoom(int x1,int y1,int x2,int y2);
     void RandItemOrder();
     int random(int first, int second);
+    void ExitCurrentStartFollowing();
+    void SetEnemyCoordinates(int x, int y);
 };
 
 class TreasureBox {

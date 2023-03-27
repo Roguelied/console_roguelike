@@ -142,25 +142,25 @@ void PlayerController::MovementInit(Player Player, GameLevel Level) {
         if (_kbhit()) {
             auto Key = _getch();
             if (KeyCheck(Key) == 1 and WallCheck(Level, x, y - 1) == 0) {
-                gotoxy(x, y - 1); cout << PlayerSymbol;
+                gotoxy(x, y - 1); cout << PlayerSymbol; Level.SetToCoordinates("@", x, y-1);
                 gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y);
                 y--;
             }
             if (KeyCheck(Key) == 2 and WallCheck(Level, x - 1, y) == 0) {
-                gotoxy(x - 1, y); cout << PlayerSymbol;
+                gotoxy(x - 1, y); cout << PlayerSymbol; Level.SetToCoordinates("@", x-1, y);
                 gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y);
                 x--;
             }
             if (KeyCheck(Key) == 3 and WallCheck(Level, x, y + 1) == 0) {
-                gotoxy(x, y + 1); cout << PlayerSymbol;
+                gotoxy(x, y + 1); cout << PlayerSymbol; Level.SetToCoordinates("@", x, y+1);
                 gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y);
                 y++;
             }
             if (KeyCheck(Key) == 4 and WallCheck(Level, x + 1, y) == 0) {
-                gotoxy(x + 1, y); cout << PlayerSymbol;
+                gotoxy(x + 1, y); cout << PlayerSymbol; Level.SetToCoordinates("@", x+1, y);
                 gotoxy(x, y); cout << " ";
                 Level.SetToCoordinates(" ", x, y);
                 x++;
@@ -180,8 +180,8 @@ void PlayerController::MovementInit(Player Player, GameLevel Level) {
                 Level.DrawVisibleField(x, y);
                 DrawGUI(Player);
                 TurnLightRed;
-                EnemyAI.AutoMovement(Level, x, y);
-                Level.SetToCoordinates(" ", x, y);
+                //EnemyAI.AutoMovement(Level, x, y);
+                Level.ExitCurrentStartFollowing();
                 gotoxy(x, y);
 
                 continue;

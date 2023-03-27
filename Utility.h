@@ -39,6 +39,11 @@ typedef struct InvSlot {
     int Point;
 } InvSlot;
 
+typedef struct Coors {
+    int x;
+    int y;
+} Coords;
+
 void InitializeSettings();
 void gotoxy(int x, int y);
 void wait();

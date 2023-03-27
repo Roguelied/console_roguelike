@@ -45,7 +45,9 @@ GameLevel::GameLevel(int RoomType) {
         Draw(104, 18, 113, 27, " ");
         Draw(113, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
+
         BossRoom(104, 18, 113, 27);
+        SetEnemyCoordinates(20, 20);
         RandItemOrder();
     }
     if (RoomType == 1) {
@@ -218,6 +220,7 @@ void GameLevel::RandItemOrder() {
                 GameLevelArray[y][x] = "$";
             } else {i--;}
     }
+    gotoxy(0,0);
 }
 
 //========================================================================================================================
@@ -240,6 +243,15 @@ void GameLevel::ColorCheck(int x, int y) {
     }
 }
 
-int ExitCurrentStartFollowing(){
+void GameLevel::ExitCurrentStartFollowing() {
+    if (GameLevelArray[25][115] == "@" or GameLevelArray[26][115] == "@") {
+        exit(111);
+    }
+}
 
+void GameLevel::SetEnemyCoordinates(int x, int y) {
+    Coords EnemyCoords;
+    EnemyCoords.x = x;
+    EnemyCoords.y = y;
+    EnemyCoordinates.push_back(EnemyCoords);
 }

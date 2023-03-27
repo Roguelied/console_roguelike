@@ -18,16 +18,19 @@ int main() {
 
     InitializeSettings();
 
-    UserInterface UserInterface;
+    //UserInterface UserInterface;
     GameLevel HomeLevel(0);
-    //PlayKnightAttackAnimation();
-    PlayArcherAttackAnimation();
-    UserInterface.StartMenu();
-    Player Player(UserInterface.ClassMenu());
+    HomeLevel.DrawGameLevel();
+    Player player;
+    PlayerController PlayerController;
+    PlayerController.MovementInit(player, HomeLevel);
 
-   for (;;) {PlayKnightAttackAnimation();
-   //for (;;){PlayArcherAttackAnimation();
-  }
+    //PlayKnightAttackAnimation();
+    //UserInterface.StartMenu();
+    //Player Player(UserInterface.ClassMenu());
+
+    //for (;;) {PlayKnightAttackAnimation();}
+
 
     wait();
 }
