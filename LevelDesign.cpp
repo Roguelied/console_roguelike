@@ -47,7 +47,12 @@ GameLevel::GameLevel(int RoomType) {
         Draw(115, 25, 116, 27, "#");
 
         BossRoom(104, 18, 113, 27);
-        SetEnemyCoordinates(20, 20);
+        SetEnemyCoordinates(61, 23);
+        SetEnemyCoordinates(67,21);
+        SetEnemyCoordinates(77,22);
+        SetEnemyCoordinates(76,12);
+        SetEnemyCoordinates(83,5);
+
         RandItemOrder();
     }
     if (RoomType == 1) {
@@ -97,6 +102,11 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(99, 14, 114, 21);
+        SetEnemyCoordinates(15,6);
+        SetEnemyCoordinates(25,11);
+        SetEnemyCoordinates(47,21);
+        SetEnemyCoordinates(52,25);
+        SetEnemyCoordinates(59,19);
         RandItemOrder();
     }
 
@@ -150,6 +160,11 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(103, 17, 114, 23);
+        SetEnemyCoordinates(15,16);
+        SetEnemyCoordinates(35,11);
+        SetEnemyCoordinates(62,15);
+        SetEnemyCoordinates(95,20);
+        //капибара 92 24
         RandItemOrder();
     }
 }

@@ -61,7 +61,7 @@ public:
     void MovementInit(Player Player, GameLevel HomeLevel);
     int WallCheck(GameLevel Level, int x, int y);
 
-    int x{28}; int y{14}; //current position
+    int x{5}; int y{2}; //current position
     int GetX();
     int GetY();
 };
@@ -88,12 +88,7 @@ public:
     string GetEnemySymbol();
     void AutoMovement(GameLevel HomeLevel, int x, int y);
 
-    int v{15}; int d{10}; //current position
-    void SetV(int v);
-    void SetD(int d);
-
-    int GetV();
-    int GetD();
+    //int v{15}; int d{10}; //current position
 };
 
 class Kvadrupter : public Character {

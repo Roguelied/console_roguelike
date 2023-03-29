@@ -3,6 +3,8 @@
 #include "UserInterface.h"
 #include "Utility.h"
 #include <cstdlib>
+#include <algorithm>
+#include <vector>
 
 /*============================================================ Character ============================================================
 ===================================================================================================================================== */
@@ -137,7 +139,6 @@ void PlayerController::MovementInit(Player Player, GameLevel Level) {
     gotoxy(x, y);
     cout << PlayerSymbol;
     gotoxy(x, y);
-
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
@@ -180,10 +181,9 @@ void PlayerController::MovementInit(Player Player, GameLevel Level) {
                 Level.DrawVisibleField(x, y);
                 DrawGUI(Player);
                 TurnLightRed;
-                //EnemyAI.AutoMovement(Level, x, y);
                 Level.ExitCurrentStartFollowing();
                 gotoxy(x, y);
-
+                EnemyAI.AutoMovement(Level, x, y);
                 continue;
 
             }
@@ -223,7 +223,7 @@ Enemy::Enemy() = default;
 
 EnemyAI::EnemyAI() = default;
 
-void EnemyAI::SetV(int v) {
+/*void EnemyAI::SetV(int v) {
     this -> v = v;
 }
 void EnemyAI::SetD(int d) {
@@ -234,73 +234,71 @@ int EnemyAI::GetV() {
 }
 int EnemyAI::GetD() {
     return d;
-}
-
+}*/
 
 void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
-    string EnemySymbol = GetEnemySymbol();
-    TurnGreen;
-    gotoxy(v, d);
-    cout << EnemySymbol;
-    gotoxy(v, d);
-        if (((v-x) ^ 2 + (d-y) ^ 2) < 3) {
+    for (auto &i: Level.EnemyCoordinates) {
+        int v = i.x; int d = i.y;
+        string EnemySymbol = GetEnemySymbol();
+        TurnGreen;
+        gotoxy(v, d);
+        cout << EnemySymbol;
+        gotoxy(v, d);
+        if (((v - x) ^ 2 + (d - y) ^ 2) < 1) {
             if (v < x and d < y) {
                 gotoxy(v + 1, d + 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                v++; d++;
-            }
-            else if (v > x and d < y) {
+                v++;
+                d++;
+            } else if (v > x and d < y) {
                 gotoxy(v - 1, d + 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                v--; d++;
-            }
-            else if (v < x and d > y) {
+                v--;
+                d++;
+            } else if (v < x and d > y) {
                 gotoxy(v + 1, d - 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                v++; d--;
-            }
-            else if (v > x and d > y) {
+                v++;
+                d--;
+            } else if (v > x and d > y) {
                 gotoxy(v - 1, d - 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                v--; d--;
-            }
-            else if (v == x and d < y) {
+                v--;
+                d--;
+            } else if (v == x and d < y) {
                 gotoxy(v, d + 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
                 d++;
-            }
-            else if (v == x and d > y) {
+            } else if (v == x and d > y) {
                 gotoxy(v, d - 1);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
                 d--;
-            }
-            else if (v < x and d == y) {
+            } else if (v < x and d == y) {
                 gotoxy(v + 1, d);
                 cout << EnemySymbol;
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
                 v++;
-            }
-            else if (v > x and d == y) {
+            } else if (v > x and d == y) {
                 gotoxy(v - 1, d);
                 cout << EnemySymbol;
                 gotoxy(v, d);
@@ -316,8 +314,7 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                this->d = d - 1;
-                SetD(d--);
+                d--;
             }
             if (move == 2 and WallCheck(Level, v - 1, d) == 0) {
                 gotoxy(v - 1, d);
@@ -325,8 +322,7 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                this->v = v - 1;
-                SetV(v--);
+                v--;
             }
             if (move == 3 and WallCheck(Level, v, d + 1) == 0) {
                 gotoxy(v, d + 1);
@@ -334,8 +330,7 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                this->d = d + 1;
-                SetD(d++);
+                d++;
             }
             if (move == 4 and WallCheck(Level, v + 1, d) == 0) {
                 gotoxy(v + 1, d);
@@ -343,12 +338,15 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
-                this->v = v + 1;
-                SetV(v++);
+                v++;
             }
         }
-    }
 
+
+        i.x = v; i.y = d;
+       // cout << i.x << " " << i.y;
+    }
+}
 
 string EnemyAI::GetEnemySymbol() {
     return EnemySymbol;
