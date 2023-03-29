@@ -237,7 +237,7 @@ int EnemyAI::GetD() {
 }*/
 
 void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
-    for (auto &i: Level.EnemyCoordinates) {
+    for (auto & i: Level.EnemyCoordinates) {
         int v = i.x; int d = i.y;
         string EnemySymbol = GetEnemySymbol();
         TurnGreen;
@@ -247,7 +247,7 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
         if (((v - x) ^ 2 + (d - y) ^ 2) < 1) {
             if (v < x and d < y) {
                 gotoxy(v + 1, d + 1);
-                cout << EnemySymbol;
+                Level.SetToCoordinates(EnemySymbol, v, d);
                 gotoxy(v, d);
                 cout << " ";
                 Level.SetToCoordinates(" ", v, d);
@@ -341,10 +341,7 @@ void EnemyAI::AutoMovement(GameLevel Level, int x, int y) {
                 v++;
             }
         }
-
-
         i.x = v; i.y = d;
-       // cout << i.x << " " << i.y;
     }
 }
 

@@ -39,7 +39,7 @@ typedef struct InvSlot {
     int Point;
 } InvSlot;
 
-typedef struct Coors {
+typedef struct Coords {
     int x;
     int y;
 } Coords;
