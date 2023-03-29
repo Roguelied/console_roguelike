@@ -19,7 +19,7 @@ int main() {
     InitializeSettings();
 
     //UserInterface UserInterface;
-    GameLevel HomeLevel(0);
+    GameLevel HomeLevel(1);
     HomeLevel.DrawGameLevel();
     Player player;
     PlayerController PlayerController;
