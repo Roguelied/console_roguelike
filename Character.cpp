@@ -98,12 +98,7 @@ void PlayerController::DropItem(InvSlot & Item) {
     //inventory pop item
 }
 
-int PlayerController::GetX() {
-    return x;
-}
-int PlayerController::GetY() {
-    return y;
-}
+
 
 void PlayerController::InteractWith() {
     gotoxy(0, 0); cout << "e: ID";
@@ -209,124 +204,72 @@ void EnemyAI::AutoMovement(GameLevel & Level, int x, int y) {
         int v = i.x; int d = i.y;
         string EnemySymbol = GetEnemySymbol();
         TurnGreen;
-//        gotoxy(v, d);
-//        cout << EnemySymbol;
-//        gotoxy(v, d);
         if (((v - x) ^ 2 + (d - y) ^ 2) < 1) {
-            if (v < x and d < y) {
-//                gotoxy(v + 1, d + 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-                //
+            if (v < x and d < y and WallCheck(Level, v + 1, d + 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v+1, d+1);
                 Level.SetToCoordinates(" ", v, d);
-                v++;
-                d++;
-            } else if (v > x and d < y) {
-//                gotoxy(v - 1, d + 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-                //
+                //gotoxy(v, d); cout << " ";
+                v++; d++;
+            } else if (v > x and d < y and WallCheck(Level, v - 1, y + 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v-1, d+1);
                 Level.SetToCoordinates(" ", v, d);
-                v--;
-                d++;
-            } else if (v < x and d > y) {
-//                gotoxy(v + 1, d - 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-                //
+                //gotoxy(v, d); cout << " ";
+                v--; d++;
+            } else if (v < x and d > y and WallCheck(Level, v + 1, d - 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v+1, d-1);
                 Level.SetToCoordinates(" ", v, d);
-                v++;
-                d--;
-            } else if (v > x and d > y) {
-//                gotoxy(v - 1, d - 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-
+                //gotoxy(v, d); cout << " ";
+                v++; d--;
+            } else if (v > x and d > y and WallCheck(Level, x - 1, d - 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v-1, d-1);
                 Level.SetToCoordinates(" ", v, d);
-                v--;
-                d--;
-            } else if (v == x and d < y) {
-//                gotoxy(v, d + 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-                //
+                //gotoxy(v, d); cout << " ";
+                v--; d--;
+            } else if (v == x and d < y and WallCheck(Level, v, d + 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v, d+1);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 d++;
-            } else if (v == x and d > y) {
-//                gotoxy(v, d - 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-                //
+            } else if (v == x and d > y and WallCheck(Level, v, d-1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v, d-1);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 d--;
-            } else if (v < x and d == y) {
-//                gotoxy(v + 1, d);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-
+            } else if (v < x and d == y and WallCheck(Level, v + 1, d) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v+1, d);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 v++;
-            } else if (v > x and d == y) {
-//                gotoxy(v - 1, d);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-
+            } else if (v > x and d == y and WallCheck(Level, v - 1, d) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v-1, d);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 v--;
             }
         } else {
             int move = 1 + rand() % 4;
             if (move == 1 and WallCheck(Level, v, d - 1) == 0) {
-//                gotoxy(v, d - 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
-
                 Level.SetToCoordinates(EnemySymbol, v, d-1);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 d--;
             }
             if (move == 2 and WallCheck(Level, v - 1, d) == 0) {
-//                gotoxy(v - 1, d);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
                 Level.SetToCoordinates(EnemySymbol, v-1, d);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 v--;
             }
             if (move == 3 and WallCheck(Level, v, d + 1) == 0) {
-//                gotoxy(v, d + 1);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
                 Level.SetToCoordinates(EnemySymbol, v, d+1);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 d++;
             }
             if (move == 4 and WallCheck(Level, v + 1, d) == 0) {
-//                gotoxy(v + 1, d);
-//                cout << EnemySymbol;
-//                gotoxy(v, d);
-//                cout << " ";
                 Level.SetToCoordinates(EnemySymbol, v+1, d);
                 Level.SetToCoordinates(" ", v, d);
+                //gotoxy(v, d); cout << " ";
                 v++;
             }
         }

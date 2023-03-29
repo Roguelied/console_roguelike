@@ -61,8 +61,6 @@ public:
     int WallCheck(GameLevel & Level, int x, int y);
 
     int x{5}; int y{2}; //current position
-    int GetX();
-    int GetY();
 };
 
 
