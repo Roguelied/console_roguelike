@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "LevelDesign.h"
 #include "UserInterface.h"
+#include "AnimationAndSprites.h"
 #include "Utility.h"
 
 /*============================================================ Character ============================================================
@@ -155,10 +156,12 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
 
             if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
                 Level.DrawVisibleField(x, y);
+                ShowXY(x, y);
                 DrawGUI(Player.GetHealth(), Player.GetStamina(), Player.GetArmor(), Player.GetDamage(), Player.GetGold());
                 gotoxy(x, y);
                 EnemyAI.AutoMovement(Level, x, y);
-                Level.CheckForEnemiesAround(x, y);
+                Level.DrawVisibleField(x, y);
+                CheckForEnemiesAround(Level, Player, x, y);
 
                 continue;
 
@@ -179,6 +182,7 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
        return 2;
     } else return 0;
 }
+
 
 /*=============================================================== Enemy ===============================================================
 ===================================================================================================================================== */
@@ -281,3 +285,15 @@ string EnemyAI::GetEnemySymbol() {
     return EnemySymbol;
 }
 
+void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y) {
+    int r = 3;
+    for (int i = 0; i < r + 2; i++) {
+        for (int j = 0; j < r; j++) {
+            if (Level.GetFromCoordinates(x-3+i, y-2+j) == "&") {
+                FightInitialize(Player, "DefaultEnemy");
+            }
+        }
+    }
+    gotoxy(0,0);
+
+}

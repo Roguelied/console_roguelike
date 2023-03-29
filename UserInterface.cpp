@@ -152,3 +152,7 @@ void DrawGUI(int Health, int Stamina, int Armor, int Damage, int Gold) {
     TurnMagenta;
     gotoxy(45, 0); cout << "Press I to open inventory, Press E to interact with something";
 }
+
+void ShowXY(int x, int y) {
+    gotoxy(0, 28); cout << x << " " << y;
+}

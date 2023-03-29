@@ -839,7 +839,7 @@ void PlayIdleAnimation(Player Player) {
     }
 }
 
-void FightInitialize(Player Player, string EnemyType) {
+void FightInitialize(Player & Player, string EnemyType) {
     system("cls");
     if (Player.GetName() == "Knight") {
         if (EnemyType == "DefaultEnemy") {

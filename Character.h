@@ -59,6 +59,7 @@ public:
     string GetPlayerSymbol();
     void MovementInit(Player & Player, GameLevel & Level);
     int WallCheck(GameLevel & Level, int x, int y);
+    void CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y);
 
     int x{5}; int y{2}; //current position
 };

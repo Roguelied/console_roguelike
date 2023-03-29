@@ -278,14 +278,3 @@ void GameLevel::ShowEnemyCoordinates() {
         cout << i.x << " " << i.y << "  ";
     }
 }
-
-int GameLevel::CheckForEnemiesAround(int x, int y) {
-    int r = 3;
-    for (int i = x - r; i < x + r + 1; i++) {
-        for (int j = y - r; j < y + r + 1; j++) {
-            if (GameLevelArray[i][j] == "&") {
-                //exit(111);
-            }
-        }
-    }
-}
