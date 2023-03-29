@@ -102,6 +102,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(99, 14, 114, 21);
+
         AddEnemyCoordinates(15,6);
         AddEnemyCoordinates(25,11);
         AddEnemyCoordinates(47,21);
@@ -161,6 +162,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(103, 17, 114, 23);
+
         AddEnemyCoordinates(15,16);
         AddEnemyCoordinates(35,11);
         AddEnemyCoordinates(62,15);
