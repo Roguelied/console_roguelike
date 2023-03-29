@@ -48,18 +48,17 @@ private:
 
     //lvl 1 - 28 14
 public:
+    vector<InvSlot> Inventory; //Utility.h
 
-    vector<InvSlot> Inventory; //UTILITY.H
+    void TakeItem(class Armor & Item);
+    void TakeItem(Weapon & Item);
+    void TakeItem(Potion & Item);
+    void DropItem(InvSlot & Item);
 
-    void TakeItem(class Armor Item);
-    void TakeItem(Weapon Item);
-    void TakeItem(Potion Item);
-
-    void DropItem(InvSlot Item);
     void InteractWith();
     string GetPlayerSymbol();
-    void MovementInit(Player Player, GameLevel HomeLevel);
-    int WallCheck(GameLevel Level, int x, int y);
+    void MovementInit(Player & Player, GameLevel & Level);
+    int WallCheck(GameLevel & Level, int x, int y);
 
     int x{5}; int y{2}; //current position
     int GetX();
@@ -74,10 +73,8 @@ public:
 class Enemy : public Character {
 
 public:
-    Enemy(int EnemyType);
+    Enemy(int EnemyType); //0 - DefaultEnemy, 1 - Boss
     Enemy();
-    //Enemy();
-    //0 - DefaultEnemy, 1 - Boss
 };
 
 class EnemyAI : public PlayerController {
@@ -86,36 +83,7 @@ private:
 public:
     EnemyAI();
     string GetEnemySymbol();
-    void AutoMovement(GameLevel HomeLevel, int x, int y);
-
-    //int v{15}; int d{10}; //current position
-};
-
-class Kvadrupter : public Character {
-public:
-    Kvadrupter() {
-        SetHealth(10);
-        SetDamage(100);
-        SetArmor(50);
-    }
-};
-
-class Gnil : public Character {
-public:
-    Gnil() {
-        SetHealth(150);
-        SetDamage(10);
-        SetArmor(50);
-    }
-};
-
-class Mraz : public Character {
-public:
-    Mraz() {
-        SetHealth(200);
-        SetDamage(1);
-        SetArmor(100);
-    }
+    void AutoMovement(GameLevel & Level, int x, int y);
 };
 
 #endif //CONSOLE_ROGUELIKE_CPP_CHARACTER_H

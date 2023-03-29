@@ -106,7 +106,7 @@ string UserInterface::ClassMenu() {
     }
 }
 
-void UserInterface::OpenInventory(vector<InvSlot> Inventory) {
+void OpenInventory(vector<InvSlot> Inventory) {
     //system("cls");
     gotoxy(0, 30);
     for (int i = 0; i < 120; i++) {
@@ -137,4 +137,18 @@ void UserInterface::OpenInventory(vector<InvSlot> Inventory) {
         gotoxy(7+(c*20), 44);
     }
 
+}
+
+void DrawGUI(int Health, int Stamina, int Armor, int Damage, int Gold) {
+    gotoxy(8, 0); cout << "HP:" << Health;
+    TurnBrightAqua;
+    gotoxy(15, 0); cout << "STM:" << Stamina;
+    TurnMagenta;
+    gotoxy(23, 0); cout << "ARM:" << Armor;
+    TurnLightRed;
+    gotoxy(31, 0); cout << "DMG:" << Damage;
+    TurnYellow;
+    gotoxy(40, 0); cout << "GOLD:" << Damage;
+    TurnMagenta;
+    gotoxy(45, 0); cout << "Press I to open inventory, Press E to interact with something";
 }

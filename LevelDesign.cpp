@@ -47,11 +47,11 @@ GameLevel::GameLevel(int RoomType) {
         Draw(115, 25, 116, 27, "#");
 
         BossRoom(104, 18, 113, 27);
-        SetEnemyCoordinates(61, 23);
-        SetEnemyCoordinates(67,21);
-        SetEnemyCoordinates(77,22);
-        SetEnemyCoordinates(76,12);
-        SetEnemyCoordinates(83,5);
+        AddEnemyCoordinates(61, 23);
+        AddEnemyCoordinates(67,21);
+        AddEnemyCoordinates(77,22);
+        AddEnemyCoordinates(76,12);
+        AddEnemyCoordinates(83,5);
 
         RandItemOrder();
     }
@@ -102,11 +102,11 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(99, 14, 114, 21);
-        SetEnemyCoordinates(15,6);
-        SetEnemyCoordinates(25,11);
-        SetEnemyCoordinates(47,21);
-        SetEnemyCoordinates(52,25);
-        SetEnemyCoordinates(59,19);
+        AddEnemyCoordinates(15,6);
+        AddEnemyCoordinates(25,11);
+        AddEnemyCoordinates(47,21);
+        AddEnemyCoordinates(52,25);
+        AddEnemyCoordinates(59,19);
         RandItemOrder();
     }
 
@@ -160,10 +160,10 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(103, 17, 114, 23);
-        SetEnemyCoordinates(15,16);
-        SetEnemyCoordinates(35,11);
-        SetEnemyCoordinates(62,15);
-        SetEnemyCoordinates(95,20);
+        AddEnemyCoordinates(15,16);
+        AddEnemyCoordinates(35,11);
+        AddEnemyCoordinates(62,15);
+        AddEnemyCoordinates(95,20);
         //капибара 92 24
         RandItemOrder();
     }
@@ -184,7 +184,7 @@ int GameLevel::BossRoom(int x1, int y1, int x2, int y2) {
 }
 
 void GameLevel::DrawVisibleField(int x, int y) {
-    int r = 6;
+    int r = 8;
     for (int i = 0; i < r + 2; i++) {
         for (int j = 0; j < r; j++) {
             if (x - 3 + i == x and y - 2 + j == y) { continue; }
@@ -194,6 +194,7 @@ void GameLevel::DrawVisibleField(int x, int y) {
             TurnGreen;
         }
     }
+    gotoxy(0,0);
 }
 
 void GameLevel::DrawGameLevel() {
@@ -220,16 +221,12 @@ void GameLevel::DrawFrame() {
     Draw(0, 28, 119, 29, " ");
 }
 
-int GameLevel::random(int first, int second) {
-    //srand((unsigned) time(NULL));
-    return (first + (rand() % (first + second + 1)));
-}
 
 void GameLevel::RandItemOrder() {
     int amount = 12;
     for (int i = 0; i < amount; i++) {
-            int x = random(4, 115);
-            int y = random(1, 26);
+            int x = Random(4, 115);
+            int y = Random(1, 26);
             gotoxy(x,y);
             if (GameLevelArray[y][x] == " ") {
                 GameLevelArray[y][x] = "$";
@@ -264,9 +261,27 @@ void GameLevel::ExitCurrentStartFollowing() {
     }
 }
 
-void GameLevel::SetEnemyCoordinates(int x, int y) {
+void GameLevel::AddEnemyCoordinates(int x, int y) {
     Coords EnemyCoords;
     EnemyCoords.x = x;
     EnemyCoords.y = y;
     EnemyCoordinates.push_back(EnemyCoords);
+}
+
+void GameLevel::ShowEnemyCoordinates() {
+    gotoxy(0,29);
+    for (auto i : EnemyCoordinates) {
+        cout << i.x << " " << i.y << "  ";
+    }
+}
+
+int GameLevel::CheckForEnemiesAround(int x, int y) {
+    int r = 3;
+    for (int i = x - r; i < x + r + 1; i++) {
+        for (int j = y - r; j < y + r + 1; j++) {
+            if (GameLevelArray[i][j] == "&") {
+                //exit(111);
+            }
+        }
+    }
 }

@@ -22,7 +22,9 @@ public:
     void RandItemOrder();
     int random(int first, int second);
     void ExitCurrentStartFollowing();
-    void SetEnemyCoordinates(int x, int y);
+    void AddEnemyCoordinates(int x, int y);
+    void ShowEnemyCoordinates();
+    int CheckForEnemiesAround(int x, int y);
 };
 
 class TreasureBox {

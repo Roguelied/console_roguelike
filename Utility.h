@@ -10,6 +10,9 @@
 #include <conio.h>
 #include <thread>
 #include <future>
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
 
 
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -48,6 +51,8 @@ void InitializeSettings();
 void gotoxy(int x, int y);
 void wait();
 int KeyCheck(int Key);
+int Random(int First, int Second);
+
 
 
 

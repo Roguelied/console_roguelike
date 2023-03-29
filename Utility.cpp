@@ -32,10 +32,14 @@ int KeyCheck(int Key) {
     if (Key == 13){
         return 5;
     }
-    if (Key == 'e' or Key == 'E') {
+    if (Key == 'e' or Key == 'E' or Key == 227 or Key == 147) {
         return 6;
     }
-    if (Key == 'i' or Key == 'I') {
+    if (Key == 'i' or Key == 'I' or Key == 232 or Key == 152) {
         return 7;
     }
+}
+
+int Random(int First, int Second) {
+    return (First + (rand() % (First + Second + 1)));
 }

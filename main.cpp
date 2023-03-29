@@ -1,4 +1,4 @@
-#include "Utility.h" //DNT!!!
+#include "Utility.h"
 #include "AnimationAndSprites.h"
 #include "Character.h"
 #include "PlayerItems.h"
@@ -6,30 +6,24 @@
 #include "LevelDesign.h"
 
 
-// интерфейс боевки плавает
-// главное меню +-
-// окно выбора класса +-
-// предметы +-
-// расстановка предметов по карте -
-
-
-
 int main() {
 
+    //wait(); return 0;
+    //--------------------------------------------------------------------------------------
     InitializeSettings();
 
-    //UserInterface UserInterface;
-    GameLevel HomeLevel(1);
-    HomeLevel.DrawGameLevel();
-    Player player;
+    GameLevel HomeLevel(0);
+    GameLevel FirstLevel(1);
+    GameLevel SecondLevel(2);
+
     PlayerController PlayerController;
-    PlayerController.MovementInit(player, HomeLevel);
+    UserInterface UserInterface;
 
-    //PlayKnightAttackAnimation();
-    //UserInterface.StartMenu();
-    //Player Player(UserInterface.ClassMenu());
 
-    //for (;;) {PlayKnightAttackAnimation();}
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
+
+    PlayerController.MovementInit(Player, FirstLevel);
 
 
     wait();
