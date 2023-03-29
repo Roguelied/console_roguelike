@@ -15,7 +15,6 @@ GameLevel::GameLevel(int RoomType) {
                 j = " ";
             }
         }
-        DrawFrame();
         Draw(2, 1, 117, 28, "░");
         Draw(10, 8, 50, 20, " ");
         Draw(50, 13, 60, 15, " ");
@@ -54,6 +53,7 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(83,5);
 
         RandItemOrder();
+        DrawFrame();
     }
     if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
@@ -108,6 +108,7 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(52,25);
         AddEnemyCoordinates(59,19);
         RandItemOrder();
+        DrawFrame();
     }
 
 
@@ -166,6 +167,7 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(95,20);
         //капибара 92 24
         RandItemOrder();
+        DrawFrame();
     }
 }
 
