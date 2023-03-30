@@ -790,17 +790,27 @@ string ArcherAttackSprites[7] = {
 };
 
 
-void PlayKnightAttackAnimation() {
-
+void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy) {
+    if (Enemy.GetHealth() <= 0) {
+        return;
+    }
     for (auto & AttackSprite : KnightAttackSprites) {
         system("cls");
         cout << AttackSprite;
-        gotoxy(2, 13); cout << "UserIterface";
-        gotoxy(2, 14); cout << "UserIterface";
-        gotoxy(2, 15); cout << "UserIterface";
-        gotoxy(2, 16); cout << "UserIterface";
-        sleep_for(seconds(1));
+        TurnBrightAqua;
+        gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+        gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+        gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+        gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
+
+        gotoxy(135, 12); cout << "гоблин шизотерик";
+        gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+        gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+        gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+        TurnWhite;
+        sleep_for(milliseconds(500));
     }
+    Enemy.SetHealth(Enemy.GetHealth() + Enemy.GetArmor() - Player.GetDamage());
 }
 
 void PlayArcherAttackAnimation() {
@@ -811,50 +821,60 @@ void PlayArcherAttackAnimation() {
     }
 }
 
-void PlayIdleAnimation(Player Player) {
+void PlayKnightGotAttackedBy(Player & Player, Enemy & Enemy) {
+
+}
+
+void PlayIdleAnimation(Player & Player, Enemy & Enemy) {
+    system("mode con COLS=700");
+    ShowWindow(GetConsoleWindow(),SW_MAXIMIZE);
+    //SendMessage(GetConsoleWindow(),WM_SYSKEYDOWN,VK_RETURN,0x20000000); //убирает рамку
     for (;;)
     {
-        if(kbhit())
-        {
-            int keypress = getch();
-            if (keypress == '1')
-            {
-                break;
-            }
+        if (_kbhit()) {
+            if (_getch() == '1') {break;}
         }
         for (auto &AttackSprite: KnightIdleSprites) {
             cout << AttackSprite;
-            TurnGreen;
-            gotoxy(2, 13); cout << "Health:" << Player.GetHealth();
             TurnBrightAqua;
-            gotoxy(2, 14); cout << "Stamina:" << Player.GetStamina();
-            //gotoxy(2, 15); cout << "---";
-            //gotoxy(2, 16); cout << "---";
+            gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+            gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+            gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+            gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
+
+            gotoxy(135, 12); cout << "гоблин шизотерик";
+            gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+            gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+            gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+
+
             TurnAqua;
             gotoxy(2,29); cout << "Hit:Press 1";
-            sleep_for(nanoseconds(600000000));
+            sleep_for(nanoseconds(300000000));
             TurnWhite;
             system("cls");
         }
     }
 }
 
-void FightInitialize(Player & Player, string EnemyType) {
+void FightInitialize(Player & Player, Enemy & Enemy) {
     system("cls");
     if (Player.GetName() == "Knight") {
-        if (EnemyType == "DefaultEnemy") {
-            PlayIdleAnimation(Player);
-            PlayKnightAttackAnimation();
+        if (Enemy.GetName() == "DefaultEnemy") {
+            while (Enemy.GetHealth() > 0 and Player.GetHealth() > 0) {
+                PlayIdleAnimation(Player, Enemy);
+                PlayKnightAttackAnimation(Player, Enemy);
+            }
         }
-        if (EnemyType == "Boss") {
-            PlayKnightAttackAnimation();
+        if (Enemy.GetName() == "Boss") {
+            PlayKnightAttackAnimation(Player, Enemy);
         }
     }
     if (Player.GetName() == "Archer") {
-        if (EnemyType == "DefaultEnemy") {
+        if (Enemy.GetName() == "DefaultEnemy") {
             PlayArcherAttackAnimation();
         }
-        if (EnemyType == "Boss") {
+        if (Enemy.GetName() == "Boss") {
             PlayArcherAttackAnimation();
         }
     }

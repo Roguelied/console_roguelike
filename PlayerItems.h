@@ -42,7 +42,8 @@ private:
     int Health{30};
     int Stamina{43};
 public:
-    Potion(string Name, int Health, int Stamina);
+    Potion(string Name, int Health);
+    Potion(string name);
     int GetHealth();
     int GetStamina();
 };

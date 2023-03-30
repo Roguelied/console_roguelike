@@ -190,9 +190,13 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
 Enemy::Enemy(int EnemyType) {
     if (EnemyType == 0) {
         SetName("DefaultEnemy");
+        SetDamage(20);
+        SetHealth(70);
     }
     if (EnemyType == 1) {
         SetName("Boss");
+        SetDamage(35);
+        SetHealth(300);
     }
 }
 
@@ -290,7 +294,9 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
     for (int i = 0; i < r + 2; i++) {
         for (int j = 0; j < r; j++) {
             if (Level.GetFromCoordinates(x-3+i, y-2+j) == "&") {
-                FightInitialize(Player, "DefaultEnemy");
+                Enemy Enemy(0);
+                //ZAMENITB!
+                FightInitialize(Player, Enemy);
             }
         }
     }
