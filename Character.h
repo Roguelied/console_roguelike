@@ -6,7 +6,7 @@
 
 class Character {
 private:
-    int MaxHealth{100}; int Health{100};
+    int Health{100};
     int Damage{1};
     int Armor{1};
     string Name{"NonClassified"};
@@ -64,17 +64,15 @@ public:
     int x{5}; int y{2}; //current position
 };
 
-
-
-
-
+/*=============================================================== Enemy ===============================================================
+===================================================================================================================================== */
 
 class Enemy : public Character {
-
 public:
     Enemy(int EnemyType); //0 - DefaultEnemy, 1 - Boss
     Enemy();
 };
+
 
 class EnemyAI : public PlayerController {
 private:
@@ -84,5 +82,8 @@ public:
     string GetEnemySymbol();
     void AutoMovement(GameLevel & Level, int x, int y);
 };
+
+/*=====================================================================================================================================
+===================================================================================================================================== */
 
 #endif //CONSOLE_ROGUELIKE_CPP_CHARACTER_H
