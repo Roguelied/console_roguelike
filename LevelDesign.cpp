@@ -44,16 +44,19 @@ GameLevel::GameLevel(int RoomType) {
         Draw(104, 18, 113, 27, " ");
         Draw(113, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
-
         BossRoom(104, 18, 113, 27);
+        RandItemOrder();
+        DrawFrame();
+        //shop
+        GameLevelArray[9][67]="*";
+        //quest
+        GameLevelArray[12][98]="?";
+        //add enemy in lvl
         AddEnemyCoordinates(61, 23);
         AddEnemyCoordinates(67,21);
         AddEnemyCoordinates(77,22);
         AddEnemyCoordinates(76,12);
         AddEnemyCoordinates(83,5);
-
-        RandItemOrder();
-        DrawFrame();
     }
     if (RoomType == 1) {
         for (auto &i: GameLevelArray) {
@@ -102,14 +105,18 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(99, 14, 114, 21);
-
+        RandItemOrder();
+        DrawFrame();
+        //shop
+        GameLevelArray[7][31]="*";
+        //quest
+        GameLevelArray[13][93]="?";
+        //add enemy in lvl
         AddEnemyCoordinates(15,6);
         AddEnemyCoordinates(25,11);
         AddEnemyCoordinates(47,21);
         AddEnemyCoordinates(52,25);
         AddEnemyCoordinates(59,19);
-        RandItemOrder();
-        DrawFrame();
     }
 
 
@@ -162,14 +169,20 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(103, 17, 114, 23);
-
+        RandItemOrder();
+        DrawFrame();
+        //shop
+        GameLevelArray[11][79]="*";
+        //quest
+        GameLevelArray[9][112]="?";
+        //capybara
+        GameLevelArray[24][92]="~";
+        //add enemy in lvl
         AddEnemyCoordinates(15,16);
         AddEnemyCoordinates(35,11);
         AddEnemyCoordinates(62,15);
         AddEnemyCoordinates(95,20);
         //капибара 92 24
-        RandItemOrder();
-        DrawFrame();
     }
 }
 
