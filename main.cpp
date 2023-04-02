@@ -17,6 +17,7 @@ int main() {
     //--------------------------------------------------------------------------------------
     InitializeSettings();
 
+    GameLevel FreeSpace(4);
     GameLevel HomeLevel(0);
     GameLevel FirstLevel(1);
     GameLevel SecondLevel(2);

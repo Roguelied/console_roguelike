@@ -5,7 +5,8 @@
 class GameLevel
 {
 private:
-    string GameLevelArray[35][122];
+    string GameLevelArray[38][128];
+    string MemorisedGameLevelArray[38][128];
 
 public:
     vector<Coords> EnemyCoordinates;
@@ -13,6 +14,8 @@ public:
     GameLevel(int RoomType);
     string GetFromCoordinates(int x, int y);
     void SetToCoordinates(string NewMapElement, int x, int y);
+    void Memorise(int x, int y);
+    void DrawMemorised();
     void DrawGameLevel();
     void Draw(int x1, int y1, int x2, int y2,string symbol);
     void DrawFrame();

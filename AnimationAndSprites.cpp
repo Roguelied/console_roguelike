@@ -808,7 +808,7 @@ void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy) {
         gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
         gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
         TurnWhite;
-        sleep_for(milliseconds(500));
+        sleep_for(milliseconds(300));
     }
     Enemy.SetHealth(Enemy.GetHealth() + Enemy.GetArmor() - Player.GetDamage());
 }

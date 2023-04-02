@@ -8,13 +8,17 @@ using namespace std;
 
 //Room resolution 29/119
 GameLevel::GameLevel(int RoomType) {
-
-    if (RoomType == 0) {
-        for (auto &i: GameLevelArray) {
-            for (auto &j: i) {
-                j = " ";
-            }
+    for (auto &i: GameLevelArray) {
+        for (auto &j: i) {
+            j = " ";
         }
+    }
+    for (auto &i: MemorisedGameLevelArray) {
+        for (auto &j: i) {
+            j = " ";
+        }
+    }
+    if (RoomType == 0) {
         Draw(2, 1, 117, 28, "░");
         Draw(10, 8, 50, 20, " ");
         Draw(50, 13, 60, 15, " ");
@@ -59,11 +63,6 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(83,5);
     }
     if (RoomType == 1) {
-        for (auto &i: GameLevelArray) {
-            for (auto &j: i) {
-                j = " ";
-            }
-        }
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 7, 4, " ");
         Draw(3, 2, 4, 4, "#");
@@ -121,11 +120,6 @@ GameLevel::GameLevel(int RoomType) {
 
 
     if (RoomType == 2) {
-        for (auto &i: GameLevelArray) {
-            for (auto &j: i) {
-                j = " ";
-            }
-        }
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
         Draw(3, 2, 4, 4, "#");
@@ -201,17 +195,34 @@ int GameLevel::BossRoom(int x1, int y1, int x2, int y2) {
 }
 
 void GameLevel::DrawVisibleField(int x, int y) {
-    int r = 8;
-    for (int i = 0; i < r + 2; i++) {
-        for (int j = 0; j < r; j++) {
-            if (x - 3 + i == x and y - 2 + j == y) { continue; }
-            ColorCheck(x - 3 + i, y - 2 + j);
-            gotoxy(x - 3 + i, y - 2 + j);
-            cout << GetFromCoordinates(x - 3 + i, y - 2 + j);
+    int r = 4;
+    for (int i = -2-r/2; i < r/2+3; i++) {
+        for (int j = -r/2; j < r/2+1; j++) {
+            int a = x+i; int b = y+j;
+            if (a == x and b == y) { continue; }
+            ColorCheck(a, b);
+            gotoxy(a, b); TurnGreen;
+            cout << GetFromCoordinates(a, b);
+            Memorise(a, b);
             TurnGreen;
         }
     }
     gotoxy(0,0);
+}
+
+void GameLevel::Memorise(int x, int y) {
+    MemorisedGameLevelArray[y][x] = "!";
+}
+
+void GameLevel::DrawMemorised() {
+    for (int i = 0; i < 29; i++) {
+        for (int j = 0; j < 119; j++) {
+            if (MemorisedGameLevelArray[i][j] == "!") {
+                cout << GameLevelArray[i][j];
+            } else {cout << " ";}
+        }
+        cout << endl;
+    }
 }
 
 void GameLevel::DrawGameLevel() {

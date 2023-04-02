@@ -303,6 +303,9 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
                             Level.EnemyCoordinates.erase(Level.EnemyCoordinates.begin() + k);
                         }
                     }
+                    system("cls");
+                    gotoxy(0,0);
+                    Level.DrawMemorised();
                     return;
                 }
             }
