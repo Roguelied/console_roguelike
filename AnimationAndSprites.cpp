@@ -857,7 +857,7 @@ void PlayIdleAnimation(Player & Player, Enemy & Enemy) {
     }
 }
 
-void FightInitialize(Player & Player, Enemy & Enemy) {
+int FightInitialize(Player & Player, Enemy & Enemy) {
     system("cls");
     if (Player.GetName() == "Knight") {
         if (Enemy.GetName() == "DefaultEnemy") {
@@ -865,6 +865,8 @@ void FightInitialize(Player & Player, Enemy & Enemy) {
                 PlayIdleAnimation(Player, Enemy);
                 PlayKnightAttackAnimation(Player, Enemy);
             }
+            if (Enemy.GetHealth() <= 0) {return 1;}
+            if ( Player.GetHealth() <= 0) {return 0;}
         }
         if (Enemy.GetName() == "Boss") {
             PlayKnightAttackAnimation(Player, Enemy);

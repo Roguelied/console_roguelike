@@ -6,7 +6,7 @@
 void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy);
 void PlayKnightGotAttackedBy(Player & Player, Enemy & Enemy);
 void PlayArcherAttackAnimation();
-void FightInitialize(Player & Player, Enemy & Enemy);
+int FightInitialize(Player & Player, Enemy & Enemy);
 void ABOBUS();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H

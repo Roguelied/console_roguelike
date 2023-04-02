@@ -296,7 +296,15 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
             if (Level.GetFromCoordinates(x-3+i, y-2+j) == "&") {
                 Enemy Enemy(0);
                 //ZAMENITB!
-                FightInitialize(Player, Enemy);
+                if (FightInitialize(Player, Enemy) == 1) {
+                    Level.SetToCoordinates(" ", x-3+i, y-2+j);
+                    for (int k = 0; k < Level.EnemyCoordinates.capacity() ; k++) {
+                        if ((Level.EnemyCoordinates[k].x == x-3+i) and (Level.EnemyCoordinates[k].y == y-2+j)) {
+                            Level.EnemyCoordinates.erase(Level.EnemyCoordinates.begin() + k);
+                        }
+                    }
+                    return;
+                }
             }
         }
     }
