@@ -14,19 +14,20 @@ int UserInterface::StartMenu() {
     TurnWhite;
     while (true) {
         int Key = _getch();
-        if (KeyCheck(Key) == 3) {
-            TurnWhite;
-            gotoxy(60, 8); cout << "START";
-            TurnBackGreen;
-            gotoxy(60, 18); cout << "EXIT"; gotoxy(63, 18);
-            TurnWhite;
-
-            flag++;
-        } else if (KeyCheck(Key) == 1) {
+        if (KeyCheck(Key) == 1) {
             TurnWhite;
             gotoxy(60, 18); cout << "EXIT";
             TurnBackGreen;
             gotoxy(60, 8); cout << "START"; gotoxy(64, 8);
+            TurnWhite;
+
+            flag++;
+        } else if (KeyCheck(Key) == 3) {
+
+            TurnWhite;
+            gotoxy(60, 8); cout << "START";
+            TurnBackGreen;
+            gotoxy(60, 18); cout << "EXIT"; gotoxy(63, 18);
             TurnWhite;
             flag++;
         }

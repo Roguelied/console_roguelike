@@ -2,6 +2,7 @@
 
 void InitializeSettings() {
     SetConsoleOutputCP( 65001 );
+    system("title Rogueliek Rogulik Guguglik");
     //system("mode con cols=129 lines=32");
 }
 void gotoxy(int x, int y)
