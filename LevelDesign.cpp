@@ -111,11 +111,11 @@ GameLevel::GameLevel(int RoomType) {
         //quest
         GameLevelArray[13][93]="?";
         //add enemy in lvl
-        AddEnemyCoordinates(15,6);
-        AddEnemyCoordinates(25,11);
-        AddEnemyCoordinates(47,21);
-        AddEnemyCoordinates(52,25);
-        AddEnemyCoordinates(59,19);
+//        AddEnemyCoordinates(15,6);
+//        AddEnemyCoordinates(25,11);
+//        AddEnemyCoordinates(47,21);
+//        AddEnemyCoordinates(52,25);
+//        AddEnemyCoordinates(59,19);
     }
 
 
@@ -283,11 +283,6 @@ void GameLevel::ColorCheck(int x, int y) {
     }
 }
 
-void GameLevel::ExitCurrentStartFollowing() {
-    if (GameLevelArray[25][115] == "@" or GameLevelArray[26][115] == "@") {
-        exit(111);
-    }
-}
 
 void GameLevel::AddEnemyCoordinates(int x, int y) {
     Coords EnemyCoords;

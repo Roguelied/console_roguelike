@@ -11,6 +11,10 @@ vector <PlayerItem*> AllExistingItems = {
 };
 
 
+// использовать предметы в окне боевки
+// саня сказать мне фиксированные x y для того чтобы спавнить в лвле и чтобы выходить из негео, сделать края для лвла меньше к концу консоли чтобы не было бед аллока
+// мне переделать на бекграунд фонт менюшки
+
 int main() {
 
     //wait(); return 0;
@@ -30,6 +34,7 @@ int main() {
     Player Player(UserInterface.ClassMenu());
 
     PlayerController.MovementInit(Player, FirstLevel);
+    PlayerController.MovementInit(Player, SecondLevel);
 
 
     wait();

@@ -790,7 +790,7 @@ string ArcherAttackSprites[7] = {
 };
 
 
-void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy) {
+void PlayAttackAnimation_KnightDragon(Player & Player, Enemy & Enemy) {
     if (Enemy.GetHealth() <= 0) {
         return;
     }
@@ -808,7 +808,7 @@ void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy) {
         gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
         gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
         TurnWhite;
-        sleep_for(milliseconds(300));
+        sleep_for(milliseconds(200));
     }
     Enemy.SetHealth(Enemy.GetHealth() + Enemy.GetArmor() - Player.GetDamage());
 }
@@ -821,13 +821,37 @@ void PlayArcherAttackAnimation() {
     }
 }
 
-void PlayKnightGotAttackedBy(Player & Player, Enemy & Enemy) {
+void PlayGotAttacked_KnightDragon(Player & Player, Enemy & Enemy) {
+    if (Player.GetHealth() <= 0) {
+        return;
+    }
+    for (auto & AttackSprite : KnightIdleSprites) {
+        system("cls");
+        cout << AttackSprite;
+        TurnBrightAqua;
+        gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+        gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+        gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+        gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
 
+        gotoxy(135, 12); cout << "гоблин шизотерик";
+        gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+        gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+        gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+        TurnWhite;
+
+        sleep_for(milliseconds(200));
+    }
+    Player.SetHealth(Player.GetHealth() + Player.GetArmor() - Enemy.GetDamage());
+    gotoxy(40, 40); cout << "enemy dealt " << Enemy.GetDamage() << "damage to you";
+    sleep_for(milliseconds(2000));
+    system("cls");
 }
 
-void PlayIdleAnimation(Player & Player, Enemy & Enemy) {
-    system("mode con COLS=700");
-    ShowWindow(GetConsoleWindow(),SW_MAXIMIZE);
+void PlayIdleAnimation_KnightDragon(Player & Player, Enemy & Enemy) {
+
+    //system("mode con COLS=700");
+    //ShowWindow(GetConsoleWindow(),SW_MAXIMIZE);
     //SendMessage(GetConsoleWindow(),WM_SYSKEYDOWN,VK_RETURN,0x20000000); //убирает рамку
     for (;;)
     {
@@ -850,7 +874,7 @@ void PlayIdleAnimation(Player & Player, Enemy & Enemy) {
 
             TurnAqua;
             gotoxy(2,29); cout << "Hit:Press 1";
-            sleep_for(nanoseconds(300000000));
+            sleep_for(nanoseconds(400000000));
             TurnWhite;
             system("cls");
         }
@@ -858,18 +882,20 @@ void PlayIdleAnimation(Player & Player, Enemy & Enemy) {
 }
 
 int FightInitialize(Player & Player, Enemy & Enemy) {
+    ::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
     system("cls");
     if (Player.GetName() == "Knight") {
         if (Enemy.GetName() == "DefaultEnemy") {
             while (Enemy.GetHealth() > 0 and Player.GetHealth() > 0) {
-                PlayIdleAnimation(Player, Enemy);
-                PlayKnightAttackAnimation(Player, Enemy);
+                PlayIdleAnimation_KnightDragon(Player, Enemy);
+                PlayAttackAnimation_KnightDragon(Player, Enemy);
+                PlayGotAttacked_KnightDragon(Player, Enemy);
             }
             if (Enemy.GetHealth() <= 0) {return 1;}
-            if ( Player.GetHealth() <= 0) {return 0;}
+            if (Player.GetHealth() <= 0) {return 0;}
         }
         if (Enemy.GetName() == "Boss") {
-            PlayKnightAttackAnimation(Player, Enemy);
+            PlayAttackAnimation_KnightDragon(Player, Enemy);
         }
     }
     if (Player.GetName() == "Archer") {

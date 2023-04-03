@@ -101,25 +101,43 @@ void PlayerController::DropItem(InvSlot & Item) {
 
 
 
-void PlayerController::InteractWith() {
-    gotoxy(0, 0); cout << "e: ID";
+void PlayerController::InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag) {
+    for (int i = -1; i < 2; i++) {
+        for (int j = -1; j < 2; j++) {
+            //gotoxy(x+i, y+j); cout << "2";
+            if (flag == 0 and Level.GetFromCoordinates(x+i, y+j) == "$") {
+                Player.SetGold(Player.GetGold() + Random(20, 100));
+                Level.SetToCoordinates(" ", x+i, y+j);
+                Level.DrawVisibleField(x, y);
+            }
+            if (flag == 1 and Level.GetFromCoordinates(x+i, y+j) == "*") {
+                gotoxy(0, 0); cout << "sd";
+            }
+        }
+    }
+
 }
 
 void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
     Level.DrawVisibleField(x, y);
-
     DrawGUI(Player.GetHealth(), Player.GetStamina(), Player.GetArmor(), Player.GetDamage(), Player.GetGold());
 
     EnemyAI EnemyAI;
     string PlayerSymbol = GetPlayerSymbol();
-    TurnLightRed;
 
     gotoxy(x, y);
     cout << PlayerSymbol;
     gotoxy(x, y);
+
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
+            if ((x == 115 and y == 25) or (x == 115 and y == 26) or (x == 115 and y == 27)) {
+                system("cls");
+                x = 10; y = 10;
+                return;
+            }
+            InteractWith(Player, Level, x, y, 0);
             if (KeyCheck(Key) == 1 and WallCheck(Level, x, y - 1) == 0) {
                 gotoxy(x, y - 1); cout << PlayerSymbol; Level.SetToCoordinates("@", x, y-1);
                 gotoxy(x, y); cout << " ";
@@ -147,7 +165,7 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
 
 
             if (KeyCheck(Key) == 6) {
-                InteractWith();
+                InteractWith(Player, Level, x, y, 1);
             }
             if (KeyCheck(Key) == 7) {
                 OpenInventory(Inventory);
@@ -155,16 +173,13 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
 
 
             if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
-                Level.DrawVisibleField(x, y);
                 ShowXY(x, y);
-                DrawGUI(Player.GetHealth(), Player.GetStamina(), Player.GetArmor(), Player.GetDamage(), Player.GetGold());
-                gotoxy(x, y);
                 EnemyAI.AutoMovement(Level, x, y);
                 Level.DrawVisibleField(x, y);
+                DrawGUI(Player.GetHealth(), Player.GetStamina(), Player.GetArmor(), Player.GetDamage(), Player.GetGold());
                 CheckForEnemiesAround(Level, Player, x, y);
-
+                gotoxy(x, y);
                 continue;
-
             }
         }
     }
@@ -176,10 +191,12 @@ string PlayerController::GetPlayerSymbol() {
 
 int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
     string MapElement = Level.GetFromCoordinates(x, y);
-    if (MapElement == "█") {
+    if (MapElement == "█") { //old wall
        return 1;
-    } else if (MapElement == "░") {
+    } else if (MapElement == "░") { //wall
        return 2;
+    } else if (MapElement == "*") { //shopkeeper
+        return 3;
     } else return 0;
 }
 
@@ -190,8 +207,8 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
 Enemy::Enemy(int EnemyType) {
     if (EnemyType == 0) {
         SetName("DefaultEnemy");
-        SetDamage(20);
-        SetHealth(70);
+        SetDamage(50);
+        SetHealth(170);
     }
     if (EnemyType == 1) {
         SetName("Boss");
@@ -291,22 +308,27 @@ string EnemyAI::GetEnemySymbol() {
 
 void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y) {
     int r = 3;
-    for (int i = 0; i < r + 2; i++) {
+    for (int i = 0; i < r + 1; i++) {
         for (int j = 0; j < r; j++) {
-            if (Level.GetFromCoordinates(x-3+i, y-2+j) == "&") {
+            if (Level.GetFromCoordinates(x-r/2+i, y-r/2+j) == "&") {
                 Enemy Enemy(0);
                 //ZAMENITB!
-                if (FightInitialize(Player, Enemy) == 1) {
-                    Level.SetToCoordinates(" ", x-3+i, y-2+j);
+                int Result = FightInitialize(Player, Enemy);
+                if (Result) {
+                    Level.SetToCoordinates(" ", x-r/2+i, y-r/2+j);
                     for (int k = 0; k < Level.EnemyCoordinates.capacity() ; k++) {
-                        if ((Level.EnemyCoordinates[k].x == x-3+i) and (Level.EnemyCoordinates[k].y == y-2+j)) {
+                        if ((Level.EnemyCoordinates[k].x == x-r/2+i) and (Level.EnemyCoordinates[k].y == y-r/2+j)) {
                             Level.EnemyCoordinates.erase(Level.EnemyCoordinates.begin() + k);
                         }
                     }
                     system("cls");
+                    ::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
                     gotoxy(0,0);
                     Level.DrawMemorised();
+                    gotoxy(x, y);
                     return;
+                } else if (Result == 0) {
+                    system("cls"); cout << "U lose"; wait(); exit(1);
                 }
             }
         }

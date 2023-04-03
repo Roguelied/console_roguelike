@@ -7,43 +7,27 @@ int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
 
-    gotoxy(60, 8);
     TurnWhite;
-    cout << "START";
-    gotoxy(60, 18);
-    cout << "EXIT";
-    //frame for START
-    TurnGreen;
-    gotoxy(58, 7); cout << "█████████";
-    gotoxy(58, 9); cout << "█████████";
-    gotoxy(58, 8); cout << "██";
-    gotoxy(65, 8); cout << "██";
-    gotoxy(66, 9);
+    gotoxy(60, 18); cout << "EXIT";
+    TurnBackGreen;
+    gotoxy(60, 8); cout << "START"; gotoxy(64, 8);
+    TurnWhite;
     while (true) {
         int Key = _getch();
         if (KeyCheck(Key) == 3) {
-            gotoxy(58, 7); cout << "         ";
-            gotoxy(58, 9); cout << "         ";
-            gotoxy(58, 8); cout << "  ";
-            gotoxy(65, 8); cout << "  ";
-            //frame for EXIT
-            gotoxy(58, 17); cout << "█████████";
-            gotoxy(58, 19); cout << "█████████";
-            gotoxy(58, 18); cout << "██";
-            gotoxy(65, 18); cout << "██";
-            gotoxy(66, 19);
+            TurnWhite;
+            gotoxy(60, 8); cout << "START";
+            TurnBackGreen;
+            gotoxy(60, 18); cout << "EXIT"; gotoxy(63, 18);
+            TurnWhite;
+
             flag++;
         } else if (KeyCheck(Key) == 1) {
-            gotoxy(58, 17); cout << "         ";
-            gotoxy(58, 19); cout << "         ";
-            gotoxy(58, 18); cout << "  ";
-            gotoxy(65, 18); cout << "  ";
-            //frame for START
-            gotoxy(58, 7); cout << "█████████";
-            gotoxy(58, 9); cout << "█████████";
-            gotoxy(58, 8); cout << "██";
-            gotoxy(65, 8); cout << "██";
-            gotoxy(66, 9);
+            TurnWhite;
+            gotoxy(60, 18); cout << "EXIT";
+            TurnBackGreen;
+            gotoxy(60, 8); cout << "START"; gotoxy(64, 8);
+            TurnWhite;
             flag++;
         }
         if (flag % 2 == 0 and KeyCheck(Key) == 5) {
@@ -148,11 +132,11 @@ void DrawGUI(int Health, int Stamina, int Armor, int Damage, int Gold) {
     TurnLightRed;
     gotoxy(31, 0); cout << "DMG:" << Damage;
     TurnYellow;
-    gotoxy(40, 0); cout << "GOLD:" << Damage;
+    gotoxy(40, 0); cout << "GOLD:" << Gold;
     TurnMagenta;
-    gotoxy(45, 0); cout << "Press I to open inventory, Press E to interact with something";
+    gotoxy(50, 0); cout << "Press I to open inventory, Press E to interact with something";
 }
 
 void ShowXY(int x, int y) {
-    gotoxy(0, 28); cout << x << " " << y;
+    gotoxy(0, 28); cout << "        "; gotoxy(0, 28); cout << x << " " << y;
 }

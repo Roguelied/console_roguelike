@@ -34,6 +34,7 @@ using namespace std;
 #define TurnBrightGreen SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10)
 #define TurnBrightAqua SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11)
 #define TurnBrightWhite SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15)
+#define TurnBackGreen SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 32)
 // >15 changes font background add if u want
 
 

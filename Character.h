@@ -55,7 +55,7 @@ public:
     void TakeItem(Potion & Item);
     void DropItem(InvSlot & Item);
 
-    void InteractWith();
+    void InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag);
     string GetPlayerSymbol();
     void MovementInit(Player & Player, GameLevel & Level);
     int WallCheck(GameLevel & Level, int x, int y);

@@ -23,7 +23,6 @@ public:
     void ColorCheck(int x, int y);
     int BossRoom(int x1,int y1,int x2,int y2);
     void RandItemOrder();
-    void ExitCurrentStartFollowing();
     void AddEnemyCoordinates(int x, int y);
     void ShowEnemyCoordinates();
 };
