@@ -212,7 +212,7 @@ void EnemyAI::AutoMovement(GameLevel & Level, int x, int y) {
         int v = i.x; int d = i.y;
         string EnemySymbol = GetEnemySymbol();
         TurnGreen;
-        if (((v - x) ^ 2 + (d - y) ^ 2) < 1) {
+        if (((v - x) ^ 2 + (d - y) ^ 2) < 2) {
             if (v < x and d < y and WallCheck(Level, v + 1, d + 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v+1, d+1);
                 Level.SetToCoordinates(" ", v, d);
@@ -228,7 +228,7 @@ void EnemyAI::AutoMovement(GameLevel & Level, int x, int y) {
                 Level.SetToCoordinates(" ", v, d);
                 //gotoxy(v, d); cout << " ";
                 v++; d--;
-            } else if (v > x and d > y and WallCheck(Level, x - 1, d - 1) == 0) {
+            } else if (v > x and d > y and WallCheck(Level, v - 1, d - 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v-1, d-1);
                 Level.SetToCoordinates(" ", v, d);
                 //gotoxy(v, d); cout << " ";
