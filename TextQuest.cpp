@@ -2,59 +2,83 @@
 #include <string>
 #include <fstream>
 #include "Utility.h"
+#include "TextQuest.h"
 
-bool isitchislo(char lol){
-    if ((lol=='0')||(lol=='1')||(lol=='2')||(lol=='3')||(lol=='4')||(lol=='5')||(lol=='6')||(lol=='7')||(lol=='8')||(lol=='9'))return true;
-    else return false;
+bool isNum(char n){
+    if ((n == '0') or (n == '1') or (n == '2') or(n == '3')
+    or (n == '4') or (n == '5') or (n == '6') or (n == '7')
+    or (n == '8') or (n == '9')){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 void quest()
 {
+    bool game = true;
     int n = 0, inp = 0, i = 0, j;
-    int a[2]={0,0};
-    string chisla[10];
-    bool game=true;
+    int a[2] = {0,0};
+    string num[10], choice, str[256];
     ifstream f1;
-    string stroka[256];
-    string choice;
+
     f1.open("quest.txt");
-
-
     while(!f1.eof()){
-        getline(f1,stroka[i]);
+        getline(f1,str[i]);
         i++;
     }
 
     while(game){
         i = 0;
-        while(i < stroka[n].length()){
-            if ((!isitchislo(stroka[n][i])) && (stroka[n][i]!=' ')){a[0]=i; i=stroka[n].length();}
+        while(i < str[n].length()){
+            if ((!isNum(str[n][i])) and (str[n][i] != ' ')){
+                a[0]=i; i=str[n].length();
+            }
             i++;
         }
-        i=i-2;
-        while(i>0){
-            if ((!isitchislo(stroka[n][i]))&&(stroka[n][i]!=' '))
-            { a[1]=i+1; i=-1;};
+        i = i - 2;
+        while(i > 0){
+            if ((!isNum(str[n][i])) and (str[n][i] != ' ')){
+                a[1] = i+1;
+                i=-1;
+            }
             i--;
         }
-        choice = stroka[n].substr(a[1]+1,stroka[n].length()-a[1]);
-        j=0; i=0;
-        for(j=0;j<10;j++){chisla[j]="0";}
-        j=0; i=0;
-        if (a[1]>(stroka[n].length()-2))for(j=0;j<10;j++){chisla[j]="999999999";}
+        choice = str[n].substr(a[1]+1,str[n].length()-a[1]);
+        j = 0; i = 0;
+        for(j = 0; j < 10; j++){
+            num[j]="0";
+        }
+        j = 0; i = 0;
+        if (a[1] > (str[n].length()-2)){
+            for(j = 0; j < 10; j++){
+                num[j] = "777";
+            }
+        }
         else{
-            j=0; i=0;
-            while((i<choice.length())&&(j<10))
-            {
-                if (choice[i]==' '){chisla[j]=choice.substr(0,i);j++;
-                    choice = choice.substr(i+1, choice.length()-1-i );i=0;
+            j = 0; i = 0;
+            while((i < choice.length()) and (j < 10)){
+                if (choice[i] == ' '){
+                    num[j] = choice.substr(0,i);
+                    j++;
+                    choice = choice.substr(i+1, choice.length()-1-i );
+                    i = 0;
                 }
-                else{i++;}
-            }}
-        cout<<stroka[n].substr(a[0],a[1]-a[0])<<endl;
-        cin>>inp;
-        if (inp>10)inp=10;
-        n = stoi(chisla[inp-1]);
-        if (n==999999999)game=false;
+                else{
+                    i++;
+                }
+            }
+        }
+        cout << str[n].substr(a[0],a[1]-a[0]) << endl;
+        cin >> inp;
+        if (inp > 10){
+            inp = 10;
+        }
+        n = stoi(num[inp-1]);
+        if (n == 777){
+            game = false;
+        }
     }
+    f1.close();
 }
