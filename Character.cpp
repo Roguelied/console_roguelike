@@ -358,7 +358,7 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
     }
     TurnWhite;
     gotoxy(100, 37); cout << "PLAYER STATS";
-    TurnGreen:
+    TurnGreen;
     gotoxy(100, 41); cout << "Health: " << Player.GetHealth();
 
     gotoxy(100, 43); cout << "Stamina: " << Player.GetStamina();
