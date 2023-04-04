@@ -32,7 +32,7 @@ int main() {
 
     UserInterface.StartMenu();
     Player Player(UserInterface.ClassMenu());
-
+    PlayerController.MovementInit(Player,HomeLevel);
     PlayerController.MovementInit(Player, FirstLevel);
     PlayerController.MovementInit(Player, SecondLevel);
 

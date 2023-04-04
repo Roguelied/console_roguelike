@@ -47,6 +47,7 @@ private:
     string PlayerSymbol{"@"};
 
     //lvl 1 - 28 14
+    //lvl 2-3 5 2
 public:
     vector<InvSlot> Inventory; //Utility.h
 
@@ -61,7 +62,7 @@ public:
     int WallCheck(GameLevel & Level, int x, int y);
     void CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y);
 
-    int x{5}; int y{2}; //current position
+    int x{28}; int y{14}; //current position
 };
 
 /*=============================================================== Enemy ===============================================================

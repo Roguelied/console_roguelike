@@ -15,6 +15,7 @@
 #include <vector>
 
 
+
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // nanoseconds, system_clock, seconds
 using namespace std::literals; //future  -   Enable standard literals as 2s and ""s.
@@ -41,6 +42,7 @@ using namespace std;
 typedef struct InvSlot {
     string Name;
     int Point;
+    int Price=0;
 } InvSlot;
 
 typedef struct Coords {
