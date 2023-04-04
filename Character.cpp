@@ -337,35 +337,59 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
     TurnAqua;
     for (int i = 0; i < 120; i++) {
         gotoxy(0+i, 30);
-        cout << "*";
+        cout << "▀";
         gotoxy(0+i, 58);
-        cout << "*";
+        cout << "▄";
     }
     for (int i = 0; i < 29; i++) {
         gotoxy(0, 30+i);
-        cout << "*";
+        cout << "█";
         gotoxy(119, 30+i);
-        cout << "*";
+        cout << "█";
     }
     for (int i = 0; i < 19; i++) {
-        gotoxy(95, 34+i); cout << "|";
+        gotoxy(95, 34+i); cout << "█"; //▌
     }
     for (int i = 0; i < 24; i++) {
-        gotoxy(95+i, 34); cout << "-";
+        gotoxy(95+i, 34); cout << "▄";
     }
     for (int i = 0; i < 24; i++) {
-        gotoxy(95+i, 53); cout << "-";
+        gotoxy(95+i, 53); cout << "▀";
     }
     TurnWhite;
-    gotoxy(100, 37); cout << "PLAYER STATS";
+    gotoxy(101, 37); cout << "PLAYER STATS";
     TurnGreen;
-    gotoxy(100, 41); cout << "Health: " << Player.GetHealth();
-
-    gotoxy(100, 43); cout << "Stamina: " << Player.GetStamina();
-    gotoxy(100, 45); cout << "Armor: " << Player.GetArmor();
-    gotoxy(100, 47); cout << "Damage: " << Player.GetDamage();
-    gotoxy(100, 49); cout << "Gold: " << Player.GetGold();
+    gotoxy(101, 41); cout << "Health: " << Player.GetHealth();
+    TurnBrightAqua;
+    gotoxy(101, 43); cout << "Stamina: " << Player.GetStamina();
+    TurnGrey;
+    gotoxy(101, 45); cout << "Armor: " << Player.GetArmor();
+    TurnLightRed;
+    gotoxy(101, 47); cout << "Damage: " << Player.GetDamage();
+    TurnYellow;
+    gotoxy(101, 49); cout << "Gold: " << Player.GetGold();
     TurnWhite;
+
+    gotoxy(7, 34); TurnWhite; cout << " PLAYER ITEMS ";
+    gotoxy(7, 35); TurnAqua; cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+
+    gotoxy(14, 37); cout << "WEAPONS"; gotoxy(39, 37); cout << "ARMOR"; gotoxy(62, 37); cout << "POTIONS";
+    gotoxy(12, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(36, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(60, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄";
+
+
+    for (int i = 0; i < WeaponSlots.capacity(); i++) {
+        gotoxy(8, 40+2*i);
+        TurnAqua; cout << "*" << WeaponSlots[i].GetName() << " "; TurnLightRed;
+        cout << WeaponSlots[i].GetWeaponDamage();
+    }
+    for (int i = 0; i < ArmorSlots.capacity(); i++) {
+        gotoxy(34, 40+2*i);
+        TurnAqua; cout << "*" << ArmorSlots[i].GetName() << " "; TurnGrey;
+        cout << ArmorSlots[i].GetArmorPoints();
+    }
+    TurnAqua;
+    gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << 2;
+    gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << 3;
 
 //    gotoxy(7, 44);
 //    int c = 1;
