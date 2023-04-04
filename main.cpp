@@ -6,11 +6,8 @@
 #include "LevelDesign.h"
 
 //POTION
-Potion AntidotePotion("Antidote potion");
 Potion BluePotion("Blue potion");
 Potion HealingPotion("Healing potion");
-Potion StrengthPotion("Strength potion");
-Potion TeaPotion("Tea potion");
 
 //ARMOR
 Armor LightArmor("Light armor", 40);
@@ -43,9 +40,14 @@ Weapon TopolM("RT-2PM2 Topol-M",100000);
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
-
-    UserInterface UserInterface;
+    InitializeSettings();
+//    PlayerController PlayerController;
+//    Player Player;
+//    UserInterface UserInterface;
+//    GameLevel HomeLevel(0);
+//    PlayerController.MovementInit(Player,HomeLevel);
     OpenShop();
+
     wait();
     return 0;
 }

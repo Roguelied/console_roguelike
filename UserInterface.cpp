@@ -8,8 +8,7 @@ int UserInterface::StartMenu() {
     int choice = 0;
     TurnMagenta;
     gotoxy(5, 5);
-    cout
-            << "SUPER DUPER ROGULIKE 2001 MINI XS MAX 3310 PRO ELITE EXPERIENCE ROYAL 1.6 DELUXE VERSION EDITION 1ST GENERATION";
+    cout<< "SUPER DUPER ROGULIKE 2001 MINI XS MAX 3310 PRO ELITE EXPERIENCE ROYAL 1.6 DELUXE VERSION EDITION 1ST GENERATION";
     TurnWhite;
     gotoxy(60, 24);
     cout << "EXIT";
@@ -140,6 +139,8 @@ void OpenInventory(vector<InvSlot> Inventory){
     }
 
 }
+
+
 //==========================================================SHOP==========================================================
 //========================================================================================================================
 
