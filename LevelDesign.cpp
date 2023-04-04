@@ -65,7 +65,7 @@ GameLevel::GameLevel(int RoomType) {
     if (RoomType == 1) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 7, 4, " ");
-        Draw(3, 2, 4, 4, "#");
+        Draw(3, 2, 4, 4, "░");
         Draw(6, 3, 8, 5, " ");
         Draw(7, 4, 9, 7, " ");
         Draw(6, 6, 8, 9, " ");
@@ -122,7 +122,7 @@ GameLevel::GameLevel(int RoomType) {
     if (RoomType == 2) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
-        Draw(3, 2, 4, 4, "#");
+        Draw(3, 2, 4, 4, "░");
         Draw(9, 4, 13, 8, " ");
         Draw(6, 8, 26, 14, " ");
         Draw(14, 14, 18, 15, " ");

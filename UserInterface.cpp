@@ -6,28 +6,30 @@
 int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
-
+    TurnMagenta;
+    gotoxy(5,5);
+    cout<<"SUPER DUPER ROGULIKE 2001 MINI XS MAX 3310 PRO ELITE EXPERIENCE ROYAL 1.6 DELUXE VERSION EDITION 1ST GENERATION";
     TurnWhite;
-    gotoxy(60, 18); cout << "EXIT";
+    gotoxy(60, 24); cout << "EXIT";
     TurnBackGreen;
-    gotoxy(60, 8); cout << "START"; gotoxy(64, 8);
+    gotoxy(60, 14); cout << "START"; gotoxy(64, 14);
     TurnWhite;
     while (true) {
         int Key = _getch();
         if (KeyCheck(Key) == 1) {
             TurnWhite;
-            gotoxy(60, 18); cout << "EXIT";
+            gotoxy(60, 24); cout << "EXIT";
             TurnBackGreen;
-            gotoxy(60, 8); cout << "START"; gotoxy(64, 8);
+            gotoxy(60, 14); cout << "START"; gotoxy(64, 14);
             TurnWhite;
 
             flag++;
         } else if (KeyCheck(Key) == 3) {
 
             TurnWhite;
-            gotoxy(60, 8); cout << "START";
+            gotoxy(60, 14); cout << "START";
             TurnBackGreen;
-            gotoxy(60, 18); cout << "EXIT"; gotoxy(63, 18);
+            gotoxy(60, 24); cout << "EXIT"; gotoxy(63, 24);
             TurnWhite;
             flag++;
         }
@@ -44,41 +46,31 @@ int UserInterface::StartMenu() {
 string UserInterface::ClassMenu() {
     int flag = 0;
     string choice;
+    TurnMagenta;
+    gotoxy(50,5);
+    cout<<"SELECT CHARACTER`S CLASS";
     TurnWhite;
-    gotoxy(60, 8); cout << "KNIGHT";
-    gotoxy(60, 18); cout << "ARCHER";
-    //frame for START
-    TurnGreen;
-    gotoxy(58, 7); cout << "██████████";
-    gotoxy(58, 9); cout << "██████████";
-    gotoxy(58, 8); cout << "██";
-    gotoxy(66, 8); cout << "██";
-    gotoxy(67, 9);
+    gotoxy(60, 24); cout << "ARCHER";
+    TurnBackGreen;
+    gotoxy(60, 14); cout << "KNIGHT"; gotoxy(64, 14);
+    TurnWhite;
     while (true) {
         int Key = _getch();
-        if (KeyCheck(Key) == 3) {
-            gotoxy(58, 7); cout << "          ";
-            gotoxy(58, 9); cout << "          ";
-            gotoxy(58, 8); cout << "  ";
-            gotoxy(66, 8); cout << "  ";
-            //frame for EXIT
-            gotoxy(58, 17); cout << "██████████";
-            gotoxy(58, 19); cout << "██████████";
-            gotoxy(58, 18); cout << "██";
-            gotoxy(66, 18); cout << "██";
-            gotoxy(67, 19);
+        if (KeyCheck(Key) == 1) {
+            TurnWhite;
+            gotoxy(60, 24); cout << "ARCHER";
+            TurnBackGreen;
+            gotoxy(60, 14); cout << "KNIGHT"; gotoxy(64, 14);
+            TurnWhite;
+
             flag++;
-        } else if (KeyCheck(Key) == 1) {
-            gotoxy(58, 17); cout << "          ";
-            gotoxy(58, 19); cout << "          ";
-            gotoxy(58, 18); cout << "  ";
-            gotoxy(66, 18); cout << "  ";
-            //frame for START
-            gotoxy(58, 7); cout << "██████████";
-            gotoxy(58, 9); cout << "██████████";
-            gotoxy(58, 8); cout << "██";
-            gotoxy(66, 8); cout << "██";
-            gotoxy(67, 9);
+        } else if (KeyCheck(Key) == 3) {
+
+            TurnWhite;
+            gotoxy(60, 14); cout << "KNIGHT";
+            TurnBackGreen;
+            gotoxy(60, 24); cout << "ARCHER"; gotoxy(63, 24);
+            TurnWhite;
             flag++;
         }
         if (flag % 2 == 0 and KeyCheck(Key) == 5) {
