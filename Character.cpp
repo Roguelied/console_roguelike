@@ -3,6 +3,7 @@
 #include "UserInterface.h"
 #include "AnimationAndSprites.h"
 #include "Utility.h"
+#include "TextQuest.h"
 void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor> & ArmorSlots, vector<Potion> & PotionSlots);
 /*============================================================ Character ============================================================
 ===================================================================================================================================== */
@@ -45,7 +46,7 @@ Player::Player(string ClassName) {
         SetHealth(130);
         SetStamina(100);
         SetArmor(30);
-        SetDamage(20);
+        SetDamage(210);
     }
     if (ClassName == "Archer") {
         SetName(ClassName);
@@ -107,6 +108,11 @@ void PlayerController::InteractWith(Player & Player, GameLevel & Level, int x, i
             }
             if (flag == 1 and Level.GetFromCoordinates(x+i, y+j) == "*") {
                 gotoxy(0, 0); cout << "sd";
+            }
+            if (flag == 1 and Level.GetFromCoordinates(x+i, y+j) == "?") {
+                //Level.SetToCoordinates(" ", x+i, y+j);
+                //Level.DrawVisibleField(x, y);
+                quest();
             }
         }
     }
@@ -192,6 +198,8 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
        return 2;
     } else if (MapElement == "*") { //shopkeeper
         return 3;
+    } else if (MapElement == "?") { //textquest
+        return 4;
     } else return 0;
 }
 
@@ -202,12 +210,12 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
 Enemy::Enemy(int EnemyType) {
     if (EnemyType == 0) {
         SetName("DefaultEnemy");
-        SetDamage(50);
+        SetDamage(10);
         SetHealth(170);
     }
     if (EnemyType == 1) {
         SetName("Boss");
-        SetDamage(35);
+        SetDamage(5);
         SetHealth(300);
     }
 }
