@@ -62,7 +62,7 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(76, 12);
         AddEnemyCoordinates(83, 5);
     }
-    if (RoomType == 1) {
+    if (RoomType == 2) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 7, 4, " ");
         Draw(3, 2, 4, 4, "░");
@@ -119,7 +119,7 @@ GameLevel::GameLevel(int RoomType) {
     }
 
 
-    if (RoomType == 2) {
+    if (RoomType == 1) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
         Draw(3, 2, 4, 4, "░");
@@ -317,5 +317,3 @@ void GameLevel::ShowEnemyCoordinates() {
         cout << i.x << " " << i.y << "  ";
     }
 }
-
-
