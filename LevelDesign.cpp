@@ -52,15 +52,15 @@ GameLevel::GameLevel(int RoomType) {
         RandItemOrder();
         DrawFrame();
         //shop
-        GameLevelArray[9][67]="*";
+        GameLevelArray[9][67] = "*";
         //quest
-        GameLevelArray[12][98]="?";
+        GameLevelArray[12][98] = "?";
         //add enemy in lvl
         AddEnemyCoordinates(61, 23);
-        AddEnemyCoordinates(67,21);
-        AddEnemyCoordinates(77,22);
-        AddEnemyCoordinates(76,12);
-        AddEnemyCoordinates(83,5);
+        AddEnemyCoordinates(67, 21);
+        AddEnemyCoordinates(77, 22);
+        AddEnemyCoordinates(76, 12);
+        AddEnemyCoordinates(83, 5);
     }
     if (RoomType == 1) {
         Draw(2, 1, 117, 28, "░");
@@ -107,9 +107,9 @@ GameLevel::GameLevel(int RoomType) {
         RandItemOrder();
         DrawFrame();
         //shop
-        GameLevelArray[7][31]="*";
+        GameLevelArray[7][31] = "*";
         //quest
-        GameLevelArray[13][93]="?";
+        GameLevelArray[13][93] = "?";
         //add enemy in lvl
 //        AddEnemyCoordinates(15,6);
 //        AddEnemyCoordinates(25,11);
@@ -166,16 +166,16 @@ GameLevel::GameLevel(int RoomType) {
         RandItemOrder();
         DrawFrame();
         //shop
-        GameLevelArray[11][79]="*";
+        GameLevelArray[11][79] = "*";
         //quest
-        GameLevelArray[9][112]="?";
+        GameLevelArray[9][112] = "?";
         //capybara
-        GameLevelArray[24][92]="~";
+        GameLevelArray[24][92] = "~";
         //add enemy in lvl
-        AddEnemyCoordinates(15,16);
-        AddEnemyCoordinates(35,11);
-        AddEnemyCoordinates(62,15);
-        AddEnemyCoordinates(95,20);
+        AddEnemyCoordinates(15, 16);
+        AddEnemyCoordinates(35, 11);
+        AddEnemyCoordinates(62, 15);
+        AddEnemyCoordinates(95, 20);
         //капибара 92 24
     }
 }
@@ -196,18 +196,20 @@ int GameLevel::BossRoom(int x1, int y1, int x2, int y2) {
 
 void GameLevel::DrawVisibleField(int x, int y) {
     int r = 4;
-    for (int i = -2-r/2; i < r/2+3; i++) {
-        for (int j = -r/2; j < r/2+1; j++) {
-            int a = x+i; int b = y+j;
+    for (int i = -2 - r / 2; i < r / 2 + 3; i++) {
+        for (int j = -r / 2; j < r / 2 + 1; j++) {
+            int a = x + i;
+            int b = y + j;
             if (a == x and b == y) { continue; }
             ColorCheck(a, b);
-            gotoxy(a, b); TurnGreen;
+            gotoxy(a, b);
+            TurnGreen;
             cout << GetFromCoordinates(a, b);
             Memorise(a, b);
             TurnGreen;
         }
     }
-    gotoxy(0,0);
+    gotoxy(0, 0);
 }
 
 void GameLevel::Memorise(int x, int y) {
@@ -219,7 +221,7 @@ void GameLevel::DrawMemorised() {
         for (int j = 0; j < 119; j++) {
             if (MemorisedGameLevelArray[i][j] == "!") {
                 cout << GameLevelArray[i][j];
-            } else {cout << " ";}
+            } else { cout << " "; }
         }
         cout << endl;
     }
@@ -253,14 +255,14 @@ void GameLevel::DrawFrame() {
 void GameLevel::RandItemOrder() {
     int amount = 12;
     for (int i = 0; i < amount; i++) {
-            int x = Random(4, 115);
-            int y = Random(1, 26);
-            gotoxy(x,y);
-            if (GameLevelArray[y][x] == " ") {
-                GameLevelArray[y][x] = "$";
-            } else {i--;}
+        int x = Random(4, 115);
+        int y = Random(1, 26);
+        gotoxy(x, y);
+        if (GameLevelArray[y][x] == " ") {
+            GameLevelArray[y][x] = "$";
+        } else { i--; }
     }
-    gotoxy(0,0);
+    gotoxy(0, 0);
 }
 
 //========================================================================================================================
@@ -292,8 +294,10 @@ void GameLevel::AddEnemyCoordinates(int x, int y) {
 }
 
 void GameLevel::ShowEnemyCoordinates() {
-    gotoxy(0,29);
-    for (auto i : EnemyCoordinates) {
+    gotoxy(0, 29);
+    for (auto i: EnemyCoordinates) {
         cout << i.x << " " << i.y << "  ";
     }
 }
+
+

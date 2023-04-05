@@ -3,7 +3,7 @@
 #include "UserInterface.h"
 #include "AnimationAndSprites.h"
 #include "Utility.h"
-
+void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor> & ArmorSlots, vector<Potion> & PotionSlots);
 /*============================================================ Character ============================================================
 ===================================================================================================================================== */
 int Character::GetHealth() {
@@ -74,29 +74,24 @@ void Player::SetGold(int Gold) {
 /*============================================================ PlayerController ============================================================
 ===================================================================================================================================== */
 
-void PlayerController::TakeItem(class Armor & Item) {
-    InvSlot Slot;
-    Slot.Name = Item.GetName();
-    Slot.Point = Item.GetArmorPoints();
-    Inventory.push_back(Slot);
+void PlayerController::TakeItem(class Armor Item) {
+//    InvSlot Slot;
+//    Slot.Name = Item.GetName();
+//    Slot.Point = Item.GetArmorPoints();
+//    Inventory.push_back(Slot);
+    ArmorSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Weapon & Item){
-    InvSlot Slot;
-    Slot.Name = Item.GetName();
-    Slot.Point = Item.GetWeaponDamage();
-    Inventory.push_back(Slot);
+void PlayerController::TakeItem(Weapon Item){
+//    InvSlot Slot;
+//    Slot.Name = Item.GetName();
+//    Slot.Point = Item.GetWeaponDamage();
+//    Inventory.push_back(Slot);
+    WeaponSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Potion & Item) {
-    InvSlot Slot;
-    Slot.Name = Item.GetName();
-    //Slot.Point = Item.Get
-    //Inventory.push_back(Slot);
-}
-
-void PlayerController::DropItem(InvSlot & Item) {
-    //inventory pop item
+void PlayerController::TakeItem(Potion Item) {
+    PotionSlots.push_back(Item);
 }
 
 
@@ -168,7 +163,7 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
                 InteractWith(Player, Level, x, y, 1);
             }
             if (KeyCheck(Key) == 7) {
-                OpenInventory(Inventory);
+                OpenInventory1(Player, WeaponSlots, ArmorSlots, PotionSlots);
             }
 
 
@@ -334,6 +329,82 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
         }
     }
     gotoxy(0,0);
+
+}
+
+
+void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor> & ArmorSlots, vector<Potion> & PotionSlots) {
+    TurnAqua;
+    for (int i = 0; i < 120; i++) {
+        gotoxy(0+i, 30);
+        cout << "▀";
+        gotoxy(0+i, 58);
+        cout << "▄";
+    }
+    for (int i = 0; i < 29; i++) {
+        gotoxy(0, 30+i);
+        cout << "█";
+        gotoxy(119, 30+i);
+        cout << "█";
+    }
+    for (int i = 0; i < 19; i++) {
+        gotoxy(95, 34+i); cout << "█"; //▌
+    }
+    for (int i = 0; i < 24; i++) {
+        gotoxy(95+i, 34); cout << "▄";
+    }
+    for (int i = 0; i < 24; i++) {
+        gotoxy(95+i, 53); cout << "▀";
+    }
+    TurnWhite;
+    gotoxy(101, 37); cout << "PLAYER STATS";
+    TurnGreen;
+    gotoxy(101, 41); cout << "Health: " << Player.GetHealth();
+    TurnBrightAqua;
+    gotoxy(101, 43); cout << "Stamina: " << Player.GetStamina();
+    TurnGrey;
+    gotoxy(101, 45); cout << "Armor: " << Player.GetArmor();
+    TurnLightRed;
+    gotoxy(101, 47); cout << "Damage: " << Player.GetDamage();
+    TurnYellow;
+    gotoxy(101, 49); cout << "Gold: " << Player.GetGold();
+    TurnWhite;
+
+    gotoxy(7, 34); TurnWhite; cout << " PLAYER ITEMS ";
+    gotoxy(7, 35); TurnAqua; cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+
+    gotoxy(14, 37); cout << "WEAPONS"; gotoxy(39, 37); cout << "ARMOR"; gotoxy(62, 37); cout << "POTIONS";
+    gotoxy(12, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(36, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(60, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄";
+
+
+    for (int i = 0; i < WeaponSlots.capacity(); i++) {
+        gotoxy(8, 40+2*i);
+        TurnAqua; cout << "*" << WeaponSlots[i].GetName() << " "; TurnLightRed;
+        cout << WeaponSlots[i].GetWeaponDamage();
+    }
+    for (int i = 0; i < ArmorSlots.capacity(); i++) {
+        gotoxy(34, 40+2*i);
+        TurnAqua; cout << "*" << ArmorSlots[i].GetName() << " "; TurnGrey;
+        cout << ArmorSlots[i].GetArmorPoints();
+    }
+    TurnAqua;
+    gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << 2;
+    gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << 3;
+
+//    gotoxy(7, 44);
+//    int c = 1;
+//    for (auto & i : ArmorSlots) {
+//        c++;
+//        cout << i.GetName() << " " << i.GetArmorPoints();
+//        gotoxy(7+(c*20), 44);
+//    }
+//
+//    for (auto & i : WeaponSlots) {
+//        c++;
+//        cout << i.GetName() << " " << i.GetWeaponDamage();
+//        gotoxy(7+(c*20), 47);
+//    }
+
 
 }
 

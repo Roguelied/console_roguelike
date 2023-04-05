@@ -51,10 +51,15 @@ private:
 public:
     vector<InvSlot> Inventory; //Utility.h
 
-    void TakeItem(class Armor & Item);
-    void TakeItem(Weapon & Item);
-    void TakeItem(Potion & Item);
-    void DropItem(InvSlot & Item);
+    vector<Weapon> WeaponSlots;
+    vector<class Armor> ArmorSlots;
+    vector<Potion> PotionSlots;
+
+
+
+    void TakeItem(class Armor Item);
+    void TakeItem(Weapon Item);
+    void TakeItem(Potion Item);
 
     void InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag);
     string GetPlayerSymbol();

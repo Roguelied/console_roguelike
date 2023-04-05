@@ -8,7 +8,9 @@ void PlayKnightGotAttackedBy(Player & Player, Enemy & Enemy);
 void PlayArcherAttackAnimation();
 int FightInitialize(Player & Player, Enemy & Enemy);
 void ABOBUS();
+
 void PlayA();
 //void PlayZ();
+void PlayB();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H

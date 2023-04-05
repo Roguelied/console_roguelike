@@ -38,10 +38,6 @@ void Weapon::SetWeaponDamage(int WeaponDamage) {
     this->WeaponDamage = WeaponDamage;
 }
 
-Potion::Potion(string Name, int Health) : PlayerItem(Name) {
-
-}
-
 int Potion::GetHealth() {
     return Health;
 }
@@ -51,6 +47,6 @@ int Potion::GetStamina() {
     return Stamina;
 }
 
-Potion::Potion(string name) : PlayerItem(name) {
+Potion::Potion(string Name) : PlayerItem(Name) {
 
 }
