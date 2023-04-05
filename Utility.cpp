@@ -40,6 +40,9 @@ int KeyCheck(int Key) {
     if (Key == 'i' or Key == 'I' or Key == 232 or Key == 152) {
         return 7;
     }
+    if(Key==27){
+        return 8;
+    }
 }
 
 int Random(int First, int Second) {
