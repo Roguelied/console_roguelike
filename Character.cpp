@@ -589,7 +589,6 @@ void PlayerController::OpenShop(Player & Player) {
                 }
             }
         }
-
     }
 }
 
