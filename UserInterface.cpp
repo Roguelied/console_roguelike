@@ -1,8 +1,10 @@
 #include "UserInterface.h"
 #include "Utility.h"
+#include "PlayerItems.h"
 //using namespace std;
 
-
+/*
+  */
 int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
@@ -131,82 +133,6 @@ string UserInterface::ClassMenu() {
     }
 }
 
-//==========================================================SHOP==========================================================
-//========================================================================================================================
-
-void OpenShop() {
-    TurnYellow;
-    if (KeyCheck(6)) {
-        gotoxy(0, 30);
-        for (int i = 0; i < 120; i++) {
-            gotoxy(0 + i, 30);
-            cout << "▀";
-            gotoxy(0 + i, 58);
-            cout << "▄";
-        }
-        for (int i = 0; i < 29; i++) {
-            gotoxy(0, 30 + i);
-            cout << "█";
-            gotoxy(119, 30 + i);
-            cout << "█";
-        }
-    }
-
-    gotoxy(7, 32);
-    TurnYellow;
-    cout << " SHOP ";
-    gotoxy(7, 33);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(100,31);
-    TurnWhite;
-    cout << "YOUR GOLD : ";    //+cout<<Ебейшее число текущкей голды
-    TurnYellow;
-    gotoxy(98,30);
-    for (int i = 0; i < 3; i++) {
-        gotoxy(98, 30 + i);
-        cout << "█";
-    }
-    gotoxy(99,32);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-
-
-
-    //header for colum
-    gotoxy(26, 35);
-    cout << "ITEM";
-    gotoxy(21,36);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(70, 35);
-    cout << "PRICE";
-    gotoxy(65,36);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(98, 35);
-    cout << "ATTRIBUTE";
-    gotoxy(95,36);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(0, 30);
-    int currentY = 38;
-    gotoxy(6, currentY);
-    cout << "=>";
-    while (true) {
-        int Key = _getch();
-        if (KeyCheck(Key) == 3 and currentY < 56) {
-            gotoxy(6, currentY);
-            cout << "  ";
-            currentY++;
-            currentY++;
-            gotoxy(6, currentY);
-            cout << "=>";
-        } else if (KeyCheck(Key) == 1 and currentY > 38) {
-            gotoxy(6, currentY);
-            cout << "  ";
-            currentY--;
-            currentY--;
-            gotoxy(6, currentY);
-            cout << "=>";
-        }
-    }
-}
 
 
 void DrawGUI(int Health, int Stamina, int Armor, int Damage, int Gold) {

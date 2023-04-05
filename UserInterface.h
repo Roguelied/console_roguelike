@@ -4,7 +4,6 @@
 #include "Utility.h"
 
 void OpenInventory(vector<InvSlot> Inventory);
-void OpenShop();
 void DrawGUI(int Health, int Stamina, int Armor, int Damage, int Gold);
 void ShowXY(int x, int y);
 
