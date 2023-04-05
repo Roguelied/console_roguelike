@@ -54,50 +54,35 @@ int main() {
 //    //FightInitialize(Player, Enemy);
 //    PlayArcherAttackAnimation();
 //    wait(); return 0;
-    //for (;;) {PlayA();}
-    wait(); return 0;
 
     //--------------------------------------------------------------------------------------
-
     InitializeSettings();
-//    PlayerController PlayerController;
-//    Player Player;
-//    UserInterface UserInterface;
-//    GameLevel HomeLevel(0);
-//    PlayerController.MovementInit(Player,HomeLevel);
-//    OpenShop();
+    GameLevel FreeSpace(4);
+    GameLevel HomeLevel(0);
+    GameLevel FirstLevel(1);
+    GameLevel SecondLevel(2);
 
+    PlayerController PlayerController;
+    UserInterface UserInterface;
+
+
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
+
+    //Add basic items
+    PlayerController.TakeItem(Player, LeatherCoat);
+    if (Player.GetName() == "Knight") {
+        PlayerController.TakeItem(Player, Stick);
+    } else if (Player.GetName() == "Archer") {
+        PlayerController.TakeItem(Player, Slingshot);
+    }
+
+    PlayerController.MovementInit(Player,HomeLevel);
+    PlayerController.MovementInit(Player, FirstLevel);
+    PlayerController.MovementInit(Player, SecondLevel);
 
 
     wait();
-    return 0;
 }
-//--------------------------------------------------------------------------------------
-//    InitializeSettings();
-//
-//    GameLevel FreeSpace(4);
-//    GameLevel HomeLevel(0);
-//    GameLevel FirstLevel(1);
-//    GameLevel SecondLevel(2);
-//
-//    PlayerController PlayerController;
-//    UserInterface UserInterface;
-//
-//
-//    UserInterface.StartMenu();
-//    Player Player(UserInterface.ClassMenu());
-//
-//
-//    PlayerController.TakeItem(HealthPotion);
-//    PlayerController.TakeItem(StaminaPotion);
-//    PlayerController.TakeItem(HeavyArmor);
-//    PlayerController.TakeItem(ShinyGreatsword);
-//
-//
-//    PlayerController.MovementInit(Player,HomeLevel);
-//    PlayerController.MovementInit(Player, FirstLevel);
-//    PlayerController.MovementInit(Player, SecondLevel);
-//
-//
-//    wait();
-//}
+
+
