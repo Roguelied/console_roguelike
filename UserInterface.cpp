@@ -6,13 +6,28 @@
 int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
-    TurnMagenta;
+    TurnBrightAqua;
+    if (KeyCheck(6)) {
+        gotoxy(0, 30);
+        for (int i = 0; i < 120; i++) {
+            gotoxy(0 + i, 0);
+            cout << "▀";
+            gotoxy(0 + i, 29);
+            cout << "▄";
+        }
+        for (int i = 0; i < 30; i++) {
+            gotoxy(0,  i);
+            cout << "█";
+            gotoxy(119, i);
+            cout << "█";
+        }
+    }
     gotoxy(5, 5);
     cout<< "SUPER DUPER ROGULIKE 2001 MINI XS MAX 3310 PRO ELITE EXPERIENCE ROYAL 1.6 DELUXE VERSION EDITION 1ST GENERATION";
     TurnWhite;
     gotoxy(60, 24);
     cout << "EXIT";
-    TurnBackGreen;
+    TurnBrightAqua;
     gotoxy(60, 14);
     cout << "START";
     gotoxy(64, 14);
@@ -23,7 +38,7 @@ int UserInterface::StartMenu() {
             TurnWhite;
             gotoxy(60, 24);
             cout << "EXIT";
-            TurnBackGreen;
+            TurnBrightAqua;
             gotoxy(60, 14);
             cout << "START";
             gotoxy(64, 14);
@@ -35,7 +50,7 @@ int UserInterface::StartMenu() {
             TurnWhite;
             gotoxy(60, 14);
             cout << "START";
-            TurnBackGreen;
+            TurnBrightAqua;
             gotoxy(60, 24);
             cout << "EXIT";
             gotoxy(63, 24);
@@ -55,13 +70,28 @@ int UserInterface::StartMenu() {
 string UserInterface::ClassMenu() {
     int flag = 0;
     string choice;
-    TurnMagenta;
+    TurnAqua;
+    if (KeyCheck(6)) {
+        gotoxy(0, 30);
+        for (int i = 0; i < 120; i++) {
+            gotoxy(0 + i, 0);
+            cout << "▀";
+            gotoxy(0 + i, 29);
+            cout << "▄";
+        }
+        for (int i = 0; i < 30; i++) {
+            gotoxy(0,  i);
+            cout << "█";
+            gotoxy(119, i);
+            cout << "█";
+        }
+    }
     gotoxy(50, 5);
     cout << "SELECT CHARACTER`S CLASS";
     TurnWhite;
     gotoxy(60, 24);
     cout << "ARCHER";
-    TurnBackGreen;
+    TurnAqua;
     gotoxy(60, 14);
     cout << "KNIGHT";
     gotoxy(64, 14);
@@ -72,7 +102,7 @@ string UserInterface::ClassMenu() {
             TurnWhite;
             gotoxy(60, 24);
             cout << "ARCHER";
-            TurnBackGreen;
+            TurnAqua;
             gotoxy(60, 14);
             cout << "KNIGHT";
             gotoxy(64, 14);
@@ -84,7 +114,7 @@ string UserInterface::ClassMenu() {
             TurnWhite;
             gotoxy(60, 14);
             cout << "KNIGHT";
-            TurnBackGreen;
+            TurnAqua;
             gotoxy(60, 24);
             cout << "ARCHER";
             gotoxy(63, 24);
