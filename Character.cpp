@@ -354,6 +354,144 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
 
 }
 
+void PlayerController::OpenShop(Player & Player) {
+
+    //POTION
+    Potion BluePotion("Blue potion");
+    Potion HealingPotion("Healing potion");
+
+//ARMOR
+//лёгкая броня,тяжёлая броня,броня единорога,божественная броня
+    class Armor LightArmor("Light armor", 40);
+    class Armor HeavyArmor("Heavy Armor", 40);
+    class Armor UnicornArmor("Unicorn armor", 40);
+    class Armor GodArmor("God armor", 40);
+
+//WEAPON
+//sword
+//нож,старая катана,небесный меч,меч пожерателя хаоса
+    Weapon Knife("Knife", 15);
+    Weapon OldKatana("Old Katana", 15);
+    Weapon HeavenlySword("Heavenly sword", 15);
+    Weapon ChaosEaterSword("Chaos eater sword", 15);
+
+//bow
+//арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
+    Weapon Crossbow("Crossbow", 15);
+    Weapon RoyalBow("Royal bow", 15);
+    Weapon TimeLordsBow("Time Lord's Bow", 15);
+    Weapon ShadowflameBow("Shadowflame Bow", 15);
+
+
+
+    TurnYellow;
+    if (KeyCheck(6)) {
+        gotoxy(0, 30);
+        for (int i = 0; i < 120; i++) {
+            gotoxy(0 + i, 30);
+            cout << "▀";
+            gotoxy(0 + i, 58);
+            cout << "▄";
+        }
+        for (int i = 0; i < 29; i++) {
+            gotoxy(0, 30 + i);
+            cout << "█";
+            gotoxy(119, 30 + i);
+            cout << "█";
+        }
+    }
+
+    gotoxy(7, 32);
+    TurnYellow;
+    cout << " SHOP ";
+    gotoxy(7, 33);
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    gotoxy(100,31);
+    TurnWhite;
+    cout << "YOUR GOLD : "<< Player.GetGold();
+    TurnYellow;
+    gotoxy(98,30);
+    for (int i = 0; i < 3; i++) {
+        gotoxy(98, 30 + i);
+        cout << "█";
+    }
+    gotoxy(99,32);
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+
+    //header for colum
+    gotoxy(26, 35);
+    cout << "ITEM";
+    gotoxy(21,36);
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    gotoxy(70, 35);
+    cout << "PRICE";
+    gotoxy(65,36);
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    gotoxy(98, 35);
+    cout << "ATTRIBUTE";
+    gotoxy(95,36);
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    gotoxy(0, 30);
+    int currentY = 38;
+    gotoxy(6, currentY);
+    cout << "=>";
+
+
+
+    if(Player.GetName() =="Knight"){
+        gotoxy(13,32);
+        cout<<"FOR KNIGHT";
+        int Y=38;
+        gotoxy(23,Y);
+        cout<<"(w)" << Knife.GetName() << " " << Knife.GetWeaponDamage() <<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)OldKatana"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)Heavenly sword"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)Chaos eater sword"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Light armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Heavy Armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Unicorn armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)God armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)Healing potion"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)Blue potion"<<endl;
+
+    }
+    else if(Player.GetName() == "Archer"){
+        gotoxy(13,32);
+        cout<<"FOR ARCHER";
+
+
+
+    }
+
+    while (true) {
+        int Key = _getch();
+        if (KeyCheck(Key) == 3 and currentY < 56) {
+            gotoxy(6, currentY);
+            cout << "  ";
+            currentY++;
+            currentY++;
+            gotoxy(6, currentY);
+            cout << "=>";
+        } else if (KeyCheck(Key) == 1 and currentY > 38) {
+            gotoxy(6, currentY);
+            cout << "  ";
+            currentY--;
+            currentY--;
+            gotoxy(6, currentY);
+            cout << "=>";
+        }
+    }
+}
+
 
 void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor> & ArmorSlots, vector<Potion> & PotionSlots) {
     TurnAqua;

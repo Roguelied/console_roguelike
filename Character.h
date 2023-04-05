@@ -75,6 +75,8 @@ public:
     int WallCheck(GameLevel & Level, int x, int y);
     void CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y);
 
+
+    void OpenShop(Player & Player);
     int x{28}; int y{14}; //current position
 };
 
