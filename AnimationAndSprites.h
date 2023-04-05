@@ -12,5 +12,7 @@ void ABOBUS();
 void PlayQ();
 //void PlayZ();
 void PlayB();
+void PlayC();
+void PlayD();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
