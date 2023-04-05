@@ -1,8 +1,10 @@
 #include "UserInterface.h"
 #include "Utility.h"
+#include "PlayerItems.h"
 //using namespace std;
 
-
+/*
+  */
 int UserInterface::StartMenu() {
     int flag = 0;
     int choice = 0;
@@ -134,7 +136,7 @@ string UserInterface::ClassMenu() {
 //==========================================================SHOP==========================================================
 //========================================================================================================================
 
-void OpenShop() {
+void OpenShop(string ClassName, int PlayerGold) {
     TurnYellow;
     if (KeyCheck(6)) {
         gotoxy(0, 30);
@@ -159,7 +161,7 @@ void OpenShop() {
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
     gotoxy(100,31);
     TurnWhite;
-    cout << "YOUR GOLD : ";    //+cout<<Ебейшее число текущкей голды
+    cout << "YOUR GOLD : "<< PlayerGold;
     TurnYellow;
     gotoxy(98,30);
     for (int i = 0; i < 3; i++) {
@@ -168,8 +170,6 @@ void OpenShop() {
     }
     gotoxy(99,32);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-
-
 
     //header for colum
     gotoxy(26, 35);
@@ -188,6 +188,43 @@ void OpenShop() {
     int currentY = 38;
     gotoxy(6, currentY);
     cout << "=>";
+
+
+
+    if(ClassName=="Knight"){
+        gotoxy(13,32);
+        cout<<"FOR KNIGHT";
+        int Y=38;
+        gotoxy(23,Y);
+        cout<<"(w)Knife"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)OldKatana"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)Heavenly sword"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)Chaos eater sword"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Light armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Heavy Armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)Unicorn armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)God armor"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)Healing potion"<<endl;
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)Blue potion"<<endl;
+
+    }
+    else if(ClassName=="Archer"){
+        gotoxy(13,32);
+        cout<<"FOR ARCHER";
+
+
+
+    }
+
     while (true) {
         int Key = _getch();
         if (KeyCheck(Key) == 3 and currentY < 56) {
@@ -235,3 +272,29 @@ void ShowXY(int x, int y) {
     gotoxy(0, 28);
     cout << x << " " << y;
 }
+
+//POTION
+Potion BluePotion("Blue potion");
+Potion HealingPotion("Healing potion");
+
+//ARMOR
+//лёгкая броня,тяжёлая броня,броня единорога,божественная броня
+Armor LightArmor("Light armor", 40);
+Armor HeavyArmor("Heavy Armor", 40);
+Armor UnicornArmor("Unicorn armor", 40);
+Armor GodArmor("God armor", 40);
+
+//WEAPON
+//sword
+//нож,старая катана,небесный меч,меч пожерателя хаоса
+Weapon Knife("Knife", 15);
+Weapon OldKatana("Old Katana", 15);
+Weapon HeavenlySword("Heavenly sword", 15);
+Weapon ChaosEaterSword("Chaos eater sword", 15);
+
+//bow
+//арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
+Weapon Crossbow("Crossbow", 15);
+Weapon RoyalBow("Royal bow", 15);
+Weapon TimeLordsBow("Time Lord's Bow", 15);
+Weapon ShadowflameBow("Shadowflame Bow", 15);
