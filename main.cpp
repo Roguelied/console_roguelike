@@ -55,8 +55,6 @@ int main() {
 //    PlayArcherAttackAnimation();
 //    wait(); return 0;
 
-    //for (;;) { PlayQ(); }
-    //for (;;) { PlayZ(); }
     //--------------------------------------------------------------------------------------
     InitializeSettings();
     GameLevel FreeSpace(4);
