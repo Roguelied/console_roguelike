@@ -71,28 +71,42 @@ void Player::SetGold(int Gold) {
     this -> Gold = Gold;
 }
 
+int Player::GetStaminaPotions() {
+    return StaminaPotions;
+}
+
+int Player::GetHealthPotions() {
+    return HealthPotions;
+}
+
+void Player::SetStaminaPotions(int Value) {
+    StaminaPotions = Value;
+}
+
+void Player::SetHealthPotions(int Value) {
+    HealthPotions = Value;
+}
+
 
 /*============================================================ PlayerController ============================================================
 ===================================================================================================================================== */
 
-void PlayerController::TakeItem(class Armor Item) {
-//    InvSlot Slot;
-//    Slot.Name = Item.GetName();
-//    Slot.Point = Item.GetArmorPoints();
-//    Inventory.push_back(Slot);
+void PlayerController::TakeItem(Player & Player, class Armor Item) {
+    Player.SetArmor(Player.GetArmor() + Item.GetArmorPoints());
     ArmorSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Weapon Item){
-//    InvSlot Slot;
-//    Slot.Name = Item.GetName();
-//    Slot.Point = Item.GetWeaponDamage();
-//    Inventory.push_back(Slot);
+void PlayerController::TakeItem(Player & Player, Weapon Item){
+    Player.SetDamage(Player.GetDamage() + Item.GetWeaponDamage());
     WeaponSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Potion Item) {
-    PotionSlots.push_back(Item);
+void PlayerController::TakeItem(Player & Player, Potion Item) {
+    if (Item.GetName() == "HealthPotion") {
+        Player.SetHealthPotions(Player.GetHealthPotions() + 1);
+    } else if (Item.GetName() == "StaminaPotion") {
+        Player.SetStaminaPotions(Player.GetStaminaPotions() + 1);
+    }
 }
 
 
@@ -396,22 +410,8 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
         cout << ArmorSlots[i].GetArmorPoints();
     }
     TurnAqua;
-    gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << 2;
-    gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << 3;
-
-//    gotoxy(7, 44);
-//    int c = 1;
-//    for (auto & i : ArmorSlots) {
-//        c++;
-//        cout << i.GetName() << " " << i.GetArmorPoints();
-//        gotoxy(7+(c*20), 44);
-//    }
-//
-//    for (auto & i : WeaponSlots) {
-//        c++;
-//        cout << i.GetName() << " " << i.GetWeaponDamage();
-//        gotoxy(7+(c*20), 47);
-//    }
+    gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << Player.GetHealthPotions();
+    gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << Player.GetStaminaPotions();
 
 
 }

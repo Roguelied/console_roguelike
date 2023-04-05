@@ -30,10 +30,18 @@ class Player : public Character {
 protected:
     int MaxStamina{100}; int Stamina{100};
     int Gold{0};
+    int StaminaPotions{1};
+    int HealthPotions{1};
+
 public:
     Player(string ClassName);
 
     Player();
+
+    int GetStaminaPotions();
+    int GetHealthPotions();
+    void SetStaminaPotions(int Value);
+    void SetHealthPotions(int Value);
 
     int GetStamina();
     void SetStamina(int Stamina);
@@ -57,9 +65,9 @@ public:
 
 
 
-    void TakeItem(class Armor Item);
-    void TakeItem(Weapon Item);
-    void TakeItem(Potion Item);
+    void TakeItem(Player & Player, class Armor Item);
+    void TakeItem(Player & Player, Weapon Item);
+    void TakeItem(Player & Player, Potion Item);
 
     void InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag);
     string GetPlayerSymbol();

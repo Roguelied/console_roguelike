@@ -55,25 +55,9 @@ int main() {
 //    PlayArcherAttackAnimation();
 //    wait(); return 0;
 
-    for (;;) { PlayQ(); }
+    //for (;;) { PlayQ(); }
     //for (;;) { PlayZ(); }
-    wait(); return 0;
     //--------------------------------------------------------------------------------------
-
-    InitializeSettings();
-//    PlayerController PlayerController;
-//    Player Player;
-//    UserInterface UserInterface;
-//    GameLevel HomeLevel(0);
-//    PlayerController.MovementInit(Player,HomeLevel);
-//    OpenShop();
-
-    for (;;) {PlayB();}
-
-    wait();
-    return 0;
-}*/
-//--------------------------------------------------------------------------------------
     InitializeSettings();
     GameLevel FreeSpace(4);
     GameLevel HomeLevel(0);
@@ -87,12 +71,13 @@ int main() {
     UserInterface.StartMenu();
     Player Player(UserInterface.ClassMenu());
 
-
-/*    PlayerController.TakeItem(HealthPotion);
-   PlayerController.TakeItem(StaminaPotion);
-    PlayerController.TakeItem(HeavyArmor);
-    PlayerController.TakeItem(ShinyGreatsword);*/
-
+    //Add basic items
+    PlayerController.TakeItem(Player, LeatherCoat);
+    if (Player.GetName() == "Knight") {
+        PlayerController.TakeItem(Player, Stick);
+    } else if (Player.GetName() == "Archer") {
+        PlayerController.TakeItem(Player, Slingshot);
+    }
 
     PlayerController.MovementInit(Player,HomeLevel);
     PlayerController.MovementInit(Player, FirstLevel);
@@ -101,4 +86,5 @@ int main() {
 
     wait();
 }
+
 
