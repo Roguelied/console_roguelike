@@ -9,7 +9,7 @@ void PlayArcherAttackAnimation();
 int FightInitialize(Player & Player, Enemy & Enemy);
 void ABOBUS();
 
-void PlayA();
+void PlayQ();
 //void PlayZ();
 void PlayB();
 

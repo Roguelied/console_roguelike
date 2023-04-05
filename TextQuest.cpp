@@ -17,15 +17,16 @@ bool isNum(char n){
 
 void quest()
 {
+    gotoxy(0, 28);
     bool game = true;
     int n = 0, inp = 0, i = 0, j;
     int a[2] = {0,0};
     string num[10], choice, str[256];
-    ifstream f1;
+    ifstream in;
 
-    f1.open("quest.txt");
-    while(!f1.eof()){
-        getline(f1,str[i]);
+    in.open("quest.txt");
+    while(!in.eof()){
+        getline(in, str[i]);
         i++;
     }
 
@@ -80,5 +81,5 @@ void quest()
             game = false;
         }
     }
-    f1.close();
+    in.close();
 }
