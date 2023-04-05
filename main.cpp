@@ -16,8 +16,18 @@ vector <PlayerItem*> AllExistingItems = {
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
+//
 
-    //wait(); return 0;
+    InitializeSettings();
+//    Player Player("Knight");
+//    Enemy Enemy(0);
+//    //FightInitialize(Player, Enemy);
+//    PlayArcherAttackAnimation();
+//    wait(); return 0;
+
+    for (;;) { PlayA(); }
+    //for (;;) { PlayZ(); }
+    wait(); return 0;
     //--------------------------------------------------------------------------------------
     InitializeSettings();
 
