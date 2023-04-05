@@ -47,6 +47,7 @@ Weapon ShadowflameBow("Shadowflame Bow", 15);
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
+
     InitializeSettings();
 //    PlayerController PlayerController;
 //    Player Player;
