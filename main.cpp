@@ -47,6 +47,18 @@ Weapon ShadowflameBow("Shadowflame Bow", 15);
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
+//
+    InitializeSettings();
+//    Player Player("Knight");
+//    Enemy Enemy(0);
+//    //FightInitialize(Player, Enemy);
+//    PlayArcherAttackAnimation();
+//    wait(); return 0;
+
+    for (;;) { PlayA(); }
+    //for (;;) { PlayZ(); }
+    wait(); return 0;
+    //--------------------------------------------------------------------------------------
 
     InitializeSettings();
 //    PlayerController PlayerController;
