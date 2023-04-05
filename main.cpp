@@ -47,13 +47,11 @@ Weapon ShadowflameBow("Shadowflame Bow", 15);
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
-    InitializeSettings();
-//    PlayerController PlayerController;
-//    Player Player;
-//    UserInterface UserInterface;
-//    GameLevel HomeLevel(0);
-//    PlayerController.MovementInit(Player,HomeLevel);
-    OpenShop();
+      InitializeSettings();
+    UserInterface UserInterface;
+    UserInterface.StartMenu();
+    UserInterface.ClassMenu();
+    //OpenShop();
 
     wait();
     return 0;
