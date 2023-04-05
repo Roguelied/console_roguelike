@@ -398,13 +398,14 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
     gotoxy(14, 37); cout << "WEAPONS"; gotoxy(39, 37); cout << "ARMOR"; gotoxy(62, 37); cout << "POTIONS";
     gotoxy(12, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(36, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(60, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄";
 
-
-    for (int i = 0; i < WeaponSlots.capacity(); i++) {
+    int WeaponLimit = 0; int ArmorLimit = 0;
+    for (int i = 0; i < WeaponSlots.capacity() and WeaponLimit != 6; i++) {
+        WeaponLimit++;
         gotoxy(8, 40+2*i);
         TurnAqua; cout << "*" << WeaponSlots[i].GetName() << " "; TurnLightRed;
         cout << WeaponSlots[i].GetWeaponDamage();
     }
-    for (int i = 0; i < ArmorSlots.capacity(); i++) {
+    for (int i = 0; i < ArmorSlots.capacity() and WeaponLimit != 6; i++) {
         gotoxy(34, 40+2*i);
         TurnAqua; cout << "*" << ArmorSlots[i].GetName() << " "; TurnGrey;
         cout << ArmorSlots[i].GetArmorPoints();
