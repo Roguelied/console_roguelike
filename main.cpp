@@ -5,51 +5,60 @@
 #include "UserInterface.h"
 #include "LevelDesign.h"
 
+
+//изночальная сноряга
+Weapon Stick("Stick", 15);
+Armor LeatherCoat("Leather Coat", 10);
+Weapon Slingshot("Slingshot", 15);
+
+//что может дать капибара
+Weapon Fuckel("FUCKel", 100000);
+Weapon TopolM("RT-2PM2 Topol-M", 100000);
+
 //POTION
-Potion AntidotePotion("Antidote potion");
 Potion BluePotion("Blue potion");
 Potion HealingPotion("Healing potion");
-Potion StrengthPotion("Strength potion");
-Potion TeaPotion("Tea potion");
 
 //ARMOR
+//лёгкая броня,тяжёлая броня,броня единорога,божественная броня
 Armor LightArmor("Light armor", 40);
-Armor UnicornArmor("Unicorn armor", 20);
-Armor BlackCoatArmor("Black coat armor", 40);
 Armor HeavyArmor("Heavy Armor", 40);
+Armor UnicornArmor("Unicorn armor", 40);
 Armor GodArmor("God armor", 40);
 
 //WEAPON
 //sword
-Weapon ChaosEaterSword("Chaos eater sword", 15);
-Weapon SwordIncinerator("Sword incinerator", 15);
-Weapon SwordRebel("Sword rebel", 15);
-Weapon BusterSword("Buster sword", 15);
+//нож,старая катана,небесный меч,меч пожерателя хаоса
+Weapon Knife("Knife", 15);
+Weapon OldKatana("Old Katana", 15);
 Weapon HeavenlySword("Heavenly sword", 15);
-Weapon EnergySword("Energy sword", 15);
-Weapon Fuckel("FUCKel",100000);
+Weapon ChaosEaterSword("Chaos eater sword", 15);
 
 //bow
+//арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
+Weapon Crossbow("Crossbow", 15);
 Weapon RoyalBow("Royal bow", 15);
-Weapon BowOathArrow("Bow oath arrow", 15);
-Weapon HunterBow("Hunter bow", 15);
-Weapon BowSlingshot("Bow slingshot", 15);
-Weapon RustyBow("Rusty bow", 15);
-Weapon BowPredator("Bow predator", 15);
-Weapon TopolM("RT-2PM2 Topol-M",100000);
+Weapon TimeLordsBow("Time Lord's Bow", 15);
+Weapon ShadowflameBow("Shadowflame Bow", 15);
+
 
 // использовать предметы в окне боевки
 // саня сказать мне фиксированные x y для того чтобы спавнить в лвле и чтобы выходить из негео, сделать края для лвла меньше к концу консоли чтобы не было бед аллока
 // мне переделать на бекграунд фонт менюшки
 
 int main() {
-
-    UserInterface UserInterface;
+    InitializeSettings();
+//    PlayerController PlayerController;
+//    Player Player;
+//    UserInterface UserInterface;
+//    GameLevel HomeLevel(0);
+//    PlayerController.MovementInit(Player,HomeLevel);
     OpenShop();
+
     wait();
     return 0;
 }
-    //--------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 //    InitializeSettings();
 //
 //    GameLevel FreeSpace(4);
