@@ -371,7 +371,7 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
     TurnWhite;
 
     gotoxy(7, 34); TurnWhite; cout << " PLAYER ITEMS ";
-    gotoxy(7, 35); TurnAqua; cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    gotoxy(7, 35); TurnAqua; cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄я пидоор▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
 
     gotoxy(14, 37); cout << "WEAPONS"; gotoxy(39, 37); cout << "ARMOR"; gotoxy(62, 37); cout << "POTIONS";
     gotoxy(12, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(36, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄"; gotoxy(60, 38); cout << "▄▄▄▄▄▄▄▄▄▄▄";
