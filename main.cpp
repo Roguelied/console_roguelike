@@ -6,40 +6,14 @@
 #include "LevelDesign.h"
 
 
-//изночальная сноряга
-Weapon Stick("Stick", 15);
-Armor LeatherCoat("Leather Coat", 10);
-Weapon Slingshot("Slingshot", 15);
+    //изночальная сноряга
+    Weapon Stick("Stick", 15, 0);
+    Armor LeatherCoat("Leather Coat", 10, 0);
+    Weapon Slingshot("Slingshot", 15, 0);
 
-//что может дать капибара
-Weapon Fuckel("FUCKel", 100000);
-Weapon TopolM("RT-2PM2 Topol-M", 100000);
-
-//POTION
-Potion BluePotion("Blue potion");
-Potion HealingPotion("Healing potion");
-
-//ARMOR
-//лёгкая броня,тяжёлая броня,броня единорога,божественная броня
-Armor LightArmor("Light armor", 40);
-Armor HeavyArmor("Heavy Armor", 40);
-Armor UnicornArmor("Unicorn armor", 40);
-Armor GodArmor("God armor", 40);
-
-//WEAPON
-//sword
-//нож,старая катана,небесный меч,меч пожерателя хаоса
-Weapon Knife("Knife", 15);
-Weapon OldKatana("Old Katana", 15);
-Weapon HeavenlySword("Heavenly sword", 15);
-Weapon ChaosEaterSword("Chaos eater sword", 15);
-
-//bow
-//арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
-Weapon Crossbow("Crossbow", 15);
-Weapon RoyalBow("Royal bow", 15);
-Weapon TimeLordsBow("Time Lord's Bow", 15);
-Weapon ShadowflameBow("Shadowflame Bow", 15);
+    //что может дать капибара
+    Weapon Fuckel("FUCKel", 100000, 0);
+    Weapon TopolM("RT-2PM2 Topol-M", 100000, 0);
 
 
 // использовать предметы в окне боевки
@@ -57,6 +31,7 @@ int main() {
 
     //--------------------------------------------------------------------------------------
     InitializeSettings();
+
     GameLevel FreeSpace(4);
     GameLevel HomeLevel(0);
     GameLevel FirstLevel(1);
@@ -67,8 +42,7 @@ int main() {
 
 
     UserInterface.StartMenu();
-    Player Player(UserInterface.ClassMenu());
-
+    Player Player(UserInterface.ClassMenu());;
     //Add basic items
     PlayerController.TakeItem(Player, LeatherCoat);
     if (Player.GetName() == "Knight") {

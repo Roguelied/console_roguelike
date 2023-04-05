@@ -9,5 +9,7 @@ void PlayArcherAttackAnimation();
 int FightInitialize(Player & Player, Enemy & Enemy);
 
 void PlayA();
+void PlayC();
+void PlayD();
 
 #endif //CONSOLE_ROGUELIKE_CPP_ANIMATIONANDSPRITES_H
