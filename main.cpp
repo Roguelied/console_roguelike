@@ -55,8 +55,6 @@ int main() {
 //    PlayArcherAttackAnimation();
 //    wait(); return 0;
 
-    for (;;) { PlayQ(); }
-    //for (;;) { PlayZ(); }
     wait(); return 0;
     //--------------------------------------------------------------------------------------
 
