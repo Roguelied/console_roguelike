@@ -357,30 +357,30 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
 void PlayerController::OpenShop(Player & Player) {
 
     //POTION
-    Potion BluePotion("Blue potion");
-    Potion HealingPotion("Healing potion");
+    Potion BluePotion("Blue potion",15);
+    Potion HealingPotion("Healing potion",15);
 
 //ARMOR
 //лёгкая броня,тяжёлая броня,броня единорога,божественная броня
-    class Armor LightArmor("Light armor", 40);
-    class Armor HeavyArmor("Heavy Armor", 40);
-    class Armor UnicornArmor("Unicorn armor", 40);
-    class Armor GodArmor("God armor", 40);
+    class Armor LightArmor("Light armor", 1,10);
+    class Armor HeavyArmor("Heavy Armor", 2,11);
+    class Armor UnicornArmor("Unicorn armor", 3,12);
+    class Armor GodArmor("God armor", 4,13);
 
 //WEAPON
 //sword
 //нож,старая катана,небесный меч,меч пожерателя хаоса
-    Weapon Knife("Knife", 15);
-    Weapon OldKatana("Old Katana", 15);
-    Weapon HeavenlySword("Heavenly sword", 15);
-    Weapon ChaosEaterSword("Chaos eater sword", 15);
+    Weapon Knife("Knife", 1,10);
+    Weapon OldKatana("Old Katana", 2,11);
+    Weapon HeavenlySword("Heavenly sword", 3,12);
+    Weapon ChaosEaterSword("Chaos eater sword", 4,13);
 
 //bow
 //арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
-    Weapon Crossbow("Crossbow", 15);
-    Weapon RoyalBow("Royal bow", 15);
-    Weapon TimeLordsBow("Time Lord's Bow", 15);
-    Weapon ShadowflameBow("Shadowflame Bow", 15);
+    Weapon Crossbow("Crossbow", 1,10);
+    Weapon RoyalBow("Royal bow", 2,11);
+    Weapon TimeLordsBow("Time Lord's Bow", 3,12);
+    Weapon ShadowFlameBow("Shadow Flame Bow", 4,13);
 
 
 
@@ -441,33 +441,54 @@ void PlayerController::OpenShop(Player & Player) {
     if(Player.GetName() =="Knight"){
         gotoxy(13,32);
         cout<<"FOR KNIGHT";
-        int Y=38;
+        int Y=38;int X=101;int Z=72;
         gotoxy(23,Y);
-        cout<<"(w)" << Knife.GetName() << " " << Knife.GetWeaponDamage() <<endl;
+        cout<<"(w)" << Knife.GetName(); gotoxy(X,Y); cout<< Knife.GetWeaponDamage(); gotoxy(Z,Y); cout << Knife.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(w)OldKatana"<<endl;
+        cout<<"(w)" << OldKatana.GetName();gotoxy(X,Y);cout<<OldKatana.GetWeaponDamage();gotoxy(Z,Y);cout<<OldKatana.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(w)Heavenly sword"<<endl;
+        cout<<"(w)" <<HeavenlySword.GetName();gotoxy(X,Y);cout<<HeavenlySword.GetWeaponDamage();gotoxy(Z,Y);cout<<HeavenlySword.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(w)Chaos eater sword"<<endl;
+        cout<<"(w)" <<ChaosEaterSword.GetName();gotoxy(X,Y);cout<<ChaosEaterSword.GetWeaponDamage();gotoxy(Z,Y);cout<<ChaosEaterSword.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(a)Light armor"<<endl;
+        cout<<"(a)" <<LightArmor.GetName();gotoxy(X,Y);cout<<LightArmor.GetArmorPoints();gotoxy(Z,Y);cout<<LightArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(a)Heavy Armor"<<endl;
+        cout<<"(a)" <<HeavenlySword.GetName();gotoxy(X,Y);cout<<HeavenlySword.GetWeaponDamage();gotoxy(Z,Y);cout<<HeavyArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(a)Unicorn armor"<<endl;
+        cout<<"(a)" <<UnicornArmor.GetName();gotoxy(X,Y);cout<<UnicornArmor.GetArmorPoints();gotoxy(Z,Y);cout<<UnicornArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(a)God armor"<<endl;
+        cout<<"(a)" <<GodArmor.GetName();gotoxy(X,Y);cout<<GodArmor.GetArmorPoints();gotoxy(Z,Y);cout<<GodArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(p)Healing potion"<<endl;
+        cout<<"(p)" <<HealingPotion.GetName();gotoxy(X,Y);;cout<<HealingPotion.GetHealth();gotoxy(Z,Y);cout<<HealingPotion.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(p)Blue potion"<<endl;
+        cout<<"(p)" <<BluePotion.GetName();gotoxy(X,Y);cout<<BluePotion.GetStamina();gotoxy(Z,Y);cout<<BluePotion.GetPrice();
+
 
     }
     else if(Player.GetName() == "Archer"){
         gotoxy(13,32);
         cout<<"FOR ARCHER";
-
+        int Y=38;int X=101;int Z=72;
+        gotoxy(23,Y);
+        cout<<"(w)" << Crossbow.GetName(); gotoxy(X,Y); cout<< Crossbow.GetWeaponDamage(); gotoxy(Z,Y); cout << Crossbow.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)" << RoyalBow.GetName();gotoxy(X,Y);cout<<RoyalBow.GetWeaponDamage();gotoxy(Z,Y);cout<<RoyalBow.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)" <<TimeLordsBow.GetName();gotoxy(X,Y);cout<<TimeLordsBow.GetWeaponDamage();gotoxy(Z,Y);cout<<TimeLordsBow.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(w)" <<ShadowFlameBow.GetName();gotoxy(X,Y);cout<<ShadowFlameBow.GetWeaponDamage();gotoxy(Z,Y);cout<<ShadowFlameBow.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)" <<LightArmor.GetName();gotoxy(X,Y);cout<<LightArmor.GetArmorPoints();gotoxy(Z,Y);cout<<LightArmor.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)" <<HeavyArmor.GetName();gotoxy(X,Y);cout<<HeavyArmor.GetArmorPoints();gotoxy(Z,Y);cout<<HeavyArmor.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)" <<UnicornArmor.GetName();gotoxy(X,Y);cout<<UnicornArmor.GetArmorPoints();gotoxy(Z,Y);cout<<UnicornArmor.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(a)" <<GodArmor.GetName();gotoxy(X,Y);cout<<GodArmor.GetArmorPoints();gotoxy(Z,Y);cout<<GodArmor.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)" <<HealingPotion.GetName();gotoxy(X,Y);;cout<<HealingPotion.GetHealth();gotoxy(Z,Y);cout<<HealingPotion.GetPrice();
+        Y++;Y++;gotoxy(23,Y);
+        cout<<"(p)" <<BluePotion.GetName();gotoxy(X,Y);cout<<BluePotion.GetStamina();gotoxy(Z,Y);cout<<BluePotion.GetPrice();
 
 
     }
