@@ -282,6 +282,24 @@ void GameLevel::ColorCheck(int x, int y) {
     if (str == "#" or str == "░" or str == "█") {
         TurnWhite;
         return;
+    } else if(str == "&"){
+        TurnLightRed;
+        return;
+    } else if(str == "!"){
+        TurnBlack;
+        return;
+    } else if (str == "@"){
+        TurnBrightGreen;
+        return;
+    } else if(str == "$"){
+        TurnGreen;
+        return;
+    } else if(str == "?"){
+        TurnMagenta;
+        return;
+    } else if (str == "*"){
+        TurnYellow;
+        return;
     }
 }
 

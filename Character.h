@@ -78,6 +78,7 @@ public:
 
 
     void OpenShop(Player & Player);
+    void Capybara(Player & Player);
     int x{28}; int y{14}; //current position
 };
 

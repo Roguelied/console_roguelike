@@ -128,9 +128,11 @@ void PlayerController::InteractWith(Player & Player, GameLevel & Level, int x, i
                 //Level.DrawVisibleField(x, y);
                 quest();
             }
+            if(flag==1 and Level.GetFromCoordinates(x+i,y+j)=="~"){
+                PlayerController::Capybara(Player);
+            }
         }
     }
-
 }
 
 void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
@@ -383,7 +385,6 @@ void PlayerController::OpenShop(Player & Player) {
     Weapon RoyalBow("Royal bow", 2,11);
     Weapon TimeLordsBow("Time Lord's Bow", 3,12);
     Weapon ShadowFlameBow("Shadow Flame Bow", 4,13);
-
 
 
     TurnYellow;
@@ -708,5 +709,23 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
         }
     }
 }
+void PlayerController::Capybara(Player & Player) {
+    //что может дать капибара
+    Weapon Fuckel("FUCKel", 100000, 0);
+    Weapon TopolM("RT-2PM2 Topol-M", 100000, 0);
 
-
+    if (Player.GetName()=="Knight"){
+        TakeItem(Player,Fuckel);
+    } else if (Player.GetName()=="Archer"){
+        TakeItem(Player,TopolM);
+    }
+    while (true){
+        gotoxy(0,200);
+        capy();
+        int Key=_getch();
+        if(KeyCheck(Key)==8){
+            gotoxy(0,0);
+            return;
+        }
+    }
+}
