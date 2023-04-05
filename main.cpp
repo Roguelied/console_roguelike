@@ -72,33 +72,33 @@ int main() {
 
     wait();
     return 0;
-}
+}*/
 //--------------------------------------------------------------------------------------
-//    InitializeSettings();
-//
-//    GameLevel FreeSpace(4);
-//    GameLevel HomeLevel(0);
-//    GameLevel FirstLevel(1);
-//    GameLevel SecondLevel(2);
-//
-//    PlayerController PlayerController;
-//    UserInterface UserInterface;
-//
-//
-//    UserInterface.StartMenu();
-//    Player Player(UserInterface.ClassMenu());
-//
-//
-//    PlayerController.TakeItem(HealthPotion);
-//    PlayerController.TakeItem(StaminaPotion);
-//    PlayerController.TakeItem(HeavyArmor);
-//    PlayerController.TakeItem(ShinyGreatsword);
-//
-//
-//    PlayerController.MovementInit(Player,HomeLevel);
-//    PlayerController.MovementInit(Player, FirstLevel);
-//    PlayerController.MovementInit(Player, SecondLevel);
-//
-//
-//    wait();
-//}
+    InitializeSettings();
+    GameLevel FreeSpace(4);
+    GameLevel HomeLevel(0);
+    GameLevel FirstLevel(1);
+    GameLevel SecondLevel(2);
+
+    PlayerController PlayerController;
+    UserInterface UserInterface;
+
+
+    UserInterface.StartMenu();
+    Player Player(UserInterface.ClassMenu());
+
+
+/*    PlayerController.TakeItem(HealthPotion);
+   PlayerController.TakeItem(StaminaPotion);
+    PlayerController.TakeItem(HeavyArmor);
+    PlayerController.TakeItem(ShinyGreatsword);*/
+
+
+    PlayerController.MovementInit(Player,HomeLevel);
+    PlayerController.MovementInit(Player, FirstLevel);
+    PlayerController.MovementInit(Player, SecondLevel);
+
+
+    wait();
+}
+
