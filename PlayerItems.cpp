@@ -5,16 +5,21 @@
 #include "PlayerItems.h"
 #include "Utility.h"
 
-PlayerItem::PlayerItem(string Name) {
+PlayerItem::PlayerItem(string Name, int Price) {
     this->Name = Name;
+    this->Price = Price;
 }
+
 
 string PlayerItem::GetName() {
     return Name;
 }
+int PlayerItem::GetPrice() {
+    return Price;
+}
 
-Armor::Armor(string Name, int ArmorPoints) : PlayerItem(Name) {
-    this -> ArmorPoints = ArmorPoints;
+Armor::Armor(string Name, int ArmorPoints, int ArmorPrice) : PlayerItem(Name, ArmorPrice) {
+    this->ArmorPoints = ArmorPoints;
 }
 
 int Armor::GetArmorPoints() {
@@ -25,7 +30,7 @@ void Armor::SetArmorPoints(int ArmorPoints) {
     this->ArmorPoints = ArmorPoints;
 }
 
-Weapon::Weapon(string Name, int WeaponDamage) : PlayerItem(Name) {
+Weapon::Weapon(string Name, int WeaponDamage, int WeaponPrice) : PlayerItem(Name, WeaponPrice) {
     this->WeaponDamage = WeaponDamage;
 
 }
@@ -47,6 +52,6 @@ int Potion::GetStamina() {
     return Stamina;
 }
 
-Potion::Potion(string Name) : PlayerItem(Name) {
+Potion::Potion(string Name,int PotionPrice) : PlayerItem(Name, PotionPrice) {
 
 }
