@@ -348,7 +348,7 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
         cout << "█";
     }
     for (int i = 0; i < 19; i++) {
-        gotoxy(95, 34+i); cout << "█"; //▌
+        gotoxy(95, 34+i); cout << "█";
     }
     for (int i = 0; i < 24; i++) {
         gotoxy(95+i, 34); cout << "▄";
