@@ -69,6 +69,7 @@ public:
     void TakeItem(Player & Player, Weapon Item);
     void TakeItem(Player & Player, Potion Item);
 
+
     void InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag);
     string GetPlayerSymbol();
     void MovementInit(Player & Player, GameLevel & Level);
