@@ -53,7 +53,9 @@ int main() {
 //    UserInterface UserInterface;
 //    GameLevel HomeLevel(0);
 //    PlayerController.MovementInit(Player,HomeLevel);
-    OpenShop();
+//    OpenShop();
+
+    for (;;) {PlayB();}
 
     wait();
     return 0;
