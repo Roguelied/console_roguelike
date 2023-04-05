@@ -54,8 +54,9 @@ int main() {
 //    //FightInitialize(Player, Enemy);
 //    PlayArcherAttackAnimation();
 //    wait(); return 0;
-
+    //for (;;) {PlayA();}
     wait(); return 0;
+
     //--------------------------------------------------------------------------------------
 
     InitializeSettings();
@@ -66,7 +67,7 @@ int main() {
 //    PlayerController.MovementInit(Player,HomeLevel);
 //    OpenShop();
 
-    for (;;) {PlayB();}
+
 
     wait();
     return 0;
