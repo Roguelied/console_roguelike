@@ -5,6 +5,8 @@
 #include "Utility.h"
 #include "TextQuest.h"
 void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor> & ArmorSlots, vector<Potion> & PotionSlots);
+int SoldWeaponItems[4] = {0, 0, 0, 0};
+int SoldArmorItems[4] = {0, 0, 0, 0};
 /*============================================================ Character ============================================================
 ===================================================================================================================================== */
 int Character::GetHealth() {
@@ -91,17 +93,17 @@ void Player::SetHealthPotions(int Value) {
 /*============================================================ PlayerController ============================================================
 ===================================================================================================================================== */
 
-void PlayerController::TakeItem(Player & Player, class Armor Item) {
+void PlayerController::TakeItem(Player & Player, class Armor & Item) {
     Player.SetArmor(Player.GetArmor() + Item.GetArmorPoints());
     ArmorSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Player & Player, Weapon Item){
+void PlayerController::TakeItem(Player & Player, Weapon & Item){
     Player.SetDamage(Player.GetDamage() + Item.GetWeaponDamage());
     WeaponSlots.push_back(Item);
 }
 
-void PlayerController::TakeItem(Player & Player, Potion Item) {
+void PlayerController::TakeItem(Player & Player, Potion & Item) {
     if (Item.GetName() == "HealthPotion") {
         Player.SetHealthPotions(Player.GetHealthPotions() + 1);
     } else if (Item.GetName() == "StaminaPotion") {
@@ -121,18 +123,20 @@ void PlayerController::InteractWith(Player & Player, GameLevel & Level, int x, i
                 Level.DrawVisibleField(x, y);
             }
             if (flag == 1 and Level.GetFromCoordinates(x+i, y+j) == "*") {
-                gotoxy(0, 0); cout << "sd";
+                OpenShop(Player);
             }
             if (flag == 1 and Level.GetFromCoordinates(x+i, y+j) == "?") {
                 //Level.SetToCoordinates(" ", x+i, y+j);
                 //Level.DrawVisibleField(x, y);
                 quest();
             }
-            if(flag==1 and Level.GetFromCoordinates(x+i,y+j)=="~"){
+            if (flag == 0 and Level.GetFromCoordinates(x+i,y+j)=="~"){
+                TurnWhite;
                 PlayerController::Capybara(Player);
             }
         }
     }
+
 }
 
 void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
@@ -149,11 +153,7 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
     for (;;) {
         if (_kbhit()) {
             auto Key = _getch();
-            if ((x == 115 and y == 25) or (x == 115 and y == 26) or (x == 115 and y == 27)) {
-                system("cls");
-                x = 10; y = 10;
-                return;
-            }
+
             InteractWith(Player, Level, x, y, 0);
             if (KeyCheck(Key) == 1 and WallCheck(Level, x, y - 1) == 0) {
                 gotoxy(x, y - 1); cout << PlayerSymbol; Level.SetToCoordinates("@", x, y-1);
@@ -188,6 +188,11 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
                 OpenInventory1(Player, WeaponSlots, ArmorSlots, PotionSlots);
             }
 
+            if ((x == 115 and y == 24) or (x == 115 and y == 23) or (x == 115 and y == 28) or (x == 115 and y == 25) or (x == 115 and y == 26) or (x == 115 and y == 27)) {
+                system("cls");
+                x = 5; y = 2;
+                return;
+            }
 
             if (KeyCheck(Key) == 1 or KeyCheck(Key) == 2 or KeyCheck(Key) == 3 or KeyCheck(Key) == 4) {
                 ShowXY(x, y);
@@ -219,6 +224,27 @@ int PlayerController::WallCheck(GameLevel & Level, int x, int y) {
     } else return 0;
 }
 
+
+void PlayerController::Capybara(Player & Player) {
+    //что может дать капибара
+    Weapon Fuckel("FUCKel", 100000, 0);
+    Weapon TopolM("RT-2PM2 Topol-M", 100000, 0);
+
+    if (Player.GetName()=="Knight"){
+        TakeItem(Player,Fuckel);
+    } else if (Player.GetName()=="Archer"){
+        TakeItem(Player,TopolM);
+    }
+    while (true){
+        gotoxy(0,200);
+        capy();
+        int Key=_getch();
+        if(KeyCheck(Key)==8){
+            gotoxy(0,0);
+            return;
+        }
+    }
+}
 
 /*=============================================================== Enemy ===============================================================
 ===================================================================================================================================== */
@@ -254,7 +280,7 @@ void EnemyAI::AutoMovement(GameLevel & Level, int x, int y) {
                 Level.SetToCoordinates(" ", v, d);
                 //gotoxy(v, d); cout << " ";
                 v++; d++;
-            } else if (v > x and d < y and WallCheck(Level, v - 1, y + 1) == 0) {
+            } else if (v > x and d < y and WallCheck(Level, v - 1, d + 1) == 0) {
                 Level.SetToCoordinates(EnemySymbol, v-1, d+1);
                 Level.SetToCoordinates(" ", v, d);
                 //gotoxy(v, d); cout << " ";
@@ -389,53 +415,53 @@ void PlayerController::OpenShop(Player & Player) {
 
     TurnYellow;
     if (KeyCheck(6)) {
-        gotoxy(0, 30);
+        gotoxy(0, 130);
         for (int i = 0; i < 120; i++) {
-            gotoxy(0 + i, 30);
+            gotoxy(0 + i, 130);
             cout << "▀";
-            gotoxy(0 + i, 58);
+            gotoxy(0 + i, 158);
             cout << "▄";
         }
         for (int i = 0; i < 29; i++) {
-            gotoxy(0, 30 + i);
+            gotoxy(0, 130 + i);
             cout << "█";
-            gotoxy(119, 30 + i);
+            gotoxy(119, 130 + i);
             cout << "█";
         }
     }
 
-    gotoxy(7, 32);
+    gotoxy(7, 132);
     TurnYellow;
     cout << " SHOP ";
-    gotoxy(7, 33);
+    gotoxy(7, 133);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(100,31);
+    gotoxy(100,131);
     TurnWhite;
     cout << "YOUR GOLD : "<< Player.GetGold();
     TurnYellow;
-    gotoxy(98,30);
+    gotoxy(98,130);
     for (int i = 0; i < 3; i++) {
-        gotoxy(98, 30 + i);
+        gotoxy(98, 130 + i);
         cout << "█";
     }
-    gotoxy(99,32);
+    gotoxy(99,132);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
 
     //header for colum
-    gotoxy(26, 35);
+    gotoxy(26, 135);
     cout << "ITEM";
-    gotoxy(21,36);
+    gotoxy(21,136);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(70, 35);
+    gotoxy(70, 135);
     cout << "PRICE";
-    gotoxy(65,36);
+    gotoxy(65,136);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(98, 35);
+    gotoxy(98, 135);
     cout << "ATTRIBUTE";
-    gotoxy(95,36);
+    gotoxy(95,136);
     cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
-    gotoxy(0, 30);
-    int currentY = 38;
+    gotoxy(0, 130);
+    int currentY = 138;
     gotoxy(6, currentY);
     cout << "=>";
 
@@ -454,16 +480,16 @@ void PlayerController::OpenShop(Player & Player) {
     };
 
     vector<Weapon> ArcherWeaponVector = {
-        Crossbow,
-        RoyalBow,
-        TimeLordsBow,
-        ShadowFlameBow
+            Crossbow,
+            RoyalBow,
+            TimeLordsBow,
+            ShadowFlameBow
     };
 
     if(Player.GetName() =="Knight"){
-        gotoxy(13,32);
+        gotoxy(13,132);
         cout<<"FOR KNIGHT";
-        int Y=38;int X=101;int Z=72;
+        int Y=138;int X=101;int Z=72;
         gotoxy(23,Y);
         cout<<"(w)" << Knife.GetName(); gotoxy(X,Y); cout<< Knife.GetWeaponDamage(); gotoxy(Z,Y); cout << Knife.GetPrice();
         Y++;Y++;gotoxy(23,Y);
@@ -475,7 +501,7 @@ void PlayerController::OpenShop(Player & Player) {
         Y++;Y++;gotoxy(23,Y);
         cout<<"(a)" <<LightArmor.GetName();gotoxy(X,Y);cout<<LightArmor.GetArmorPoints();gotoxy(Z,Y);cout<<LightArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
-        cout<<"(a)" <<HeavenlySword.GetName();gotoxy(X,Y);cout<<HeavenlySword.GetWeaponDamage();gotoxy(Z,Y);cout<<HeavyArmor.GetPrice();
+        cout<<"(a)" <<HeavyArmor.GetName();gotoxy(X,Y);cout<<HeavyArmor.GetArmorPoints();gotoxy(Z,Y);cout<<HeavyArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
         cout<<"(a)" <<UnicornArmor.GetName();gotoxy(X,Y);cout<<UnicornArmor.GetArmorPoints();gotoxy(Z,Y);cout<<UnicornArmor.GetPrice();
         Y++;Y++;gotoxy(23,Y);
@@ -489,9 +515,9 @@ void PlayerController::OpenShop(Player & Player) {
 
     }
     else if(Player.GetName() == "Archer"){
-        gotoxy(13,32);
+        gotoxy(13,132);
         cout<<"FOR ARCHER";
-        int Y=38;int X=101;int Z=72;
+        int Y=138;int X=101;int Z=72;
         gotoxy(23,Y);
         cout<<"(w)" << Crossbow.GetName(); gotoxy(X,Y); cout<< Crossbow.GetWeaponDamage(); gotoxy(Z,Y); cout << Crossbow.GetPrice();
         Y++;Y++;gotoxy(23,Y);
@@ -516,15 +542,12 @@ void PlayerController::OpenShop(Player & Player) {
 
     }
 
-
-    int SoldWeaponItems[4] = {0, 0, 0, 0};
-    int SoldArmorItems[4] = {0, 0, 0, 0};
     int Selector = 0;
 
     while (true) {
         int Key = _getch();
 
-        if (KeyCheck(Key) == 3 and currentY < 56) {
+        if (KeyCheck(Key) == 3 and currentY < 156) {
 
             Selector++;
             gotoxy(6, currentY);
@@ -534,7 +557,7 @@ void PlayerController::OpenShop(Player & Player) {
             gotoxy(6, currentY);
             cout << "=>";
 
-        } else if (KeyCheck(Key) == 1 and currentY > 38) {
+        } else if (KeyCheck(Key) == 1 and currentY > 138) {
             Selector--;
             gotoxy(6, currentY);
             cout << "  ";
@@ -552,60 +575,60 @@ void PlayerController::OpenShop(Player & Player) {
 
                     if ((SoldWeaponItems[Selector] != 1) and Player.GetGold() > ArcherWeaponVector[Selector].GetPrice()) {
                         Player.SetGold(Player.GetGold() - ArcherWeaponVector[Selector].GetPrice());
-                        gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
+                        gotoxy(100,131); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
                         TakeItem(Player, ArcherWeaponVector[Selector]);
                         SoldWeaponItems[Selector] = 1;
-                        gotoxy(30,32);cout<< "                                        ";
-                        gotoxy(30,32);cout<< "BUY SUCCESSFUL";
+                        gotoxy(30,132);cout<< "                                        ";
+                        gotoxy(30,132);cout<< "BUY SUCCESSFUL";
                     } else {
-                        gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
+                        gotoxy(30,132);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
 
                     }
 
                 } else if (Player.GetName() == "Knight") {
-                    gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
+                    gotoxy(0, 130); cout << "                     "; gotoxy(0, 130);
                     cout << KnightWeaponVector[Selector].GetName();
 
-                    if ((SoldWeaponItems[Selector] != 1) and Player.GetGold() > ArcherWeaponVector[Selector].GetPrice()) {
-                        Player.SetGold(Player.GetGold() - ArcherWeaponVector[Selector].GetPrice());
-                        gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
-                        TakeItem(Player, ArcherWeaponVector[Selector]);
+                    if ((SoldWeaponItems[Selector] != 1) and Player.GetGold() > KnightWeaponVector[Selector].GetPrice()) {
+                        Player.SetGold(Player.GetGold() - KnightWeaponVector[Selector].GetPrice());
+                        gotoxy(100,131); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
+                        TakeItem(Player, KnightWeaponVector[Selector]);
                         SoldWeaponItems[Selector] = 1;
-                        gotoxy(30,32);cout<< "                                        ";
-                        gotoxy(30,32);cout<< "BUY SUCCESSFUL";
+                        gotoxy(30,132);cout<< "                                        ";
+                        gotoxy(30,132);cout<< "BUY SUCCESSFUL";
                     } else {
-                        gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
+                        gotoxy(30,132);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
                     }
                 }
             }
-            //Armor
+                //Armor
             else if ( 4 <= Selector and Selector <= 7) {
 //                gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
 //                cout << ArmorVector[Selector-4].GetName();
-
-
                 if ((SoldArmorItems[Selector-4] != 1) and Player.GetGold() > ArmorVector[Selector-4].GetPrice()) {
                     Player.SetGold(Player.GetGold() - ArmorVector[Selector-4].GetPrice());
-                    gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
+                    gotoxy(100,131); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
                     TakeItem(Player, ArmorVector[Selector-4]);
                     SoldArmorItems[Selector-4] = 1;
-                    gotoxy(30,32);cout<< "                                        ";
-                    gotoxy(30,32);cout<< "BUY SUCCESSFUL";
+                    gotoxy(30,132);cout<< "                                        ";
+                    gotoxy(30,132);cout<< "BUY SUCCESSFUL";
                 } else {
-                    gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
+                    gotoxy(30,132);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
                 }
             }
-        } else if(KeyCheck(Key)==8){
+            else if (Selector == 8) {
+
+            } else if (Selector == 9) {
+
+            }
+        } else if (KeyCheck(Key)==8){
             gotoxy(0,0);
             return;
-
-
         }
     }
 }
 
 void Buy(string ItemName, int ItemPrice) {
-
 
 }
 
@@ -660,7 +683,8 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
         TurnAqua; cout << "*" << WeaponSlots[i].GetName() << " "; TurnLightRed;
         cout << WeaponSlots[i].GetWeaponDamage();
     }
-    for (int i = 0; i < ArmorSlots.capacity() and WeaponLimit != 6; i++) {
+    for (int i = 0; i < ArmorSlots.capacity() and ArmorLimit != 6; i++) {
+        ArmorLimit++;
         gotoxy(34, 40+2*i);
         TurnAqua; cout << "*" << ArmorSlots[i].GetName() << " "; TurnGrey;
         cout << ArmorSlots[i].GetArmorPoints();
@@ -709,23 +733,5 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
         }
     }
 }
-void PlayerController::Capybara(Player & Player) {
-    //что может дать капибара
-    Weapon Fuckel("FUCKel", 100000, 0);
-    Weapon TopolM("RT-2PM2 Topol-M", 100000, 0);
 
-    if (Player.GetName()=="Knight"){
-        TakeItem(Player,Fuckel);
-    } else if (Player.GetName()=="Archer"){
-        TakeItem(Player,TopolM);
-    }
-    while (true){
-        gotoxy(0,200);
-        capy();
-        int Key=_getch();
-        if(KeyCheck(Key)==8){
-            gotoxy(0,0);
-            return;
-        }
-    }
-}
+

@@ -203,10 +203,8 @@ void GameLevel::DrawVisibleField(int x, int y) {
             if (a == x and b == y) { continue; }
             ColorCheck(a, b);
             gotoxy(a, b);
-            TurnGreen;
             cout << GetFromCoordinates(a, b);
             Memorise(a, b);
-            TurnGreen;
         }
     }
     gotoxy(0, 0);

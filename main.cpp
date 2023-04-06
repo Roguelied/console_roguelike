@@ -55,7 +55,6 @@ int main() {
     PlayerController.MovementInit(Player, FirstLevel);
     PlayerController.MovementInit(Player, SecondLevel);
 
-
     wait();
 }
 
