@@ -10,7 +10,7 @@ private:
 
 public:
     vector<Coords> EnemyCoordinates;
-
+    int RoomType;
     GameLevel(int RoomType);
     string GetFromCoordinates(int x, int y);
     void SetToCoordinates(string NewMapElement, int x, int y);

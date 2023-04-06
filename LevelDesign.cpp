@@ -8,6 +8,7 @@ using namespace std;
 
 //Room resolution 29/119
 GameLevel::GameLevel(int RoomType) {
+    this->RoomType = RoomType;
     for (auto &i: GameLevelArray) {
         for (auto &j: i) {
             j = " ";

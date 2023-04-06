@@ -48,7 +48,7 @@ Player::Player(string ClassName) {
         SetHealth(130);
         SetStamina(100);
         SetArmor(30);
-        SetDamage(210);
+        SetDamage(20);
     }
     if (ClassName == "Archer") {
         SetName(ClassName);
@@ -252,12 +252,12 @@ void PlayerController::Capybara(Player & Player) {
 Enemy::Enemy(int EnemyType) {
     if (EnemyType == 0) {
         SetName("DefaultEnemy");
-        SetDamage(10);
-        SetHealth(170);
+        SetDamage(20);
+        SetHealth(140);
     }
     if (EnemyType == 1) {
         SetName("Boss");
-        SetDamage(5);
+        SetDamage(55);
         SetHealth(300);
     }
 }
@@ -355,7 +355,8 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
     int r = 3;
     for (int i = 0; i < r + 1; i++) {
         for (int j = 0; j < r; j++) {
-            if (Level.GetFromCoordinates(x-r/2+i, y-r/2+j) == "&") {
+            string EnemySymbol = Level.GetFromCoordinates(x-r/2+i, y-r/2+j);
+            if (EnemySymbol == "&") {
                 Enemy Enemy(0);
                 //ZAMENITB!
                 int Result = FightInitialize(Player, Enemy);
@@ -375,11 +376,38 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
                 } else if (Result == 0) {
                     system("cls"); cout << "U lose"; wait(); exit(1);
                 }
+            } else if (EnemySymbol == "!") {
+                Enemy Enemy(1);
+                //ZAMENITB!
+                int Result = FightInitialize(Player, Enemy);
+                if (Result) {
+                    Level.SetToCoordinates(" ", x-r/2+i, y-r/2+j);
+                    for (int k = 0; k < Level.EnemyCoordinates.capacity() ; k++) {
+                        if ((Level.EnemyCoordinates[k].x == x-r/2+i) and (Level.EnemyCoordinates[k].y == y-r/2+j)) {
+                            Level.EnemyCoordinates.erase(Level.EnemyCoordinates.begin() + k);
+                        }
+                    }
+                    system("cls");
+                    ::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
+                    gotoxy(0,0);
+                    Level.DrawMemorised();
+                    gotoxy(x, y);
+                    if (Level.RoomType == 0) {
+                        Level.Draw(104, 18, 113, 27," ");
+                    } else if (Level.RoomType == 1) {
+                        Level.Draw(103,14,114,23," ");
+                    } else if (Level.RoomType == 2) {
+                        Level.Draw(99, 14, 114, 21," ");
+                    }
+
+                    return;
+                } else if (Result == 0) {
+                    system("cls"); cout << "U lose"; wait(); exit(1);
+                }
             }
         }
     }
     gotoxy(0,0);
-
 }
 
 

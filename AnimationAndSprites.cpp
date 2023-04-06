@@ -2579,6 +2579,7 @@ void PlayAttackAnimation_KnightMicrodragon(Player & Player, Enemy & Enemy) {
     if (Enemy.GetHealth() <= 0) {
         return;
     }
+    if (Player.GetStamina() < 20) {return;}
     for (auto & AttackSprite : KnightAttackMicrodragon) {
         system("cls");
         cout << AttackSprite;
@@ -2596,11 +2597,64 @@ void PlayAttackAnimation_KnightMicrodragon(Player & Player, Enemy & Enemy) {
         sleep_for(milliseconds(200));
     }
     Enemy.SetHealth(Enemy.GetHealth() + Enemy.GetArmor() - Player.GetDamage());
+    Player.SetStamina(Player.GetStamina() - 20);
+}
+
+void PlayAttackAnimation_KnightDragon(Player & Player, Enemy & Enemy) {
+    if (Enemy.GetHealth() <= 0) {
+        return;
+    }
+    if (Player.GetStamina() < 20) {return;}
+    for (auto & AttackSprite : KnightAttackDragon) {
+        system("cls");
+        cout << AttackSprite;
+        TurnBrightAqua;
+        gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+        gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+        gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+        gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
+
+        gotoxy(135, 12); cout << "гоблин шизотерик";
+        gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+        gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+        gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+        TurnWhite;
+        sleep_for(milliseconds(200));
+    }
+    Enemy.SetHealth(Enemy.GetHealth() + Enemy.GetArmor() - Player.GetDamage());
+    Player.SetStamina(Player.GetStamina() - 20);
 }
 
 
 
 void PlayGotAttacked_KnightMicrodragon(Player & Player, Enemy & Enemy) {
+    if (Player.GetHealth() <= 0) {
+        return;
+    }
+    for (auto & AttackSprite : MicrodragonAttackKnight) {
+        system("cls");
+        cout << AttackSprite;
+        TurnBrightAqua;
+        gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+        gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+        gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+        gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
+
+        gotoxy(135, 12); cout << "гоблин шизотерик";
+        gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+        gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+        gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+        TurnWhite;
+
+        sleep_for(milliseconds(200));
+    }
+    Player.SetHealth(Player.GetHealth() + Player.GetArmor() - Enemy.GetDamage());
+    gotoxy(40, 40); cout << "enemy dealt " << Enemy.GetDamage() << "damage to you";
+    sleep_for(milliseconds(2000));
+    system("cls");
+}
+
+void PlayGotAttacked_KnightDragon(Player & Player, Enemy & Enemy) {
     if (Player.GetHealth() <= 0) {
         return;
     }
@@ -2678,6 +2732,57 @@ void PlayIdleAnimation_KnightMicrodragon(Player & Player, Enemy & Enemy) {
         }
     }
 }
+void PlayIdleAnimation_KnightDragon(Player & Player, Enemy & Enemy) {
+
+    //system("mode con COLS=700");
+    //ShowWindow(GetConsoleWindow(),SW_MAXIMIZE);
+    //SendMessage(GetConsoleWindow(),WM_SYSKEYDOWN,VK_RETURN,0x20000000); //убирает рамку
+    for (;;)
+    {
+        if (_kbhit()) {
+            int Key = _getch();
+            if (Key == '1') {break;}
+            if (Key == '2') {
+                if (Player.GetStaminaPotions() > 0) {
+                    Player.SetStaminaPotions(Player.GetStaminaPotions() - 1);
+                    if (Player.GetStamina() < 80) {
+                        Player.SetStamina(Player.GetStamina() + 20);
+                    }
+                }
+                continue;
+            }
+            if (Key == '3') {
+                if (Player.GetHealthPotions() > 0) {
+                    Player.SetHealthPotions(Player.GetHealthPotions() - 1);
+                    if (Player.GetHealth() < 100) {
+                        Player.SetHealth(Player.GetHealth() + 20);
+                    }
+                }
+                continue;
+            }
+        }
+        for (auto & AttackSprite: IdleKnightDragon) {
+            cout << AttackSprite;
+            TurnBrightAqua;
+            gotoxy(0, 12); cout << "Health:" << Player.GetHealth();
+            gotoxy(0, 13); cout << "Stamina:" << Player.GetStamina();
+            gotoxy(0, 14); cout << "Armor:" << Player.GetArmor();
+            gotoxy(0, 15); cout << "Damage" << Player.GetDamage();
+
+            gotoxy(135, 12); cout << "гоблин шизотерик";
+            gotoxy(135, 13); cout << "Health:" << Enemy.GetHealth();
+            gotoxy(135, 14); cout << "Armor:" << Enemy.GetArmor();
+            gotoxy(135, 15); cout << "Damage" << Enemy.GetDamage();
+
+
+            TurnAqua;
+            gotoxy(2,29); cout << "Hit: Press 1       Restore Health: Press 2        Restore Stamina: Press 3";
+            sleep_for(nanoseconds(400000000));
+            TurnWhite;
+            system("cls");
+        }
+    }
+}
 
 int FightInitialize(Player & Player, Enemy & Enemy) {
     system("cls");
@@ -2693,7 +2798,13 @@ int FightInitialize(Player & Player, Enemy & Enemy) {
             if (Player.GetHealth() <= 0) { return 0; }
         }
         if (Enemy.GetName() == "Boss") {
-            //PlayAttackAnimation_KnightDragon(Player, Enemy);
+            while (Enemy.GetHealth() > 0 and Player.GetHealth() > 0) {
+                PlayIdleAnimation_KnightMicrodragon(Player, Enemy);
+                PlayAttackAnimation_KnightMicrodragon(Player, Enemy);
+                if (Enemy.GetHealth() > 0){ PlayGotAttacked_KnightMicrodragon(Player, Enemy); }
+            }
+            if (Enemy.GetHealth() <= 0) { return 1; }
+            if (Player.GetHealth() <= 0) { return 0; }
         }
     }
     if (Player.GetName() == "Archer") {
