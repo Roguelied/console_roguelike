@@ -407,7 +407,7 @@ void PlayerController::OpenShop(Player & Player) {
     TurnYellow;
     cout << " SHOP ";
     gotoxy(7, 33);
-    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+    cout << "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
     gotoxy(100,31);
     TurnWhite;
     cout << "YOUR GOLD : "<< Player.GetGold();
@@ -546,16 +546,18 @@ void PlayerController::OpenShop(Player & Player) {
             //Weapons
             if ( 0 <= Selector and Selector <= 3) {
                 if (Player.GetName() == "Archer") {
-                    gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
-                    cout << ArcherWeaponVector[Selector].GetName();
+//                    gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
+//                    cout << ArcherWeaponVector[Selector].GetName();
 
                     if ((SoldWeaponItems[Selector] != 1) and Player.GetGold() > ArcherWeaponVector[Selector].GetPrice()) {
                         Player.SetGold(Player.GetGold() - ArcherWeaponVector[Selector].GetPrice());
                         gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
                         TakeItem(Player, ArcherWeaponVector[Selector]);
                         SoldWeaponItems[Selector] = 1;
+                        gotoxy(30,32);cout<< "                                        ";
+                        gotoxy(30,32);cout<< "BUY SUCCESSFUL";
                     } else {
-                        cout << "deneg nema";
+                        gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
 
                     }
 
@@ -568,15 +570,17 @@ void PlayerController::OpenShop(Player & Player) {
                         gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
                         TakeItem(Player, ArcherWeaponVector[Selector]);
                         SoldWeaponItems[Selector] = 1;
+                        gotoxy(30,32);cout<< "                                        ";
+                        gotoxy(30,32);cout<< "BUY SUCCESSFUL";
                     } else {
-                        cout << "deneg nema";
+                        gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
                     }
                 }
             }
             //Armor
             else if ( 4 <= Selector and Selector <= 7) {
-                gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
-                cout << ArmorVector[Selector-4].GetName();
+//                gotoxy(0, 30); cout << "                     "; gotoxy(0, 30);
+//                cout << ArmorVector[Selector-4].GetName();
 
 
                 if ((SoldArmorItems[Selector-4] != 1) and Player.GetGold() > ArmorVector[Selector-4].GetPrice()) {
@@ -584,10 +588,17 @@ void PlayerController::OpenShop(Player & Player) {
                     gotoxy(100,31); TurnWhite; cout << "YOUR GOLD : "<< Player.GetGold(); TurnYellow;
                     TakeItem(Player, ArmorVector[Selector-4]);
                     SoldArmorItems[Selector-4] = 1;
+                    gotoxy(30,32);cout<< "                                        ";
+                    gotoxy(30,32);cout<< "BUY SUCCESSFUL";
                 } else {
-                    cout << "deneg nema";
+                    gotoxy(30,32);cout<< "YOU CANT BUY 1 ITEM TWICE OR LITTLE CASH";
                 }
             }
+        } else if(KeyCheck(Key)==8){
+            gotoxy(0,0);
+            return;
+
+
         }
     }
 }

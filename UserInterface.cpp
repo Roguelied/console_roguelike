@@ -45,7 +45,6 @@ int UserInterface::StartMenu() {
             cout << "START";
             gotoxy(64, 14);
             TurnWhite;
-
             flag=0;
         } else if (KeyCheck(Key) == 3) {
 
