@@ -190,6 +190,10 @@ void PlayerController::MovementInit(Player & Player, GameLevel & Level) {
 
             if ((x == 115 and y == 24) or (x == 115 and y == 23) or (x == 115 and y == 28) or (x == 115 and y == 25) or (x == 115 and y == 26) or (x == 115 and y == 27)) {
                 system("cls");
+                if (Level.RoomType == 3) {
+                    cout << "gratz u win"; wait();
+                    exit(1);
+                }
                 x = 5; y = 2;
                 return;
             }
@@ -645,9 +649,17 @@ void PlayerController::OpenShop(Player & Player) {
                 }
             }
             else if (Selector == 8) {
-
+                if (Player.GetGold() > 30) {
+                    Player.SetHealthPotions(Player.GetHealthPotions()+1);
+                } else {
+                    gotoxy(30,132); cout<< "NOT ENOUGHT MONEY";
+                }
             } else if (Selector == 9) {
-
+                if (Player.GetGold() > 40) {
+                    Player.SetStaminaPotions(Player.GetStaminaPotions()+1);
+                } else {
+                    gotoxy(30,132); cout<< "NOT ENOUGHT MONEY";
+                }
             }
         } else if (KeyCheck(Key)==8){
             gotoxy(0,0);
