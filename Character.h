@@ -65,9 +65,9 @@ public:
 
 
 
-    void TakeItem(Player & Player, class Armor Item);
-    void TakeItem(Player & Player, Weapon Item);
-    void TakeItem(Player & Player, Potion Item);
+    void TakeItem(Player & Player, class Armor & Item);
+    void TakeItem(Player & Player, Weapon & Item);
+    void TakeItem(Player & Player, Potion & Item);
 
 
     void InteractWith(Player & Player, GameLevel & Level, int x, int y, int flag);
@@ -75,7 +75,7 @@ public:
     void MovementInit(Player & Player, GameLevel & Level);
     int WallCheck(GameLevel & Level, int x, int y);
     void CheckForEnemiesAround(GameLevel & Level, Player & Player, int x, int y);
-
+    void Capybara(Player & Player);
 
     void OpenShop(Player & Player);
     int x{28}; int y{14}; //current position

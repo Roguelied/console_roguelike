@@ -7,6 +7,7 @@ void PlayKnightAttackAnimation(Player & Player, Enemy & Enemy);
 void PlayKnightGotAttackedBy(Player & Player, Enemy & Enemy);
 void PlayArcherAttackAnimation();
 int FightInitialize(Player & Player, Enemy & Enemy);
+void capy();
 
 void PlayA();
 void PlayC();

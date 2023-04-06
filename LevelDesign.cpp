@@ -62,7 +62,7 @@ GameLevel::GameLevel(int RoomType) {
         AddEnemyCoordinates(76, 12);
         AddEnemyCoordinates(83, 5);
     }
-    if (RoomType == 1) {
+    if (RoomType == 2) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 7, 4, " ");
         Draw(3, 2, 4, 4, "░");
@@ -119,7 +119,7 @@ GameLevel::GameLevel(int RoomType) {
     }
 
 
-    if (RoomType == 2) {
+    if (RoomType == 1) {
         Draw(2, 1, 117, 28, "░");
         Draw(3, 2, 13, 4, " ");
         Draw(3, 2, 4, 4, "░");
@@ -203,10 +203,8 @@ void GameLevel::DrawVisibleField(int x, int y) {
             if (a == x and b == y) { continue; }
             ColorCheck(a, b);
             gotoxy(a, b);
-            TurnGreen;
             cout << GetFromCoordinates(a, b);
             Memorise(a, b);
-            TurnGreen;
         }
     }
     gotoxy(0, 0);
@@ -281,6 +279,24 @@ void GameLevel::ColorCheck(int x, int y) {
     string str = GetFromCoordinates(x, y);
     if (str == "#" or str == "░" or str == "█") {
         TurnWhite;
+        return;
+    } else if(str == "&"){
+        TurnLightRed;
+        return;
+    } else if(str == "!"){
+        TurnBlack;
+        return;
+    } else if (str == "@"){
+        TurnBrightGreen;
+        return;
+    } else if(str == "$"){
+        TurnGreen;
+        return;
+    } else if(str == "?"){
+        TurnMagenta;
+        return;
+    } else if (str == "*"){
+        TurnYellow;
         return;
     }
 }
