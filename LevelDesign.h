@@ -25,7 +25,6 @@ public:
     void RandItemOrder();
     void AddEnemyCoordinates(int x, int y);
     void ShowEnemyCoordinates();
-    void OpenShop();
 };
 
 class TreasureBox {

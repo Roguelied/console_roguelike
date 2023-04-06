@@ -252,7 +252,7 @@ void PlayerController::Capybara(Player & Player) {
 Enemy::Enemy(int EnemyType) {
     if (EnemyType == 0) {
         SetName("DefaultEnemy");
-        SetDamage(20);
+        SetDamage(35);
         SetHealth(140);
     }
     if (EnemyType == 1) {
@@ -415,30 +415,30 @@ void PlayerController::CheckForEnemiesAround(GameLevel & Level, Player & Player,
 void PlayerController::OpenShop(Player & Player) {
 
     //POTION
-    Potion BluePotion("Blue potion",15);
-    Potion HealingPotion("Healing potion",15);
+    Potion BluePotion("Blue potion",40);
+    Potion HealingPotion("Healing potion",40);
 
 //ARMOR
 //лёгкая броня,тяжёлая броня,броня единорога,божественная броня
-    class Armor LightArmor("Light armor", 1,10);
-    class Armor HeavyArmor("Heavy Armor", 2,11);
-    class Armor UnicornArmor("Unicorn armor", 3,12);
-    class Armor GodArmor("God armor", 4,13);
+    class Armor LightArmor("Light armor", 30,60);
+    class Armor HeavyArmor("Heavy Armor", 50,120);
+    class Armor UnicornArmor("Unicorn armor", 70,180);
+    class Armor GodArmor("God armor", 90,240);
 
 //WEAPON
 //sword
 //нож,старая катана,небесный меч,меч пожерателя хаоса
-    Weapon Knife("Knife", 1,10);
-    Weapon OldKatana("Old Katana", 2,11);
-    Weapon HeavenlySword("Heavenly sword", 3,12);
-    Weapon ChaosEaterSword("Chaos eater sword", 4,13);
+    Weapon Knife("Knife", 10,60);
+    Weapon OldKatana("Old Katana", 20,120);
+    Weapon HeavenlySword("Heavenly sword", 30,180);
+    Weapon ChaosEaterSword("Chaos eater sword", 40,240);
 
 //bow
 //арбалет,,кор.лук,лук повелителя времени,лук тёмного пламени
-    Weapon Crossbow("Crossbow", 1,10);
-    Weapon RoyalBow("Royal bow", 2,11);
-    Weapon TimeLordsBow("Time Lord's Bow", 3,12);
-    Weapon ShadowFlameBow("Shadow Flame Bow", 4,13);
+    Weapon Crossbow("Crossbow", 10,60);
+    Weapon RoyalBow("Royal bow", 20,120);
+    Weapon TimeLordsBow("Time Lord's Bow", 30,180);
+    Weapon ShadowFlameBow("Shadow Flame Bow", 40,240);
 
 
     TurnYellow;
