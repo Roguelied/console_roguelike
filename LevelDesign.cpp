@@ -163,6 +163,7 @@ GameLevel::GameLevel(int RoomType) {
         Draw(110, 25, 116, 27, " ");
         Draw(115, 25, 116, 27, "#");
         BossRoom(103, 17, 114, 23);
+
         RandItemOrder();
         DrawFrame();
         //shop
@@ -315,5 +316,3 @@ void GameLevel::ShowEnemyCoordinates() {
         cout << i.x << " " << i.y << "  ";
     }
 }
-
-
