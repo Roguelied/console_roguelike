@@ -2094,6 +2094,7 @@ void PlayIdleAnimation_KnightDragon(Player & Player, Enemy & Enemy) {
     {
         if (_kbhit()) {
             if (_getch() == '1') {break;}
+            if (_getch() == '1') {break;}
         }
         for (auto &AttackSprite: KnightIdleSprites) {
             cout << AttackSprite;

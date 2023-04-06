@@ -657,7 +657,45 @@ void OpenInventory1(Player & Player, vector<Weapon> & WeaponSlots, vector<Armor>
     gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << Player.GetHealthPotions();
     gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << Player.GetStaminaPotions();
 
+    gotoxy(7, 55); cout << "Press 1 to use Health Potion";
+    gotoxy(40, 55); cout << "Press 2 to use Stamina Potion";
 
+    for (;;) {
+        if (_kbhit()) {
+            gotoxy(73, 55); cout << "                                   ";
+            int Key = _getch();
+            if (KeyCheck(Key) == 8 or KeyCheck(Key) == 7) {
+                gotoxy(0, 0);
+                return;
+            }
+            if (Key == 49) { //1
+                if (Player.GetHealthPotions() > 0) {
+                    Player.SetHealthPotions(Player.GetHealthPotions() - 1);
+                    if (Player.GetHealth() < 100) {
+                        Player.SetHealth(Player.GetHealth() + 20);
+                    }
+                    TurnAqua; gotoxy(58, 40); cout << "Remaining "; TurnGreen; cout << "HP"; TurnAqua; cout << " Potions: " << Player.GetHealthPotions();
+                    TurnGreen; gotoxy(101, 41); cout << "Health: " << Player.GetHealth();
+                    continue;
+                } else {
+                    TurnLightRed; gotoxy(73, 55); cout << "Y tebya net etix zelek, durak!"; TurnAqua;
+                }
+            }
+            if (Key == 50) {
+                if (Player.GetStaminaPotions() > 0) {
+                    Player.SetStaminaPotions(Player.GetStaminaPotions() - 1);
+                    if (Player.GetStamina() < 80) {
+                        Player.SetStamina(Player.GetStamina() + 20);
+                    }
+                    TurnAqua; gotoxy(58, 42); cout << "Remaining "; TurnBrightAqua; cout << "STM"; TurnAqua; cout << " Potions: " << Player.GetStaminaPotions();
+                    TurnBrightAqua; gotoxy(101, 43); cout << "Stamina: " << Player.GetStamina();
+                    continue;
+                } else {
+                    TurnLightRed; gotoxy(73, 55); cout << "Y tebya net etix zelek, durak!"; TurnAqua;
+                }
+            }
+        }
+    }
 }
 
 

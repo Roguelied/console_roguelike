@@ -46,7 +46,7 @@ int UserInterface::StartMenu() {
             gotoxy(64, 14);
             TurnWhite;
 
-            flag++;
+            flag=0;
         } else if (KeyCheck(Key) == 3) {
 
             TurnWhite;
@@ -57,12 +57,12 @@ int UserInterface::StartMenu() {
             cout << "EXIT";
             gotoxy(63, 24);
             TurnWhite;
-            flag++;
+            flag=1;
         }
-        if (flag % 2 == 0 and KeyCheck(Key) == 5) {
+        if (flag == 0 and KeyCheck(Key) == 5) {
             system("cls");
             return choice;
-        } else if (flag % 2 == 1 and KeyCheck(Key) == 5) {
+        } else if (flag == 1 and KeyCheck(Key) == 5) {
             exit(0);
         }
     }
@@ -110,7 +110,7 @@ string UserInterface::ClassMenu() {
             gotoxy(64, 14);
             TurnWhite;
 
-            flag++;
+            flag=0;
         } else if (KeyCheck(Key) == 3) {
 
             TurnWhite;
@@ -121,12 +121,12 @@ string UserInterface::ClassMenu() {
             cout << "ARCHER";
             gotoxy(63, 24);
             TurnWhite;
-            flag++;
+            flag=1;
         }
-        if (flag % 2 == 0 and KeyCheck(Key) == 5) {
+        if (flag == 0 and KeyCheck(Key) == 5) {
             system("cls");
             return "Knight";
-        } else if (flag % 2 == 1 and KeyCheck(Key) == 5) {
+        } else if (flag == 1 and KeyCheck(Key) == 5) {
             system("cls");
             return "Archer";
         }
