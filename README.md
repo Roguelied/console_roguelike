@@ -1,3 +1,7 @@
-# console_roguelike_cpp
-МЫ НЕНАВИДИМ ОАИП
-Абобус
+Console roguelike game
+---
+
+### Console/Terminal roguelike game, using ASCII for display things and animation sequences, team project 
+
+---
+**C++ / CMake**
